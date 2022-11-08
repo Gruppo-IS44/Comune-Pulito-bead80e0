@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "codice-pulito": {
+    "comune-pulito": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/codice-pulito",
+            "outputPath": "dist/comune-pulito",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -64,10 +64,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "codice-pulito:build:production"
+              "browserTarget": "comune-pulito:build:production"
             },
             "development": {
-              "browserTarget": "codice-pulito:build:development"
+              "browserTarget": "comune-pulito:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -75,7 +75,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "codice-pulito:build"
+            "browserTarget": "comune-pulito:build"
           }
         },
         "test": {
