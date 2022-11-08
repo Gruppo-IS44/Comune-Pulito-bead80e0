@@ -1,2 +1,0 @@
-# Comune Pulito
- Progetto Accenture
