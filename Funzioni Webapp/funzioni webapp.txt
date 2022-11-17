@@ -1,0 +1,11 @@
+Funzioni Base:
+- Caricamento segnalazioni (incuria/rifiuti; implementazione dei limiti)
+- Sistema di reward ai segnalatori, i punti di reward vengono accertati dagli operatori privati o pubblici (API per implementare il sistema in base alle esigenze specifiche del comune; reward per account, autenticazione SPID; reward bilanciate, studio di mercato necessario)
+- Mappa delle segnalazioni
+- Algoritmo di raggruppamento dei rifiuti (cluster di rifiuti che riguardano lo stesso rifiuto)
+- Sistema di moderazione degli utenti (per segnalazioni false o uso improprio della webapp; sistema a warn)
+Funzioni Secondarie:
+- Faq e sistema di Ticket per la webapp
+- Opzione di cambio lingua
+
+(Lo Spid prende Nome, Cognome, Indirizzo e-mail)
