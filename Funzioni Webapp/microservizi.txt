@@ -6,3 +6,4 @@ Lista Microservizi:
 -GestoreOrdine(Verifica sulle transazioni, inizializzazione ordini)
 -GestoreCluster(Inizializzazione cluster, gestione mappa calda, fusione cluster)
 -GestoreUtente(gestione warn e ban)
+giulio3
