@@ -9,10 +9,10 @@ import { Signup } from './Signup';
   styleUrls: [ './app.component.css' ]
 })
 export class AppComponent  {
-  name = 'Angular';
   tipo:Tipo={tipo:"Sign Up",signup:true};
   login!:Login;
   signup!:Signup;
+  title!:string;
 
   onLogin(data:any){//invocato nel momento in cui si richiede il Login con le credenziali inserite all'interno del form
     

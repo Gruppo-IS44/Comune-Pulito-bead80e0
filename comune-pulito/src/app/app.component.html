@@ -1,4 +1,4 @@
-<switch [tipo]=tipo></switch>
+<switch class="center" [tipo]=tipo></switch>
 <div *ngIf="!tipo.signup"><!--Form del Sign Up-->
   <form #usersignup="ngForm" (ngSubmit)="onSignup(usersignup.value)">
     <div>
@@ -35,7 +35,7 @@
     <input type="password" name="password" placeholder="password" ngModel>
   </div>
   <div>
-    <input type="radio" id="utente" name="isGestore" value=false ngModel checked>
+    <input type="radio" id="utente" name="isGestore" value=false ngModel>
     <label for="utente">Utente</label>
     <input type="radio" id="gestore" name="isGestore" value=true ngModel>
     <label for="gestore">Gestore</label>
