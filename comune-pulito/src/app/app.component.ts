@@ -3,7 +3,7 @@ import {Tipo} from "./Tipo"
 import {Login} from "./Login"
 
 @Component({
-  selector: 'my-app',
+  selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: [ './app.component.css' ]
 })
