@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {Tipo} from "./Tipo"
 import {Login} from "./Login"
+import { Signup } from './Signup';
 
 @Component({
   selector: 'app-root',
@@ -11,12 +12,13 @@ export class AppComponent  {
   name = 'Angular';
   tipo:Tipo={tipo:"Sign Up",signup:true};
   login!:Login;
+  signup!:Signup;
 
-  onLogin(data){//invocato nel momento in cui si richiede il Login con le credenziali inserite all'interno del form
+  onLogin(data:any){//invocato nel momento in cui si richiede il Login con le credenziali inserite all'interno del form
     
   }
 
-  onSignup(data){//invocato nel momento in cui si richiede il Signup con le credenziali inserite all'interno del form
+  onSignup(data:any){//invocato nel momento in cui si richiede il Signup con le credenziali inserite all'interno del form
     
   }
 }
