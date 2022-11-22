@@ -30,6 +30,7 @@ CREATE TABLE REWARD(
 CREATE TABLE ORDINE(
     Id_ordine int NOT NULL,
     Dataora datetime,
+    Quantita tinyint default 1 NOT NULL,
     Id_utente int NOT NULL,
     Id_reward int NOT NULL,
     PRIMARY KEY(Id_ordine),
@@ -54,6 +55,8 @@ CREATE TABLE SEGNALAZIONE(
     Dataora datetime,
     Tipo varchar(10),
     Foto blob,
+    Valido bit default 1,
+    Risolto bit default 0,
     Id_cluster int NOT NULL,
     Id_utente int NOT NULL,
     PRIMARY KEY(Id_segnalazione),
