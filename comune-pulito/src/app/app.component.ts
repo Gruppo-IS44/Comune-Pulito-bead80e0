@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import {Tipo} from "./Tipo"
-import {Login} from "./Login"
-import { Signup } from './Signup';
+import {Tipo,Login,Signup} from './Export';
 
 @Component({
   selector: 'app-root',
