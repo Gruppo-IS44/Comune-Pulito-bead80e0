@@ -3,7 +3,7 @@ import {Tipo} from "../Export"
 
 @Component({
   selector: 'switch',
-  template: '<div class="uppercase"><button (click)="cambio()">Passa a {{tipo.tipo}}</button></div>',
+  templateUrl: './switch.component.html',
   styleUrls: [`./switch.component.css`]
 })
 export class SwitchComponent{
