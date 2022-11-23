@@ -12,6 +12,14 @@ export interface Signup{
     cognome:string
 }
 
+export interface Utente{
+    email:string,
+    username:string,
+    password:string,
+    nome:string,
+    cognome:string
+}
+
 export interface Tipo{
     tipo:string,
     signup:boolean
