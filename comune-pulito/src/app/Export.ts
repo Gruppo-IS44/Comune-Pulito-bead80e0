@@ -1,26 +1,26 @@
-export interface Login{
-    username:string,
-    password:string
-    isGestore:boolean
+export class Login{
+    username!:string;
+    password!:string;
+    isGestore!:boolean;
 }
 
-export interface Signup{
-    email:string,
-    username:string,
-    password:string,
-    nome:string,
-    cognome:string
+export class Signup{
+    email!:string;
+    username!:string;
+    password!:string;
+    nome!:string;
+    cognome!:string;
 }
 
-export interface Utente{
-    email:string,
-    username:string,
-    password:string,
-    nome:string,
-    cognome:string
+export class Utente{
+    email!:string;
+    username!:string;
+    password!:string;
+    nome!:string;
+    cognome!:string;
 }
 
-export interface Tipo{
-    tipo:string,
-    signup:boolean
+export class Tipo{
+    tipo!:string;
+    signup!:boolean;
 }
