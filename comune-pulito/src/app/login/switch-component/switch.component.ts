@@ -1,5 +1,5 @@
 import { Component,Input } from '@angular/core';
-import {Tipo} from "../Export"
+import {Tipo} from "../../Export"
 
 @Component({
   selector: 'switch',
