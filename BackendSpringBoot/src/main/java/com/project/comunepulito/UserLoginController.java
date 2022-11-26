@@ -2,7 +2,6 @@ package com.project.comunepulito;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.Connection;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 public class UserLoginController {
 	private String TABELLA;//TODO usare gli enum
 	private boolean successo;
-	private UserLogin variable;
 	
 	@GetMapping("/login")
 	public UserLogin userLogin(	@RequestParam(value="email",defaultValue="goku") String email,

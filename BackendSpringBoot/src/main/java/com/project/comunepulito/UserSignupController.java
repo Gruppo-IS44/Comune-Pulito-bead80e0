@@ -7,22 +7,14 @@ import java.sql.ResultSet;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Statement;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.Controller;
 
 @CrossOrigin(origins="http://localhost:4200")
 @RestController
 public class UserSignupController {
-	
-	
 	@PostMapping("/signup")
 	public SignupResponse UserSignin(@RequestBody SignupBody signupBody) {
 		try{	
@@ -53,7 +45,4 @@ public class UserSignupController {
 		}
 		return new SignupResponse(true,null);		
 	}
-
-	
-
 }
