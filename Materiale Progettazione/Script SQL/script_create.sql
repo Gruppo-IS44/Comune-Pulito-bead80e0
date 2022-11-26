@@ -2,11 +2,7 @@ CREATE TABLE UTENTE(
     Id_utente int NOT NULL AUTO_INCREMENT,
     Nome varchar(30),
     Cognome varchar(30),
-<<<<<<< Updated upstream
-    Email varchar(25) NOT NULL,
-=======
     Email varchar(25) NOT NULL UNIQUE,
->>>>>>> Stashed changes
     Pwd varchar(100) NOT NULL,
     Bilancio int DEFAULT 0,
     Warn tinyint DEFAULT 0,
@@ -19,31 +15,19 @@ CREATE TABLE GESTORE(
     Nome varchar(30),
     Cognome varchar(30),
     Pwd varchar(100),
-<<<<<<< Updated upstream
-    Email varchar(25) NOT NULL,
-=======
     Email varchar(25) NOT NULL UNIQUE,
->>>>>>> Stashed changes
     Sede varchar(30),
     PRIMARY KEY(Id_gestore)
 );
 
 CREATE TABLE SEGNALAZIONE_STATO(
-<<<<<<< Updated upstream
-	Id int NOT NULL,
-=======
-	Id int NOT NULL AUTO_INCREMENT,
->>>>>>> Stashed changes
+    Id int NOT NULL AUTO_INCREMENT,
     Stato varchar(10),
     PRIMARY KEY(id)
 );
 
 CREATE TABLE CLUSTER_STATO(
-<<<<<<< Updated upstream
-	Id int NOT NULL,
-=======
-	Id int NOT NULL AUTO_INCREMENT,
->>>>>>> Stashed changes
+    Id int NOT NULL AUTO_INCREMENT,
     Stato varchar(10),
     PRIMARY KEY(id)
 );
@@ -84,7 +68,7 @@ CREATE TABLE SEGNALAZIONE(
     Dataora datetime,
     Tipo varchar(10),
     Foto blob,
-	Id_Stato int NOT NULL REFERENCES SEGNALAZIONE_STATO(Id),
+    Id_Stato int NOT NULL REFERENCES SEGNALAZIONE_STATO(Id),
     Id_cluster int NOT NULL,
     Id_utente int NOT NULL,
     PRIMARY KEY(Id_segnalazione),
