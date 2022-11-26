@@ -3,6 +3,7 @@ CREATE TABLE UTENTE(
     Nome varchar(30),
     Cognome varchar(30),
     Email varchar(25) NOT NULL,
+    Pwd varchar(100) NOT NULL,
     Bilancio int DEFAULT 0,
     Warn tinyint DEFAULT 0,
     Ban bit DEFAULT 0,
@@ -13,9 +14,22 @@ CREATE TABLE GESTORE(
     Id_gestore int NOT NULL,
     Nome varchar(30),
     Cognome varchar(30),
+    Pwd varchar(100),
     Email varchar(25) NOT NULL,
     Sede varchar(30),
     PRIMARY KEY(Id_gestore)
+);
+
+CREATE TABLE SEGNALAZIONE_STATO(
+	Id int NOT NULL,
+    Stato varchar(10),
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE CLUSTER_STATO(
+	Id int NOT NULL,
+    Stato varchar(10),
+    PRIMARY KEY(id)
 );
 
 CREATE TABLE REWARD(
@@ -43,8 +57,7 @@ CREATE TABLE CLUSTER(
     Posizione point,
     Id_gestore int NOT NULL,
     Raggio float, 
-    Risolto bit default 0,
-    Valido bit default 1,
+	Id_Stato int NOT NULL REFERENCES CLUSTER_STATO(Id),
     PRIMARY KEY(Id_cluster),
     FOREIGN KEY(Id_gestore) REFERENCES gestore(Id_gestore)
 ); 
@@ -55,11 +68,10 @@ CREATE TABLE SEGNALAZIONE(
     Dataora datetime,
     Tipo varchar(10),
     Foto blob,
-    Valido bit default 1,
-    Risolto bit default 0,
+	Id_Stato int NOT NULL REFERENCES SEGNALAZIONE_STATO(Id),
     Id_cluster int NOT NULL,
     Id_utente int NOT NULL,
     PRIMARY KEY(Id_segnalazione),
     FOREIGN KEY(Id_cluster) REFERENCES cluster(Id_cluster),
     FOREIGN KEY(Id_utente) REFERENCES utente(Id_utente)
-)
+);
