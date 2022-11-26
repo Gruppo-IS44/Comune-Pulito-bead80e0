@@ -1,9 +1,6 @@
 Lista Microservizi:
--DB
 -Login+Signin
--Mappa
--GestoreSegnalazione(Assegnazione punti e warn, autoeliminazione segnalazioni, inizializzazione segnalazioni)
+-Mappa (Gestione vista utente, Gestione vista gestore)
+-GestoreSegnalazione(Assegnazione punti e warn, autoeliminazione segnalazioni, inizializzazione segnalazioni, gestione warn e ban)
 -GestoreOrdine(Verifica sulle transazioni, inizializzazione ordini)
--GestoreCluster(Inizializzazione cluster, gestione mappa calda, fusione cluster)
--GestoreUtente(gestione warn e ban)
-
+-GestoreCluster(Inizializzazione cluster, fusione cluster)

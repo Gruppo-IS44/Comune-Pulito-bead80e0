@@ -1,8 +1,9 @@
 CREATE TABLE UTENTE(
-    Id_utente int NOT NULL,
+    Id_utente int NOT NULL AUTO_INCREMENT,
     Nome varchar(30),
     Cognome varchar(30),
-    Email varchar(25) NOT NULL,
+    Email varchar(25) NOT NULL UNIQUE,
+    Pwd varchar(100) NOT NULL,
     Bilancio int DEFAULT 0,
     Warn tinyint DEFAULT 0,
     Ban bit DEFAULT 0,
@@ -10,16 +11,29 @@ CREATE TABLE UTENTE(
 );
 
 CREATE TABLE GESTORE(
-    Id_gestore int NOT NULL,
+    Id_gestore int NOT NULL AUTO_INCREMENT,
     Nome varchar(30),
     Cognome varchar(30),
-    Email varchar(25) NOT NULL,
+    Pwd varchar(100),
+    Email varchar(25) NOT NULL UNIQUE,
     Sede varchar(30),
     PRIMARY KEY(Id_gestore)
 );
 
+CREATE TABLE SEGNALAZIONE_STATO(
+    Id int NOT NULL AUTO_INCREMENT,
+    Stato varchar(10),
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE CLUSTER_STATO(
+    Id int NOT NULL AUTO_INCREMENT,
+    Stato varchar(10),
+    PRIMARY KEY(id)
+);
+
 CREATE TABLE REWARD(
-    Id_reward int NOT NULL,
+    Id_reward int NOT NULL AUTO_INCREMENT,
     Descrizione varchar(100),
     Nome varchar(20),
     Costo int,
@@ -28,7 +42,7 @@ CREATE TABLE REWARD(
 );
 
 CREATE TABLE ORDINE(
-    Id_ordine int NOT NULL,
+    Id_ordine int NOT NULL AUTO_INCREMENT,
     Dataora datetime,
     Quantita tinyint default 1 NOT NULL,
     Id_utente int NOT NULL,
@@ -39,27 +53,25 @@ CREATE TABLE ORDINE(
 );
 
 CREATE TABLE CLUSTER(
-    Id_cluster int NOT NULL,
+    Id_cluster int NOT NULL AUTO_INCREMENT,
     Posizione point,
     Id_gestore int NOT NULL,
     Raggio float, 
-    Risolto bit default 0,
-    Valido bit default 1,
+	Id_Stato int NOT NULL REFERENCES CLUSTER_STATO(Id),
     PRIMARY KEY(Id_cluster),
     FOREIGN KEY(Id_gestore) REFERENCES gestore(Id_gestore)
 ); 
 
 CREATE TABLE SEGNALAZIONE(
-    Id_segnalazione int NOT NULL,
+    Id_segnalazione int NOT NULL AUTO_INCREMENT,
     Posizione point,
     Dataora datetime,
     Tipo varchar(10),
     Foto blob,
-    Valido bit default 1,
-    Risolto bit default 0,
+    Id_Stato int NOT NULL REFERENCES SEGNALAZIONE_STATO(Id),
     Id_cluster int NOT NULL,
     Id_utente int NOT NULL,
     PRIMARY KEY(Id_segnalazione),
     FOREIGN KEY(Id_cluster) REFERENCES cluster(Id_cluster),
     FOREIGN KEY(Id_utente) REFERENCES utente(Id_utente)
-)
+);
