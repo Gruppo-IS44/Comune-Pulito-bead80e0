@@ -1,8 +1,12 @@
 CREATE TABLE UTENTE(
-    Id_utente int NOT NULL,
+    Id_utente int NOT NULL AUTO_INCREMENT,
     Nome varchar(30),
     Cognome varchar(30),
+<<<<<<< Updated upstream
     Email varchar(25) NOT NULL,
+=======
+    Email varchar(25) NOT NULL UNIQUE,
+>>>>>>> Stashed changes
     Pwd varchar(100) NOT NULL,
     Bilancio int DEFAULT 0,
     Warn tinyint DEFAULT 0,
@@ -11,29 +15,41 @@ CREATE TABLE UTENTE(
 );
 
 CREATE TABLE GESTORE(
-    Id_gestore int NOT NULL,
+    Id_gestore int NOT NULL AUTO_INCREMENT,
     Nome varchar(30),
     Cognome varchar(30),
     Pwd varchar(100),
+<<<<<<< Updated upstream
     Email varchar(25) NOT NULL,
+=======
+    Email varchar(25) NOT NULL UNIQUE,
+>>>>>>> Stashed changes
     Sede varchar(30),
     PRIMARY KEY(Id_gestore)
 );
 
 CREATE TABLE SEGNALAZIONE_STATO(
+<<<<<<< Updated upstream
 	Id int NOT NULL,
+=======
+	Id int NOT NULL AUTO_INCREMENT,
+>>>>>>> Stashed changes
     Stato varchar(10),
     PRIMARY KEY(id)
 );
 
 CREATE TABLE CLUSTER_STATO(
+<<<<<<< Updated upstream
 	Id int NOT NULL,
+=======
+	Id int NOT NULL AUTO_INCREMENT,
+>>>>>>> Stashed changes
     Stato varchar(10),
     PRIMARY KEY(id)
 );
 
 CREATE TABLE REWARD(
-    Id_reward int NOT NULL,
+    Id_reward int NOT NULL AUTO_INCREMENT,
     Descrizione varchar(100),
     Nome varchar(20),
     Costo int,
@@ -42,7 +58,7 @@ CREATE TABLE REWARD(
 );
 
 CREATE TABLE ORDINE(
-    Id_ordine int NOT NULL,
+    Id_ordine int NOT NULL AUTO_INCREMENT,
     Dataora datetime,
     Quantita tinyint default 1 NOT NULL,
     Id_utente int NOT NULL,
@@ -53,7 +69,7 @@ CREATE TABLE ORDINE(
 );
 
 CREATE TABLE CLUSTER(
-    Id_cluster int NOT NULL,
+    Id_cluster int NOT NULL AUTO_INCREMENT,
     Posizione point,
     Id_gestore int NOT NULL,
     Raggio float, 
@@ -63,7 +79,7 @@ CREATE TABLE CLUSTER(
 ); 
 
 CREATE TABLE SEGNALAZIONE(
-    Id_segnalazione int NOT NULL,
+    Id_segnalazione int NOT NULL AUTO_INCREMENT,
     Posizione point,
     Dataora datetime,
     Tipo varchar(10),
