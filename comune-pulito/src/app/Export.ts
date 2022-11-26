@@ -4,6 +4,11 @@ export class Login{
     isGestore!:boolean;
 }
 
+export class Token{
+    token!:string;
+    valido!:boolean;
+}
+
 export class Signup{
     email!:string;
     username!:string;
@@ -12,9 +17,13 @@ export class Signup{
     cognome!:string;
 }
 
+export class SignupResponse{
+    valido!:boolean;
+    token!:Token;
+}
+
 export class Utente{
     email!:string;
-    username!:string;
     password!:string;
     nome!:string;
     cognome!:string;
