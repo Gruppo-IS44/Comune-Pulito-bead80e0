@@ -51,8 +51,10 @@ public class UserLoginController {
 //					String pwd=rs.getString("pwd");
 //					int bilancio=rs.getInt("bilancio");
 //					int warn=rs.getInt("warn");
-//					int ban=rs.getInt("ban");
+					int ban=rs.getInt("ban");
 					successo=true;
+					if(ban==1)//controlla se l'utente è bannato o meno, se è bannato invalida il token
+						successo=false;
 			}
 			st.close();
 		}catch (Exception e){
