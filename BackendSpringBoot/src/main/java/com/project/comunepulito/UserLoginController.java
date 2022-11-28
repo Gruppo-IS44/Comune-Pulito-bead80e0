@@ -60,6 +60,7 @@ public class UserLoginController {
 		}catch (Exception e){
 			System.out.println("Errore durante la connessione al DataBase.");
 			e.printStackTrace();
+			password="";
 		}
 		return new UserLogin(successo,password);
 	}
