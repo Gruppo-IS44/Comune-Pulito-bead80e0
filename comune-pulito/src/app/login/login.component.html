@@ -3,8 +3,8 @@
   <form [formGroup]="signupForm">
     <div>
       <label for="email">Email:</label>
-      <input name="email" placeholder="email" formControlName="email">
-      <div *ngIf="signupForm.get('email')?.touched && loginForm.get('email')?.invalid">
+      <input name="email" placeholder="Email" formControlName="email">
+      <div *ngIf="signupForm.get('email')?.touched && signupForm.get('email')?.invalid">
         L'email inserita non è valida!
       </div>
     </div>
@@ -18,11 +18,21 @@
     </div>
     <div>
       <label for="password">Password: </label>
-      <input type="password" name="password" formControlName="password">
+      <input type="password" name="password" placeholder="Password" formControlName="password">
+      <div *ngIf="signupForm.get('password')?.hasError('pattern') && signupForm.get('password')?.touched">
+          {{signupForm.get('password')?.hasError('pattern')}}La password inserita non è valida! Deve contenere:
+          <ul>
+            <li>Tra gli 8 e 20 caratteri</li>
+            <li>Almeno una lettera maiuscola e una minuscola</li>
+            <li>Almeno un numero</li>
+            <li>Almeno un carattere speciale (@, $, !, %, *, ?, &)</li>
+          </ul>
+      </div>
     </div>
     <div>
       <label for="cpassword">Conferma Password:</label>
-      <input type="password" name="cpassword" formControlName="cpassword">
+      <input type="password" name="cpassword" placeholder="Reinserisci Password" formControlName="cpassword">
+      <div *ngIf="signupForm.get('password')?.getRawValue()!==signupForm.get('cpassword')?.getRawValue() && signupForm.get('cpassword')?.touched">Le password non coincidono!</div>
     </div>
     <button (click)="onSignup()" [disabled]="signupForm.invalid">Sign Up</button>
   </form>

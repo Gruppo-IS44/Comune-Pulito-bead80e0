@@ -15,8 +15,8 @@ export class LoginComponent  {
   tipo:Tipo={tipo:"Sign Up",signup:true};
   signup:Signup={email:"",username:"",password:"",nome:"",cognome:""};
   signupForm:FormGroup=this.formBuilder.group({
-    email:['',[Validators.email,Validators.required]],
-    password:['',Validators.required],//TODO: aumentare la sicurezza minima della password[regex]
+    email:['',[Validators.email, Validators.required]],
+    password:['',Validators.required],//TODO: aumentare la sicurezza minima della password [regex], usa un custom Validator
     cpassword:['',Validators.required],
     nome:['',Validators.required],
     cognome:['',Validators.required]
