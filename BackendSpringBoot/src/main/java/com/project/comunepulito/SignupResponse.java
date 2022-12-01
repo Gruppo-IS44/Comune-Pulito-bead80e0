@@ -20,6 +20,4 @@ public class SignupResponse {//Classe delle risposte ad un Signup
 	public void setUserLogin(UserLogin userLogin) {
 		this.userLogin = userLogin;
 	}
-	
-
 }

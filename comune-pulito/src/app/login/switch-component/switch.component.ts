@@ -4,7 +4,6 @@ import {Tipo} from "../../Export"
 @Component({
   selector: 'switch',
   templateUrl: './switch.component.html',
-  styleUrls: [`./switch.component.css`]
 })
 export class SwitchComponent{
   @Input()

@@ -1,58 +1,67 @@
-<switch class="center" [tipo]=tipo></switch>
-<div *ngIf="!tipo.signup"><!--Form del Sign Up-->
-  <form [formGroup]="signupForm">
-    <div>
-      <label for="email">Email:</label>
-      <input name="email" placeholder="Email" formControlName="email">
-      <div *ngIf="signupForm.get('email')?.touched && signupForm.get('email')?.invalid">
-        L'email inserita non è valida!
+<div class="container text-center">
+  <div *ngIf="!tipo.signup"><!--Form del Sign Up-->
+    <form [formGroup]="signupForm">
+      <div class="form-floating mb-2">
+        <input class="form-control" id="email" name="email" placeholder="email" formControlName="email">
+        <label for="email">Email</label>
+        <div class="alert alert-danger" *ngIf="signupForm.get('email')?.touched && signupForm.get('email')?.invalid">
+          L'email inserita non è valida!
+        </div>
       </div>
-    </div>
-    <div>
-      <label for="nome">Nome:</label>
-      <input name="nome" placeholder="Nome" formControlName="nome">
-    </div>
-    <div>
-      <label for="cognome">Cognome:</label>
-      <input name="cognome" placeholder="Cognome" formControlName="cognome">
-    </div>
-    <div>
-      <label for="password">Password: </label>
-      <input type="password" name="password" placeholder="Password" formControlName="password">
-      <div *ngIf="signupForm.get('password')?.hasError('pattern') && signupForm.get('password')?.touched">
-          {{signupForm.get('password')?.hasError('pattern')}}La password inserita non è valida! Deve contenere:
-          <ul>
-            <li>Tra gli 8 e 20 caratteri</li>
-            <li>Almeno una lettera maiuscola e una minuscola</li>
-            <li>Almeno un numero</li>
-            <li>Almeno un carattere speciale (@, $, !, %, *, ?, &)</li>
-          </ul>
+      <div class="row mb-2">
+        <div class="col form-floating">
+          <input class="form-control" id="nome" name="nome" placeholder formControlName="nome">
+          <label for="nome">Nome:</label>
+        </div>
+        <div class="col form-floating">
+          <input class="form-control" id="cognome" name="cognome" placeholder formControlName="cognome">
+          <label for="cognome">Cognome:</label>
+        </div>
       </div>
-    </div>
-    <div>
-      <label for="cpassword">Conferma Password:</label>
-      <input type="password" name="cpassword" placeholder="Reinserisci Password" formControlName="cpassword">
-      <div *ngIf="signupForm.get('password')?.getRawValue()!==signupForm.get('cpassword')?.getRawValue() && signupForm.get('cpassword')?.touched">Le password non coincidono!</div>
-    </div>
-    <button (click)="onSignup()" [disabled]="signupForm.invalid">Sign Up</button>
-  </form>
-</div>
-<div *ngIf="tipo.signup"><!--Form del Login-->
-  <form [formGroup]="loginForm">
-    <div>
-      <label for="email">Email:</label>
-      <input name="email" placeholder="Inserire Email" formControlName="email">
-    </div>
-    <div>
-      <label for="password">Password: </label>
-      <input type="password" name="password" placeholder="Inserire Password" formControlName="password">
-    </div>
-    <div>
-      <input type="radio" id="utente" name="isGestore" [value]=false formControlName="isGestore">
-      <label for="utente">Utente</label>
-      <input type="radio" id="gestore" name="isGestore" [value]=true formControlName="isGestore">
-      <label for="gestore">Gestore</label>
-    </div>
-    <button (click)="onLogin()" [disabled]="loginForm.invalid">Log In</button>
-  </form>
+      <div class="row mb-2">
+        <div class="col form-floating">
+          <input class="form-control" id="password" type="password" name="password" placeholder formControlName="password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$">
+          <label for="password">Password: </label>
+          <div class="alert alert-danger" *ngIf="signupForm.get('password')?.hasError('pattern') && signupForm.get('password')?.touched">
+            Password non valida!
+          </div>
+        </div>
+        <div class="col form-floating">
+          <input class="form-control" id="cpassword" type="password" name="cpassword" placeholder formControlName="cpassword">
+          <label for="cpassword">Conferma Password:</label>
+          <div class="alert alert-danger" *ngIf="signupForm.get('cpassword')?.getRawValue()!==signupForm.get('password')?.getRawValue()  && signupForm.get('cpassword')?.touched">
+            Le password non coincidono!
+          </div>
+        </div>
+      </div>      
+      <div class="row">
+        <div class="col">Hai già un account?<switch [tipo]=tipo></switch></div>
+        <div class="col"><button class="btn btn-primary" (click)="onSignup()" [disabled]="signupForm.invalid">Sign Up</button></div>
+      </div>
+    </form>
+  </div>
+  <div *ngIf="tipo.signup"><!--Form del Login-->
+    <form [formGroup]="loginForm">
+      <div class="form-floating mb-2">
+        <input class="form-control" id="email" name="email" placeholder formControlName="email">
+        <label for="email">Email</label>
+      </div>
+      <div class="form-floating mb-2">   
+        <input class="form-control" type="password" name="password" placeholder formControlName="password">
+        <label for="password">Password</label>
+      </div >
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" id="utente" name="isGestore" [value]=false formControlName="isGestore">
+        <label class="form-check-label" for="utente">Utente</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" id="gestore" name="isGestore" [value]=true formControlName="isGestore">
+        <label class="form-check-label" for="gestore">Gestore</label>
+      </div>
+      <div class="row">
+        <div class="col">Non sei registrato?<switch [tipo]=tipo></switch></div>
+        <div class="col"><button class="btn btn-primary" (click)="onLogin()" [disabled]="loginForm.invalid">Log In</button></div>
+      </div>
+    </form>
+  </div>
 </div>

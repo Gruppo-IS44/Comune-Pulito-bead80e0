@@ -29,6 +29,7 @@ public class UserSignupController {
 				psm.setString(2, signupBody.getCognome());
 				psm.setString(3, signupBody.getEmail());
 				String password=UserLoginController.generaToken(signupBody.getEmail(),signupBody.getPassword());
+				System.out.println(password);
 				psm.setString(4, password);
 				psm.execute();//Eseguo la query INSERT
 				conn.close();
