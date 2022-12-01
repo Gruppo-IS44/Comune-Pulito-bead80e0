@@ -1,14 +1,2 @@
-/* You can add global styles to this file, and also import other style files */
-.menu{
-    margin:auto;
-    width: 280px;
-    text-align: center;
-    border-style: solid;
-    border-width: 1px;
-    background-color: whitesmoke;
-}
 
-.uppercase{
-    font-variant: small-caps;
-}
 

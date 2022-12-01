@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { catchError, Observable } from 'rxjs';
 import {Tipo,Login,Signup} from '../Export';
 import { HttpService } from '../http.service';
@@ -16,7 +17,7 @@ export class LoginComponent  {
   signup:Signup={email:"",username:"",password:"",nome:"",cognome:""};
   signupForm:FormGroup=this.formBuilder.group({
     email:['',[Validators.email,Validators.required]],
-    password:['',Validators.required],//TODO: aumentare la sicurezza minima della password[regex]
+    password:['',Validators.required],
     cpassword:['',Validators.required],
     nome:['',Validators.required],
     cognome:['',Validators.required]
@@ -29,13 +30,14 @@ export class LoginComponent  {
   });
 
 
-  constructor(private formBuilder:FormBuilder,private httpService:HttpService){}
+  constructor(private formBuilder:FormBuilder,private httpService:HttpService, private router:Router){}
 
   onLogin(){//invocato nel momento in cui si richiede il login
-    console.log(this.loginForm.invalid)
     this.httpService.login(this.loginForm.value).subscribe(data=>{
       console.log(data)
     })
+    //TODO implementare autenticazione tramite cookie session based
+    this.router.navigate(["/map"]);
   }
   
   /*onLogin(data:any){//invocato nel momento in cui si richiede il Login con le credenziali inserite all'interno del form
@@ -48,11 +50,11 @@ export class LoginComponent  {
     console.log(this.login);
   }*/
 
-  onSignup(){
-    console.log("eseguo il signUP")
+  onSignup(){//invocato nel momento in cui si richiede il Signup con le credenziali inserite all'interno del form
     this.httpService.addUser(this.signupForm.value).subscribe(data=>{
       console.log(data);
     });
+    this.router.navigate(["/map"]);
   }
 
   /*onSignup(data:any){//invocato nel momento in cui si richiede il Signup con le credenziali inserite all'interno del form
@@ -61,7 +63,7 @@ export class LoginComponent  {
     this.httpService.addUser(this.signup);
   }*/
 
-  setSignup(temp:any){//imposta i parametri di "signup" uguali a quelli di "temp"
+  setSignup(temp:any){//imposta i parametri di "signup" uguali a quelli di "temp" DEPRECATED
     this.signup={email:temp.email,username:temp.username,password:temp.password,nome:temp.nome,cognome:temp.cognome};
   }
 }
