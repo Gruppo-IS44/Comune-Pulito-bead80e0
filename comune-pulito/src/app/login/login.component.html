@@ -2,7 +2,7 @@
   <div *ngIf="!tipo.signup"><!--Form del Sign Up-->
     <form [formGroup]="signupForm">
       <div class="form-floating mb-2">
-        <input class="form-control" id="email" name="email" placeholder="email" formControlName="email">
+        <input class="form-control" id="email" name="email" placeholder formControlName="email">
         <label for="email">Email</label>
         <div class="alert alert-danger" *ngIf="signupForm.get('email')?.touched && signupForm.get('email')?.invalid">
           L'email inserita non è valida!
@@ -11,24 +11,24 @@
       <div class="row mb-2">
         <div class="col form-floating">
           <input class="form-control" id="nome" name="nome" placeholder formControlName="nome">
-          <label for="nome">Nome:</label>
+          <label for="nome">Nome</label>
         </div>
         <div class="col form-floating">
           <input class="form-control" id="cognome" name="cognome" placeholder formControlName="cognome">
-          <label for="cognome">Cognome:</label>
+          <label for="cognome">Cognome</label>
         </div>
       </div>
       <div class="row mb-2">
         <div class="col form-floating">
           <input class="form-control" id="password" type="password" name="password" placeholder formControlName="password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$">
-          <label for="password">Password: </label>
+          <label for="password">Password </label>
           <div class="alert alert-danger" *ngIf="signupForm.get('password')?.hasError('pattern') && signupForm.get('password')?.touched">
             Password non valida!
           </div>
         </div>
         <div class="col form-floating">
           <input class="form-control" id="cpassword" type="password" name="cpassword" placeholder formControlName="cpassword">
-          <label for="cpassword">Conferma Password:</label>
+          <label for="cpassword">Conferma Password</label>
           <div class="alert alert-danger" *ngIf="signupForm.get('cpassword')?.getRawValue()!==signupForm.get('password')?.getRawValue()  && signupForm.get('cpassword')?.touched">
             Le password non coincidono!
           </div>
