@@ -7,40 +7,36 @@ import java.sql.ResultSet;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Statement;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 @CrossOrigin(origins="http://localhost:4200")
 @RestController
 public class UserSignupController {
+	@Autowired
+	private UtenteRepository utenteRepository;
+	
 	@PostMapping("/signup")
-	public SignupResponse UserSignin(@RequestBody SignupBody signupBody) {
+	public SignupResponse UserSignin(@RequestBody SignupBody signupBody) {		
 		try{	
-			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306","root","1234");
-			String query="SELECT * FROM comunepulito.utente WHERE email='"+signupBody.getEmail()+"';";//Controllo che non ci siano altri utenti già registrati con questo indirizzo email
-			Statement st = conn.createStatement();
-			ResultSet rs=st.executeQuery(query);
-			if (!rs.next()) {//caso in cui l'entità non è stata trovata nel db:Utente da aggiungere.
-				query="INSERT INTO comunepulito.utente(nome,cognome,email,pwd) VALUES(?,?,?,?);";
-				PreparedStatement psm =conn.prepareStatement(query);//Preparo la query
-				psm.setString(1, signupBody.getNome());
-				psm.setString(2, signupBody.getCognome());
-				psm.setString(3, signupBody.getEmail());
-				String password=UserLoginController.generaToken(signupBody.getEmail(),signupBody.getPassword());
-				System.out.println(password);
-				psm.setString(4, password);
-				psm.execute();//Eseguo la query INSERT
-				conn.close();
-				return new SignupResponse(false,new UserLogin(true,password));//restituisco un feedback e il token di autenticazione
-			}					
-		}catch (SQLIntegrityConstraintViolationException e) {
+			Utente n = new Utente();
+			n.setNome(signupBody.getNome());
+			n.setCognome(signupBody.getCognome());
+			n.setEmail(signupBody.getEmail());
+			n.setPwd(UserLoginController.generaToken(signupBody.getPassword()));
+			n.setBilancio(0);
+			n.setBan(false);
+			n.setWarn(0);
+			utenteRepository.save(n);				
+		}catch (DataIntegrityViolationException e) {
 			System.out.println("Email gia' utilizzata.");//Autoesplicativo, email è UNIQUE
-			return new SignupResponse(true,null);
-		}catch (Exception e) {
-			System.out.println("Errore");
-			e.printStackTrace();
+			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Utente già registrato.");
 		}
 		return new SignupResponse(true,null);		
 	}

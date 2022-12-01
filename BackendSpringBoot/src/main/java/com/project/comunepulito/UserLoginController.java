@@ -1,15 +1,13 @@
 package com.project.comunepulito;
 
-import org.springframework.web.bind.annotation.GetMapping;
-
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.nio.charset.StandardCharsets;
@@ -19,57 +17,50 @@ import java.security.MessageDigest;
 @CrossOrigin(origins="http://localhost:4200")
 @RestController
 public class UserLoginController {
-
-	private boolean successo;
-	private enum TABELLA {
-		utente,
-		gestore
-		}
+	@Autowired
+	private UtenteRepository userRepository;
 	
-	@GetMapping("/login")
-	public UserLogin userLogin(	@RequestParam(value="email",defaultValue="goku") String email,
-								@RequestParam(value="password",defaultValue="goku") String password,
-								@RequestParam(value="isGestore",defaultValue="false") boolean isGestore) {
-		TABELLA tab=TABELLA.utente;
-		if (isGestore){
-			tab=TABELLA.gestore;
-		}		
-	    password=generaToken(email,password);
-		try{
-			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306","root","1234");
-			String query="SELECT *\nFROM comunepulito."+tab+"\nWHERE email='"+email+"' AND pwd='"+password+"';";
-			Statement st = conn.createStatement();
-			ResultSet rs=st.executeQuery(query);
-			if (!rs.next()) {//caso in cui l'entità non è stata trovata nel db:autenticazione fallita
-				successo=false;
-				password="";
-			} else {//è superfluo usare un ciclo, la query restituirà sempre solo un risultato.
-//					int id = rs.getInt("id_utente");		Commentati per uso futuro
-//					String nome=rs.getString("nome");
-//					String cognome=rs.getString("cognome");
-//					String mail=rs.getString("email");
-//					String pwd=rs.getString("pwd");
-//					int bilancio=rs.getInt("bilancio");
-//					int warn=rs.getInt("warn");
-					int ban=rs.getInt("ban");
-					successo=true;
-					if(ban==1)//controlla se l'utente è bannato o meno, se è bannato invalida il token
-						successo=false;
+	@Autowired
+	private GestoreRepository gestoreRepository;
+	
+	@PostMapping("/login")
+	public UserLogin userLogin(	@RequestBody LoginBody loginBody) {
+	    loginBody.setPassword(generaToken(loginBody.getPassword()));
+		if (loginBody.isGestore()){
+			try{
+				Gestore gestore=gestoreRepository.findByEmail(loginBody.getEmail());
+				if(gestore.getPwd().equals(loginBody.getPassword())) {//Autenticazione Riuscita!
+					return new UserLogin(true,gestore.getPwd());
+				}
+				//Password Errata
+				throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Gestore Inesistente.");
+			}catch (NullPointerException e){//Autenticazione Fallita
+				System.out.println("Gestore Inesistente.");
+				throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Gestore Inesistente.");
+			}catch (Exception e) {
+				throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Errore Interno al Server");
 			}
-			st.close();
-		}catch (Exception e){
-			System.out.println("Errore durante la connessione al DataBase.");
-			e.printStackTrace();
-			password="";
+		}		
+		try{
+			Utente utente=userRepository.findByEmail(loginBody.getEmail());
+			if(utente.getPwd().equals(loginBody.getPassword())) {//Autenticazione Riuscita!
+				return new UserLogin(true,utente.getPwd());
+			}
+			//Password Errata
+			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Gestore Inesistente.");
+		}catch (NullPointerException e){//Autenticazione Fallita
+			System.out.println("Utente Inesistente.");
+			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Utente Inesistente.");
+		}catch (Exception e) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Errore Interno al Server");
 		}
-		return new UserLogin(successo,password);
 	}
 
-	static String generaToken(String mail, String pwd) {
+	static String generaToken(String pwd) {
 		String x="";
 		try {	
 			MessageDigest digest = MessageDigest.getInstance("SHA-256");  //codifica dei token con algoritmo di hash SHA-256
-			byte[] hash = digest.digest((mail+pwd).getBytes(StandardCharsets.UTF_8));
+			byte[] hash = digest.digest(pwd.getBytes(StandardCharsets.UTF_8));
 			StringBuilder hexString = new StringBuilder(2 * hash.length);
 		    for (int i = 0; i < hash.length; i++) {
 		        String hex = Integer.toHexString(0xff & hash[i]);

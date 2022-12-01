@@ -66,5 +66,8 @@
         <div class="col"><button class="btn btn-primary" (click)="onLogin()" [disabled]="loginForm.invalid">Log In</button></div>
       </div>
     </form>
+    <div class="alert alert-danger" *ngIf="errore">
+      Credenziali non valide.
+    </div>
   </div>
 </div>

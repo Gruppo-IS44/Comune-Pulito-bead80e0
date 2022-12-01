@@ -13,6 +13,7 @@ import { HttpService } from '../http.service';
 })
 
 export class LoginComponent  {
+  errore:boolean=false;
   tipo:Tipo={tipo:"Sign Up",signup:true};
   signup:Signup={email:"",username:"",password:"",nome:"",cognome:""};
   signupForm:FormGroup=this.formBuilder.group({
@@ -35,9 +36,14 @@ export class LoginComponent  {
   onLogin(){//invocato nel momento in cui si richiede il login
     this.httpService.login(this.loginForm.value).subscribe(data=>{
       console.log(data)
-    })
+      this.router.navigate(["/map"]);
+    },
+    error =>{
+      console.log("Errore nel login!");
+      console.log(error);
+      this.errore=true;
+    });
     //TODO implementare autenticazione tramite cookie session based
-    this.router.navigate(["/map"]);
   }
   
   /*onLogin(data:any){//invocato nel momento in cui si richiede il Login con le credenziali inserite all'interno del form
@@ -53,6 +59,9 @@ export class LoginComponent  {
   onSignup(){//invocato nel momento in cui si richiede il Signup con le credenziali inserite all'interno del form
     this.httpService.addUser(this.signupForm.value).subscribe(data=>{
       console.log(data);
+    },
+    error=>{
+      console.log(error)
     });
     this.router.navigate(["/map"]);
   }
