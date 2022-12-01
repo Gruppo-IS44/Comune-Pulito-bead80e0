@@ -2,7 +2,7 @@
   <div *ngIf="!tipo.signup"><!--Form del Sign Up-->
     <form [formGroup]="signupForm">
       <div class="form-floating mb-2">
-        <input class="form-control" id="email" name="email" placeholder formControlName="email">
+        <input class="form-control" id="email" name="email" placeholder="email" formControlName="email">
         <label for="email">Email</label>
         <div class="alert alert-danger" *ngIf="signupForm.get('email')?.touched && signupForm.get('email')?.invalid">
           L'email inserita non è valida!
@@ -10,24 +10,24 @@
       </div>
       <div class="row mb-2">
         <div class="col form-floating">
-          <input class="form-control" id="nome" name="nome" placeholder formControlName="nome">
+          <input class="form-control" id="nome" name="nome" placeholder="nome" formControlName="nome">
           <label for="nome">Nome</label>
         </div>
         <div class="col form-floating">
-          <input class="form-control" id="cognome" name="cognome" placeholder formControlName="cognome">
+          <input class="form-control" id="cognome" name="cognome" placeholder="cognome" formControlName="cognome">
           <label for="cognome">Cognome</label>
         </div>
       </div>
       <div class="row mb-2">
         <div class="col form-floating">
-          <input class="form-control" id="password" type="password" name="password" placeholder formControlName="password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$">
+          <input class="form-control" id="password" type="password" name="password" placeholder="password" formControlName="password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$">
           <label for="password">Password </label>
           <div class="alert alert-danger" *ngIf="signupForm.get('password')?.hasError('pattern') && signupForm.get('password')?.touched">
             Password non valida!
           </div>
         </div>
         <div class="col form-floating">
-          <input class="form-control" id="cpassword" type="password" name="cpassword" placeholder formControlName="cpassword">
+          <input class="form-control" id="cpassword" type="password" name="cpassword" placeholder="cpassword" formControlName="cpassword">
           <label for="cpassword">Conferma Password</label>
           <div class="alert alert-danger" *ngIf="signupForm.get('cpassword')?.getRawValue()!==signupForm.get('password')?.getRawValue()  && signupForm.get('cpassword')?.touched">
             Le password non coincidono!
@@ -43,11 +43,11 @@
   <div *ngIf="tipo.signup"><!--Form del Login-->
     <form [formGroup]="loginForm">
       <div class="form-floating mb-2">
-        <input class="form-control" id="email" name="email" placeholder formControlName="email">
+        <input class="form-control" id="email" name="email" placeholder="email" formControlName="email">
         <label for="email">Email</label>
       </div>
       <div class="form-floating mb-2">   
-        <input class="form-control" type="password" name="password" placeholder formControlName="password">
+        <input class="form-control" type="password" name="password" placeholder="password" formControlName="password">
         <label for="password">Password</label>
       </div >
       <div class="form-check form-check-inline">
