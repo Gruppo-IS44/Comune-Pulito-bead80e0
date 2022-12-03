@@ -47,7 +47,7 @@ public class UserLoginController {
 				return new UserLogin(true,utente.getPwd());
 			}
 			//Password Errata
-			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Gestore Inesistente.");
+			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Utente Inesistente.");
 		}catch (NullPointerException e){//Autenticazione Fallita
 			System.out.println("Utente Inesistente.");
 			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Utente Inesistente.");
