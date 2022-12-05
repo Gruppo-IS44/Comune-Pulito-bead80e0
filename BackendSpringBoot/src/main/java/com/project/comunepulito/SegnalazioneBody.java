@@ -19,11 +19,7 @@ public class SegnalazioneBody {
 		this.posizione = posizione;
 		this.tipo_rifiuto = tipo_rifiuto;
 	}
-	@Override
-	public String toString() {
-		return "SegnalazioneBody [descrizione=" + descrizione + ", foto=" + foto + ", tipo_segnalazione="
-				+ stato_segnalazione + ", posizione=" + posizione + ", tipo_rifiuto=" + tipo_rifiuto + "]";
-	}	
+	
 	public String getDescrizione() {
 		return descrizione;
 	}
@@ -54,4 +50,10 @@ public class SegnalazioneBody {
 	public void setFoto(Blob foto) {
 		this.foto = foto;
 	}
+
+@Override
+public String toString() {
+	return "SegnalazioneBody [descrizione=" + descrizione + ", foto=" + foto + ", tipo_segnalazione="
+			+ stato_segnalazione + ", posizione=" + posizione + ", tipo_rifiuto=" + tipo_rifiuto + "]";
+}	
 }

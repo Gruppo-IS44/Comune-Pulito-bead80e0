@@ -1,14 +1,13 @@
 package com.project.comunepulito;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Statement;
-import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,25 +17,22 @@ import org.springframework.web.server.ResponseStatusException;
 
 @CrossOrigin(origins="http://localhost:4200")
 @RestController
-public class SegnalazioniController {
-
-	@Autowired
-	private SegnalazioneRepository segnalazioneRepository;
+public class ClusterController {
 	
-	@PostMapping("/segnalazioni_test")
-	public void SegnalazioneInsert(@RequestBody SegnalazioneBody segnalazioneBody) {		
+	@Autowired
+	private ClusterRepository clusterRepository;
+	
+	@PostMapping("/cluster")
+	public void ClusterCreate(@RequestBody Cluster Cluster) {		
 		try{	
-			Segnalazione s = new Segnalazione();
-			s.setDescrizione(segnalazioneBody.getDescrizione());
-			s.setFoto(segnalazioneBody.getFoto());
-			s.setTipo_rifiuto(segnalazioneBody.getTipo_rifiuto());
-			s.setPosizione(null); 
-			s.setDataora(LocalDateTime.now());
-			segnalazioneRepository.save(s);				
+			Cluster c = new Cluster();
+			c.setId_cluster(Cluster.getId_cluster());
+			c.setRaggio(Cluster.getRaggio());
+			c.setPosizione(null);
+			clusterRepository.save(c);				
 		}catch (Exception e) {
-			System.out.println("Errore nella creazione della segnalazione.");
+			System.out.println("Errore durante la creazione del cluster.");
 			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Errore generico.");
-		}
+		}	
 	}
 }
-
