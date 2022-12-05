@@ -6,23 +6,23 @@ import java.sql.Blob;
 public class SegnalazioneBody {
 	private String descrizione;	
 	private Blob foto;
-	private TIPO_SEGNALAZIONE tipo_segnalazione;
 	private Point posizione;
 	private TIPO_RIFIUTO tipo_rifiuto;
+	private STATO_SEGNALAZIONE stato_segnalazione;
 	
-	public SegnalazioneBody(String descrizione, Blob foto, TIPO_SEGNALAZIONE tipo_segnalazione, Point posizione,
+	public SegnalazioneBody(String descrizione, Blob foto, STATO_SEGNALAZIONE tipo_segnalazione, Point posizione,
 			TIPO_RIFIUTO tipo_rifiuto) {
 		super();
 		this.descrizione = descrizione;
 		this.foto = foto;
-		this.tipo_segnalazione = tipo_segnalazione;
+		this.stato_segnalazione = tipo_segnalazione;
 		this.posizione = posizione;
 		this.tipo_rifiuto = tipo_rifiuto;
 	}
 	@Override
 	public String toString() {
 		return "SegnalazioneBody [descrizione=" + descrizione + ", foto=" + foto + ", tipo_segnalazione="
-				+ tipo_segnalazione + ", posizione=" + posizione + ", tipo_rifiuto=" + tipo_rifiuto + "]";
+				+ stato_segnalazione + ", posizione=" + posizione + ", tipo_rifiuto=" + tipo_rifiuto + "]";
 	}	
 	public String getDescrizione() {
 		return descrizione;
@@ -30,11 +30,11 @@ public class SegnalazioneBody {
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
 	}
-	public TIPO_SEGNALAZIONE getTipo_segnalazione() {
-		return tipo_segnalazione;
+	public STATO_SEGNALAZIONE getTipo_segnalazione() {
+		return stato_segnalazione;
 	}
-	public void setTipo_segnalazione(TIPO_SEGNALAZIONE tipo_segnalazione) {
-		this.tipo_segnalazione = tipo_segnalazione;
+	public void setTipo_segnalazione(STATO_SEGNALAZIONE tipo_segnalazione) {
+		this.stato_segnalazione = tipo_segnalazione;
 	}
 	public Point getPosizione() {
 		return posizione;

@@ -1,6 +1,6 @@
 package com.project.comunepulito;
 
-public enum TIPO_SEGNALAZIONE {
+public enum STATO_SEGNALAZIONE {
 	IN_LAVORAZIONE,
 	CONVALIDATO,
 	NON_VALIDO
