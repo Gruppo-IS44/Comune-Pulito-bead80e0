@@ -19,7 +19,7 @@
             <div class="alert alert-danger" *ngIf="signupForm.get('email')?.touched && signupForm.get('email')?.invalid">
               L'email inserita non è valida!
             </div>
-        </div>
+          </div>
         <div class="col-0 col-md-1"></div>
         </div>
       </div>
@@ -47,8 +47,7 @@
               <input class="form-control" id="password" type="password" [type]="show ? 'text' : 'password'" name="password" placeholder="password" formControlName="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$">
               <label for="password">Password </label>
             </div>
-            <button class="btn btn-outline-secondary" (click)="toggleEye()">prova
-            </button>
+            <button class="btn btn-outline-secondary" (click)="toggleEye()">ඞ</button>
           </div>
             <div class="flex alert alert-danger justify-content-left" *ngIf="signupForm.get('password')?.hasError('pattern') && signupForm.get('password')?.touched">
                  La password deve contenere almeno 8 caratteri di cui:
@@ -57,21 +56,22 @@
                    <li>Un numero</li>
                    <li>Un carattere speciale (@, $, !, %, *, ?, &)</li>
                 </ul>
-            </div>
-            
+            </div>            
           </div>
-        </div>
         <div class="col col-md-5">
-          <div class="form-floating">
-            <input class="form-control" id="cpassword" type="password" name="cpassword" placeholder="cpassword" formControlName="cpassword">
-            <label for="cpassword">Conferma Password</label>
-            <div class="alert alert-danger" *ngIf="signupForm.get('cpassword')?.getRawValue()!==signupForm.get('password')?.getRawValue()  && signupForm.get('cpassword')?.touched">
-              Le password non coincidono!
+          <div class="input-group">
+            <div class="form-floating">
+              <input class="form-control" id="cpassword" type="password" [type]="show ? 'text' : 'password'" name="cpassword" placeholder="cpassword" formControlName="cpassword">
+              <label for="cpassword">Conferma Password</label>
             </div>
-          </div>
-        </div>
-        <div class="col-0 col-md-1"></div>
-      </div>      
+              <button class="btn btn-outline-secondary" (click)="toggleEye()">ඞ</button>
+            </div>
+              <div class="alert alert-danger" *ngIf="signupForm.get('cpassword')?.getRawValue()!==signupForm.get('password')?.getRawValue()  && signupForm.get('cpassword')?.touched">
+                Le password non coincidono!
+              </div>
+            </div>
+        <div class="col-0 col-md-1"></div>   
+      </div> 
       <div class="row text-center">
         <div class="col-0 col-md-1"></div>
         <div class="col-6 col-md-5">Hai già un account?<switch [tipo]=tipo></switch></div>
@@ -106,9 +106,12 @@
       <div class="row">
         <div class="col-1 col-md-2"></div>
         <div class="col-10 col-md-8">
-          <div class="form-floating mb-2">   
-            <input class="form-control" type="password" name="password" placeholder="password" formControlName="password">
-            <label for="password">Password</label>
+          <div class="input-group">
+            <div class="form-floating">
+              <input class="form-control" id="password" type="password" [type]="show ? 'text' : 'password'" name="password" placeholder="password" formControlName="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$">
+              <label for="password">Password </label>
+            </div>
+            <button class="btn btn-outline-secondary" (click)="toggleEye()">ඞ</button>
           </div>
         </div>
         <div class="col-1 col-md-2"></div>
