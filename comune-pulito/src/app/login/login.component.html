@@ -47,7 +47,7 @@
               <input class="form-control" id="password" type="password" [type]="show ? 'text' : 'password'" name="password" placeholder="password" formControlName="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$">
               <label for="password">Password </label>
             </div>
-            <button class="btn btn-outline-secondary" (mouseup)="toggleEye()" (mousedown)="toggleEye()" (touchstart)="toggleEye()" (touchend)="toggleEye()">ඞ</button>
+            <button class="btn btn-outline-secondary" (mouseup)="toggleEye()" (mousedown)="toggleEye()" (touchstart)="toggleEye()" (touchend)="toggleEye()"><span class="material-icons">remove_red_eye</span></button>
           </div>
             <div class="flex alert alert-danger justify-content-left" *ngIf="signupForm.get('password')?.hasError('pattern') && signupForm.get('password')?.touched">
                  La password deve contenere almeno 8 caratteri di cui:
@@ -64,7 +64,7 @@
               <input class="form-control" id="cpassword" type="password" [type]="show ? 'text' : 'password'" name="cpassword" placeholder="cpassword" formControlName="cpassword">
               <label for="cpassword">Conferma Password</label>
             </div>
-              <button class="btn btn-outline-secondary" (mouseup)="toggleEye()" (mousedown)="toggleEye()" (touchstart)="toggleEye()" (touchend)="toggleEye()">ඞ</button>
+              <button class="btn btn-outline-secondary" (mouseup)="toggleEye()" (mousedown)="toggleEye()" (touchstart)="toggleEye()" (touchend)="toggleEye()"><span class="material-icons">remove_red_eye</span></button>
             </div>
               <div class="alert alert-danger" *ngIf="signupForm.get('cpassword')?.getRawValue()!==signupForm.get('password')?.getRawValue()  && signupForm.get('cpassword')?.touched">
                 Le password non coincidono!
@@ -111,7 +111,7 @@
               <input class="form-control" id="password" type="password" [type]="show ? 'text' : 'password'" name="password" placeholder="password" formControlName="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$">
               <label for="password">Password </label>
             </div>
-            <button class="btn btn-outline-secondary" (mouseup)="toggleEye()" (mousedown)="toggleEye()" (touchstart)="toggleEye()" (touchend)="toggleEye()">ඞ</button>
+            <button class="btn btn-outline-secondary" (mouseup)="toggleEye()" (mousedown)="toggleEye()" (touchstart)="toggleEye()" (touchend)="toggleEye()"><span class="material-icons">remove_red_eye</span></button>
           </div>
         </div>
         <div class="col-1 col-md-2"></div>
