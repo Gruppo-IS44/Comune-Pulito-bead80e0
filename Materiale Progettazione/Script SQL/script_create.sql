@@ -2,7 +2,7 @@ CREATE TABLE UTENTE(
     Id_utente int NOT NULL AUTO_INCREMENT,
     Nome varchar(30),
     Cognome varchar(30),
-    Email varchar(25) NOT NULL UNIQUE,
+    Email varchar(50) NOT NULL UNIQUE,
     Pwd varchar(100) NOT NULL,
     Bilancio int DEFAULT 0,
     Warn tinyint DEFAULT 0,
@@ -15,7 +15,7 @@ CREATE TABLE GESTORE(
     Nome varchar(30),
     Cognome varchar(30),
     Pwd varchar(100),
-    Email varchar(25) NOT NULL UNIQUE,
+    Email varchar(50) NOT NULL UNIQUE,
     Sede varchar(30),
     PRIMARY KEY(Id_gestore)
 );
