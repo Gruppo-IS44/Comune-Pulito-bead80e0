@@ -9,6 +9,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name="gestore")
 public class Gestore {
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer Id_gestore;
@@ -17,6 +18,7 @@ public class Gestore {
 	private String pwd;
 	private String email;
 	private String sede;
+	
 	public Integer getId_gestore() {
 		return Id_gestore;
 	}
