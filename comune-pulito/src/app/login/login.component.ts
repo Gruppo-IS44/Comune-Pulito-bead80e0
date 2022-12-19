@@ -30,6 +30,7 @@ export class LoginComponent  {
     password:['',Validators.required],
     isGestore:[false, Validators.required]
   });
+  erroreSignup:boolean=false;
 
 
   constructor(private formBuilder:FormBuilder,private httpService:HttpService, private router:Router){}
@@ -64,10 +65,12 @@ export class LoginComponent  {
   onSignup(){//invocato nel momento in cui si richiede il Signup con le credenziali inserite all'interno del form
     this.httpService.addUser(this.signupForm.value).subscribe(data=>{
       console.log(data);
+      this.erroreSignup=false;
       this.router.navigate(["/map"]);
     },
     error=>{
       console.log(error)
+      this.erroreSignup=true;
     });
   }
 

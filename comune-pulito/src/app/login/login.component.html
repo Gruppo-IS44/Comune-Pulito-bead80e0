@@ -47,6 +47,12 @@
               <input class="form-control" id="password" type="password" [type]="show ? 'text' : 'password'" name="password" placeholder="password" formControlName="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$">
               <label for="password">Password </label>
             </div>
+            <button *ngIf="signupForm.get('password')?.invalid" class="btn btn-outline-danger" disabled>
+              <div><span class="material-icons">error</span></div>
+            </button>
+            <button *ngIf="!signupForm.get('password')?.invalid" class="btn btn-outline-success" disabled>  
+              <div><span class="material-icons">task_alt</span></div>
+            </button>
             <button class="btn btn-outline-secondary" (mouseup)="toggleEye()" (mousedown)="toggleEye()" (touchstart)="toggleEye()" (touchend)="toggleEye()"><span class="material-icons">remove_red_eye</span></button>
           </div>
             <div class="flex alert alert-danger justify-content-left" *ngIf="signupForm.get('password')?.hasError('pattern') && signupForm.get('password')?.touched">
@@ -64,6 +70,12 @@
               <input class="form-control" id="cpassword" type="password" [type]="show ? 'text' : 'password'" name="cpassword" placeholder="cpassword" formControlName="cpassword">
               <label for="cpassword">Conferma Password</label>
             </div>
+            <button *ngIf="signupForm.get('cpassword')?.getRawValue()!==signupForm.get('password')?.getRawValue() || !signupForm.get('cpassword')?.touched" class="btn btn-outline-danger" disabled>
+              <div><span class="material-icons">error</span></div>
+            </button>
+            <button *ngIf="signupForm.get('cpassword')?.getRawValue()===signupForm.get('password')?.getRawValue() && signupForm.get('cpassword')?.touched" class="btn btn-outline-success" disabled>  
+              <div><span class="material-icons">task_alt</span></div>
+            </button>
               <button class="btn btn-outline-secondary" (mouseup)="toggleEye()" (mousedown)="toggleEye()" (touchstart)="toggleEye()" (touchend)="toggleEye()"><span class="material-icons">remove_red_eye</span></button>
             </div>
               <div class="alert alert-danger" *ngIf="signupForm.get('cpassword')?.getRawValue()!==signupForm.get('password')?.getRawValue()  && signupForm.get('cpassword')?.touched">
@@ -75,7 +87,17 @@
       <div class="row text-center">
         <div class="col-0 col-md-1"></div>
         <div class="col-6 col-md-5">Hai già un account?<switch [tipo]=tipo></switch></div>
-        <div class="col-6 col-md-5"><br><button class="btn btn-primary" (click)="onSignup()" [disabled]="signupForm.invalid">Sign Up</button></div>
+        <div class="col-6 col-md-5"><br><button class="btn btn-primary" (click)="onSignup()" [disabled]="signupForm.invalid || (signupForm.get('cpassword')?.getRawValue()!==signupForm.get('password')?.getRawValue() || signupForm.get('cpassword')?.getRawValue()=='')">Sign Up</button></div>
+        <div class="col-0 col-md-1"></div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-0 col-md-1"></div>
+        <div class="col col-md-10">
+          <div class="alert alert-danger text-center" *ngIf="erroreSignup">
+            Utente già registrato!
+          </div>
+        </div>
         <div class="col-0 col-md-1"></div>
       </div>
     </form>
@@ -144,6 +166,7 @@
         <div class="alert alert-danger" *ngIf="errore">
           Credenziali non valide.
         </div>
+      </div>
       <div class="col-1 col-md-2"></div>
     </div>
   </div>
