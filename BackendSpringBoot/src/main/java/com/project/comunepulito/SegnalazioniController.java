@@ -26,8 +26,8 @@ public class SegnalazioniController {
 	@Autowired
 	private SegnalazioneRepository segnalazioneRepository;
 	
-	@PostMapping("/segnalazioni_test")
-	public void SegnalazioneInsert(@RequestBody SegnalazioneBody segnalazioneBody) {		
+	@PostMapping("/segnalazioni")
+	public void SegnalazioneInsert (@RequestBody SegnalazioneBody segnalazioneBody) {		
 		try{	
 			Segnalazione s = new Segnalazione();
 			s.setDescrizione(segnalazioneBody.getDescrizione());
@@ -39,7 +39,12 @@ public class SegnalazioniController {
 		}catch (Exception e) {
 			System.out.println("Errore nella creazione della segnalazione.");
 			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Errore generico.");
-		}
+		}		
+		
+			Segnalazione segnalazione= segnalazioneRepository.findById_Utente(Segnalazione.getUtente());
+			System.out.println(segnalazione.getId_segnalazione());
+			
 	}
+	
 }
 

@@ -24,6 +24,7 @@ public class Utente {
 	private Integer warn;
 	private Integer bilancio;
 	private Boolean ban;
+	
 	public Integer getId() {
 		return Id_utente;
 	}

@@ -18,8 +18,8 @@ public class Segnalazione {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@ManyToOne
-	@JoinColumn(name="Id_Utente", nullable=false)
-	private Utente utente;
+	@JoinColumn(name="Id_utente", nullable=false)
+	private static Utente Id_utente;
 	private Integer Id_segnalazione;
 	private LocalDateTime dataora;
 	private Point posizione;
@@ -58,11 +58,11 @@ public class Segnalazione {
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
 	}
-	public Utente getUtente() {
-		return utente;
+	public static Utente getUtente() {
+		return Id_utente;
 	}
 	public void setUtente(Utente utente) {
-		this.utente = utente;
+		Segnalazione.Id_utente = utente;
 	}
 	public TIPO_RIFIUTO getTipo_rifiuto() {
 		return tipo_rifiuto;
