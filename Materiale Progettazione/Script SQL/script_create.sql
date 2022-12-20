@@ -22,13 +22,13 @@ CREATE TABLE GESTORE(
 
 CREATE TABLE SEGNALAZIONE_STATO(
     Id int NOT NULL AUTO_INCREMENT,
-    Stato varchar(10),
+    Stato varchar(20),
     PRIMARY KEY(id)
 );
 
 CREATE TABLE CLUSTER_STATO(
     Id int NOT NULL AUTO_INCREMENT,
-    Stato varchar(10),
+    Stato varchar(20),
     PRIMARY KEY(id)
 );
 
