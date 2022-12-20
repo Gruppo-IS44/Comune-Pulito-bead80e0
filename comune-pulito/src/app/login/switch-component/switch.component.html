@@ -1,0 +1,6 @@
+<div *ngIf="tipo.signup">
+    <button class="btn btn-success" (click)="cambio()">Iscriviti</button>
+</div>
+<div *ngIf="!tipo.signup">
+    <button class="btn btn-success" (click)="cambio()">Accedi</button>
+</div>

@@ -1,0 +1,173 @@
+<div class="flex container">
+  <div *ngIf="!tipo.signup"><!--Form del Sign Up-->
+    <form [formGroup]="signupForm">
+      <div class="row text-center">
+        <div class="col-0 col-md-1"></div>
+        <div class="col col-md-10">
+          <div class="mb-4">
+            <h1 class="text-color-red">Comune Pulito</h1><hr class="border border-dark border-2 opacity-75">
+          </div>
+          <div class="col-0 col-md-1"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-0 col-md-1"></div>
+        <div class="col col-md-10">
+          <div class="form-floating mb-2">
+            <input class="form-control" id="email" name="email" placeholder="email" formControlName="email">
+            <label for="email">Email</label>
+            <div class="alert alert-danger" *ngIf="signupForm.get('email')?.touched && signupForm.get('email')?.invalid">
+              L'email inserita non è valida!
+            </div>
+          </div>
+        <div class="col-0 col-md-1"></div>
+        </div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-0 col-md-1"></div>
+        <div class="col col-md-5">
+          <div class="form-floating">
+            <input class="form-control" id="nome" name="nome" placeholder="nome" formControlName="nome">
+            <label for="nome">Nome</label>
+          </div>
+        </div> 
+        <div class="col col-md-5">
+          <div class="form-floating">
+            <input class="form-control" id="cognome" name="cognome" placeholder="cognome" formControlName="cognome">
+            <label for="cognome">Cognome</label>
+          </div>
+        </div>
+        <div class="col-0 col-md-1"></div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-0 col-md-1"></div>
+        <div class="col col-md-5">
+          <div class="input-group">
+            <div class="form-floating">
+              <input class="form-control" id="password" type="password" [type]="show ? 'text' : 'password'" name="password" placeholder="password" formControlName="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$">
+              <label for="password">Password </label>
+            </div>
+            <button *ngIf="signupForm.get('password')?.invalid" class="btn btn-outline-danger" disabled>
+              <div><span class="material-icons">error</span></div>
+            </button>
+            <button *ngIf="!signupForm.get('password')?.invalid" class="btn btn-outline-success" disabled>  
+              <div><span class="material-icons">task_alt</span></div>
+            </button>
+            <button class="btn btn-outline-secondary" (mouseup)="toggleEye()" (mousedown)="toggleEye()" (touchstart)="toggleEye()" (touchend)="toggleEye()"><span class="material-icons">remove_red_eye</span></button>
+          </div>
+            <div class="flex alert alert-danger justify-content-left" *ngIf="signupForm.get('password')?.hasError('pattern') && signupForm.get('password')?.touched">
+                 La password deve contenere almeno 8 caratteri di cui:
+                 <ul>
+                   <li>Una lettera maiuscola e una minuscola</li>
+                   <li>Un numero</li>
+                   <li>Un carattere speciale (@, $, !, %, *, ?, &)</li>
+                </ul>
+            </div>            
+          </div>
+        <div class="col col-md-5">
+          <div class="input-group">
+            <div class="form-floating">
+              <input class="form-control" id="cpassword" type="password" [type]="show ? 'text' : 'password'" name="cpassword" placeholder="cpassword" formControlName="cpassword">
+              <label for="cpassword">Conferma Password</label>
+            </div>
+            <button *ngIf="signupForm.get('cpassword')?.getRawValue()!==signupForm.get('password')?.getRawValue() || !signupForm.get('cpassword')?.touched" class="btn btn-outline-danger" disabled>
+              <div><span class="material-icons">error</span></div>
+            </button>
+            <button *ngIf="signupForm.get('cpassword')?.getRawValue()===signupForm.get('password')?.getRawValue() && signupForm.get('cpassword')?.touched" class="btn btn-outline-success" disabled>  
+              <div><span class="material-icons">task_alt</span></div>
+            </button>
+              <button class="btn btn-outline-secondary" (mouseup)="toggleEye()" (mousedown)="toggleEye()" (touchstart)="toggleEye()" (touchend)="toggleEye()"><span class="material-icons">remove_red_eye</span></button>
+            </div>
+              <div class="alert alert-danger" *ngIf="signupForm.get('cpassword')?.getRawValue()!==signupForm.get('password')?.getRawValue()  && signupForm.get('cpassword')?.touched">
+                Le password non coincidono!
+              </div>
+            </div>
+        <div class="col-0 col-md-1"></div>   
+      </div> 
+      <div class="row text-center">
+        <div class="col-0 col-md-1"></div>
+        <div class="col-6 col-md-5">Hai già un account?<switch [tipo]=tipo></switch></div>
+        <div class="col-6 col-md-5"><br><button class="btn btn-primary" (click)="onSignup()" [disabled]="signupForm.invalid || (signupForm.get('cpassword')?.getRawValue()!==signupForm.get('password')?.getRawValue() || signupForm.get('cpassword')?.getRawValue()=='')">Sign Up</button></div>
+        <div class="col-0 col-md-1"></div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-0 col-md-1"></div>
+        <div class="col col-md-10">
+          <div class="alert alert-danger text-center" *ngIf="erroreSignup">
+            Utente già registrato!
+          </div>
+        </div>
+        <div class="col-0 col-md-1"></div>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="container text-center text-color-black">
+  <div *ngIf="tipo.signup"><!--Form del Login-->
+    <form [formGroup]="loginForm">
+      <div class="row">
+        <div class="col-1 col-md-2"></div>
+        <div class="col-10 col-md-8">
+          <div class="mb-4">
+            <h1 class="text-color-red">Comune Pulito</h1><hr class="border border-dark border-2 opacity-75">
+          </div>
+        </div>
+        <div class="col-1 col-md-2"></div>
+      </div>
+      <div class="row">
+        <div class="col-1 col-md-2"></div>
+        <div class="col-10 col-md-8">
+          <div class="form-floating mb-2">
+            <input class="form-control" id="email" name="email" placeholder="email" formControlName="email">
+            <label for="email">Email</label>
+          </div>
+        </div>
+        <div class="col-1 col-md-2"></div>
+      </div>
+      <div class="row">
+        <div class="col-1 col-md-2"></div>
+        <div class="col-10 col-md-8">
+          <div class="input-group">
+            <div class="form-floating">
+              <input class="form-control" id="password" type="password" [type]="show ? 'text' : 'password'" name="password" placeholder="password" formControlName="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$">
+              <label for="password">Password </label>
+            </div>
+            <button class="btn btn-outline-secondary" (mouseup)="toggleEye()" (mousedown)="toggleEye()" (touchstart)="toggleEye()" (touchend)="toggleEye()"><span class="material-icons">remove_red_eye</span></button>
+          </div>
+        </div>
+        <div class="col-1 col-md-2"></div>
+      </div>
+      <div class="row">
+        <div class="col-1 col-md-2"></div>
+        <div class="col-10 col-md-8">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="utente" name="isGestore" [value]=false formControlName="isGestore">
+            <label class="form-check-label" for="utente">Utente</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="gestore" name="isGestore" [value]=true formControlName="isGestore">
+            <label class="form-check-label" for="gestore">Gestore</label>
+          </div>
+        </div>
+        <div class="col-1 col-md-2"></div>
+      </div>  
+      <div class="row">
+        <div class="col-0 col-md-1"></div>
+        <div class="col-6 col-md-5">Non sei registrato?<switch [tipo]=tipo></switch></div>
+        <div class="col-6 col-md-5"><br><button class="btn btn-primary" (click)="onLogin()" [disabled]="loginForm.invalid">Log In</button></div>
+        <div class="col-0 col-md-1"></div>
+      </div>
+    </form>
+    <br>
+    <div class="row">
+      <div class="col-1 col-md-2"></div>
+      <div class="col-10 col-md-8">
+        <div class="alert alert-danger" *ngIf="errore">
+          Credenziali non valide.
+        </div>
+      </div>
+      <div class="col-1 col-md-2"></div>
+    </div>
+  </div>
+</div>
