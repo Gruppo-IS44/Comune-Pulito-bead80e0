@@ -8,12 +8,40 @@
     </style>
 </head>
 <body>
-    <button class="btn btn-outline-dark position-absolute end-0 btn-lg" data-bs-toggle="offcanvas" data-bs-target="#OffcanvasExample"><span class="material-icons">format_list_bulleted</span></button>
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="OffcanvasExample">
-      <button class="btn btn-primary" (click)="clickSegnalazioni()">Segnalazioni <span class="material-icons">note_add</span></button>
-      <button class="btn btn-primary" (click)="clickReward()">Reward <span class="material-icons">shopping_bag</span></button>
+    <button class="btn btn-light position-absolute end-0 btn-lg" data-bs-toggle="offcanvas" data-bs-target="#OffcanvasExample"><span class="material-icons">format_list_bulleted</span></button>
+    <div class="offcanvas offcanvas-end" tabindex="=-1" id="OffcanvasExample">
+      <div class="flex container text-center">
+        <br>
+        <div class="row">
+          <div class="col col-md-2"></div>
+          <div class="col col-md-8">
+            <button class="btn btn-primary btn-lg" (click)="clickSegnalazioni()">Segnalazioni <span class="material-icons">note_add</span></button>
+          </div>
+          <div class="col col md-2"></div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col col-md-2"></div>
+          <div class="col col-md-8">
+            <button class="btn btn-primary btn-lg" (click)="clickReward()">Reward <span class="material-icons">shopping_bag</span></button>
+          </div>
+          <div class="col col md-2"></div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col col-md-1"></div>
+          <div class="col col-md-10"><hr class="border border-dark border-2 opacity-25"></div>          
+          <div class="col col-md-1"></div>
+        </div>
+        <div class="row">
+          <div class="col col-md-2"></div>
+          <div class="col col-md-8">
+            <button class="btn btn-primary btn-lg" data-bs-toggle="offcanvas" data-bs-target="#OffcanvasExample">Chiudi</button>            
+          </div>
+          <div class="col col md-2"></div>
+        </div>
+      </div>
       <button class="btn btn-primary-outline-dark position-absolute end-0 bottom-0" data-bs-toggle="modal" data-bs-target="#ModalDialogExample"><span class="material-icons">info</span></button>
-      <button class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#OffcanvasExample">Chiudi</button>
     </div>
     <div class="modal fade" id="ModalDialogExample" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
