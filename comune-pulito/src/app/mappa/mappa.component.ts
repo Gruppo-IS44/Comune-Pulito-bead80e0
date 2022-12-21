@@ -11,6 +11,7 @@ import VectorLayer  from 'ol/layer/Vector';
 import GeoJSON from 'ol/format/GeoJSON';
 import Style from 'ol/style/Style';
 import Icon from 'ol/style/Icon';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -19,7 +20,7 @@ import Icon from 'ol/style/Icon';
   styleUrls: ['./mappa.component.css'],
 })
 export class MappaComponent implements OnInit {
-  tuto:any;
+  constructor(private router:Router){}
 
   ngOnInit(): void {
     const key = 'TMygzTI9MV2J274M9Ln3';
@@ -63,9 +64,11 @@ export class MappaComponent implements OnInit {
 
   clickSegnalazioni(){
     console.log("stai andando alle segnalazioni")
+    this.router.navigate(["/segnalazione"])
   }
 
   clickReward(){
     console.log("stai andando alle reward")
+    this.router.navigate(["/reward"])
   }
 }
