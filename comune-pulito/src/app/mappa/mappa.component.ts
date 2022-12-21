@@ -11,6 +11,8 @@ import VectorLayer  from 'ol/layer/Vector';
 import GeoJSON from 'ol/format/GeoJSON';
 import Style from 'ol/style/Style';
 import Icon from 'ol/style/Icon';
+import { Router } from '@angular/router';
+import { Point } from 'ol/geom';
 
 
 @Component({
@@ -19,7 +21,7 @@ import Icon from 'ol/style/Icon';
   styleUrls: ['./mappa.component.css'],
 })
 export class MappaComponent implements OnInit {
-  tuto:any;
+  constructor(private router:Router){}
 
   ngOnInit(): void {
     const key = 'TMygzTI9MV2J274M9Ln3';
@@ -39,7 +41,7 @@ export class MappaComponent implements OnInit {
         target: 'map',
         view: new View({
           constrainResolution: true,
-          center: fromLonLat([16.62662018, 49.2125578]), // starting position [lng, lat]
+          center: fromLonLat(this.getLocation().getCoordinates()), // starting position [lng, lat]
           zoom: 5 // starting zoom
         })
       });
@@ -58,14 +60,34 @@ export class MappaComponent implements OnInit {
           })
         }) 
       })
+      navigator.geolocation.getCurrentPosition((position)=>{
+        map.setView(new View({
+          constrainResolution:true,
+          center: fromLonLat([position.coords.longitude, position.coords.latitude]),
+          zoom:15
+        }))
+      })
       map.addLayer(AirportLayer);
   }
 
   clickSegnalazioni(){
     console.log("stai andando alle segnalazioni")
+    this.router.navigate(["/segnalazione"])
   }
 
   clickReward(){
     console.log("stai andando alle reward")
+    this.router.navigate(["/reward"])
+  }
+
+  getLocation():Point{
+    navigator.geolocation.getCurrentPosition((position)=>{
+      const longitude = position.coords.longitude;
+        const latitude = position.coords.latitude;
+        console.log(longitude);
+        console.log(latitude);
+        return new Point([longitude, latitude]);
+    })
+    return new Point([10,10])
   }
 }

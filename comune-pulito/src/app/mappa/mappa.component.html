@@ -1,6 +1,5 @@
 <head>
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
-    <title>Display a Points from GeoJSON Layer</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v7.1.0/ol.css">
     <script src="https://cdn.jsdelivr.net/npm/ol@v7.1.0/dist/ol.js"></script>
     <style>
@@ -43,19 +42,18 @@
       </div>
       <button class="btn btn-primary-outline-dark position-absolute end-0 bottom-0" data-bs-toggle="modal" data-bs-target="#ModalDialogExample"><span class="material-icons">info</span></button>
     </div>
-    <div class="modal fade" id="ModalDialogExample" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="ModalDialogExample" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"><!--Pagina delle Info-->
         <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">Info</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Info</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button><!--Pulsante di chiusura della pagina delle info-->
+                </div>
+                <div class="modal-body">
+                    [inserire info qui]
+                </div>
             </div>
-            <div class="modal-body">
-              [inserire info qui]
-            </div>
-          </div>
-        </div>
-      </div>
-      
+       </div>
+    </div>
     <div id="map"></div>
 </body>

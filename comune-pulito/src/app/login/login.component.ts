@@ -42,7 +42,7 @@ export class LoginComponent  {
   onLogin(){//invocato nel momento in cui si richiede il login
     this.httpService.login(this.loginForm.value).subscribe(data=>{
       console.log(data)
-      this.router.navigate(["/map"]);
+      this.router.navigate(["/mappa"]);
     },
     error =>{
       console.log("Errore nel login!");
@@ -66,7 +66,7 @@ export class LoginComponent  {
     this.httpService.addUser(this.signupForm.value).subscribe(data=>{
       console.log(data);
       this.erroreSignup=false;
-      this.router.navigate(["/map"]);
+      this.router.navigate(["/mappa"]);
     },
     error=>{
       console.log(error)
