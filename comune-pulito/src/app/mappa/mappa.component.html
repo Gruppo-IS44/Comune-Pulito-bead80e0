@@ -7,12 +7,12 @@
     </style>
 </head>
 <body>
-    <button class="btn btn-primary position-absolute end-0" data-bs-toggle="offcanvas" data-bs-target="#OffcanvasExample">Menu</button><!--Pulsante di attivazione della Barra Laterale-->
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="OffcanvasExample"><!--Barra Laterale-->
-        <button class="btn btn-primary" (click)="clickSegnalazioni()">Segnalazioni</button>
-        <button class="btn btn-primary" (click)="clickReward()">Reward</button>
-        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ModalDialogExample">Info</button>
-        <button class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#OffcanvasExample">Chiudi</button><!--Pulsante di chiusura della barra laterale-->
+    <button class="btn btn-outline-dark position-absolute end-0 btn-lg" data-bs-toggle="offcanvas" data-bs-target="#OffcanvasExample"><span class="material-icons">format_list_bulleted</span></button>
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="OffcanvasExample">
+      <button class="btn btn-primary" (click)="clickSegnalazioni()">Segnalazioni <span class="material-icons">note_add</span></button>
+      <button class="btn btn-primary" (click)="clickReward()">Reward <span class="material-icons">shopping_bag</span></button>
+      <button class="btn btn-primary-outline-dark position-absolute end-0 bottom-0" data-bs-toggle="modal" data-bs-target="#ModalDialogExample"><span class="material-icons">info</span></button>
+      <button class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#OffcanvasExample">Chiudi</button>
     </div>
     <div class="modal fade" id="ModalDialogExample" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"><!--Pagina delle Info-->
         <div class="modal-dialog">
