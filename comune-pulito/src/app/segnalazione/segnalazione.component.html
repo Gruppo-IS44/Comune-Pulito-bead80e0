@@ -1,23 +1,47 @@
-<div class="container">
+<div class="container position-absolute top-50 start-50 translate-middle">
     <div class="text-center">
         <form [formGroup]="segnalazioneForm">
-            <h1>Nuova Segnalazione</h1>
-            <div class="form-control mb-2">
-                <input class="form-control" type="file" id="immagine" name="immagine" formControlName="immagine">
-                <label for="email">Immagine</label>
+            <div class="row">                
+                <h1 class="display-6">Nuova Segnalazione</h1>
             </div>
-            <div class="form-floating mb-2">
-                <select class="form-select" id="tipoRifiuto" formControlName="tipoRifiuto">
-                    <option value=piccolo>Piccolo</option>
-                    <option value=grande>Grande</option>
-                </select>
-                <label for="tipoRifiuto">Tipo Rifiuto</label>
+            <div class="row">
+                <div class="col-0 col-md-3"></div>
+                <div class="col-0 col-md-6">
+                    <div class="form-control mb-2">
+                        <label for="immagine">Fotografia del rifiuto</label>
+                        <input class="form-control" type="file" id="immagine" name="immagine" formControlName="immagine">                        
+                    </div>
+                 </div>
+                <div class="col-0 col-md-3"></div>
             </div>
-            <div class="form-floating mb-2">
-                <textarea class="form-control" id="descrizione" name="descrizione" placeholder="Breve Descrizione" formControlName="descrizione"></textarea>
-                <label for="email">Descrizione</label>
+            <div class="row">
+                <div class="col-0 col-md-3"></div>
+                <div class="col-0 col-md-6">
+                    <div class="form-floating mb-2">
+                        <select class="form-select" id="tipoRifiuto" formControlName="tipoRifiuto">
+                            <option value=piccolo>Piccolo</option>
+                            <option value=grande>Grande</option>
+                        </select>
+                        <label for="tipoRifiuto">Tipo Rifiuto</label>
+                    </div>
+                </div>
+                <div class="col-0 col-md-3"></div>                
             </div>
-            <button class="btn btn-primary" (click)="onSubmit()" [disabled]="segnalazioneForm.invalid">Submit</button>
+            <div class="row">
+                <div class="col-0 col-md-3"></div> 
+                <div class="col-0 col-md-6">
+                    <div class="form-floating mb-2">
+                        <textarea class="form-control" id="descrizione" name="descrizione" placeholder="Breve Descrizione" formControlName="descrizione"></textarea>
+                        <label for="email">Descrizione</label>
+                    </div>
+                </div> 
+                <div class="col-0 col-md-3"></div>            
+            </div>
+            <div class="row">
+                <div class="col-0 col-md-3"></div>
+                <div class="col-0 col-md-6"><button class="btn btn-primary" (click)="onSubmit()" [disabled]="segnalazioneForm.invalid">Submit</button></div>
+                <div class="col-0 col-md-3"></div>            
+            </div>
         </form>
     </div>
 </div>
