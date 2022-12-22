@@ -7,25 +7,56 @@
     </style>
 </head>
 <body>
-    <button class="btn btn-dark position-absolute end-0 btn-lg" data-bs-toggle="offcanvas" data-bs-target="#OffcanvasExample"><span class="material-icons">format_list_bulleted</span></button>
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="OffcanvasExample">
-      <button class="btn btn-primary" (click)="clickSegnalazioni()">Segnalazioni <span class="material-icons">note_add</span></button>
-      <button class="btn btn-primary" (click)="clickReward()">Reward <span class="material-icons">shopping_bag</span></button>
-      <button class="btn btn-primary-outline-dark position-absolute end-0 bottom-0" data-bs-toggle="modal" data-bs-target="#ModalDialogExample"><span class="material-icons">info</span></button>
-      <button class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#OffcanvasExample">Chiudi</button>
+    <button class="btn btn-dark position-absolute end-0 btn-lg opacity-75" data-bs-toggle="offcanvas" data-bs-target="#OffcanvasExample"><span class="material-icons"><h1 class="h3">format_list_bulleted</h1></span></button>
+    <div class="offcanvas offcanvas-end text-bg-dark" tabindex="=-1" id="OffcanvasExample">
+      <div class="flex container text-center">
+        <br>
+        <div class="row">
+          <div class="col col-md-2"></div>
+          <div class="col col-md-8">            
+            <button type="button" class="btn btn-outline-light btn-lg border-dark" (click)="clickSegnalazioni()"><h1 class="h3">Segnalazioni</h1></button>
+          </div>
+          <div class="col col md-2"></div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col col-md-2"></div>
+          <div class="col col-md-8">            
+            <button type="button" class="btn btn-outline-light btn-lg border-dark" (click)="clickReward()"><h1 class="h3">Reward</h1></button>
+          </div>
+          <div class="col col md-2"></div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col col-md-1"></div>
+          <div class="col col-md-10"><hr class="border border-light border-1 opacity-50"></div>          
+          <div class="col col-md-1"></div>
+        </div>
+        <div class="row">
+          <div class="col col-md-2"></div>
+          <div class="col col-md-8">
+            <button class="btn btn-outline-danger btn-lg border-dark" data-bs-toggle="offcanvas" data-bs-target="#OffcanvasExample"><h1 class="h4">Chiudi</h1></button>            
+          </div>
+          <div class="col col md-2"></div>
+        </div>
+      </div>
+      <button class="btn btn-outline-light btn-lg border-dark position-absolute end-0 bottom-0" data-bs-toggle="modal" data-bs-target="#ModalDialogExample"><span class="material-icons">info</span></button>
     </div>
-    <div class="modal fade" id="ModalDialogExample" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"><!--Pagina delle Info-->
+    <div class="modal fade bg-dark" id="ModalDialogExample" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"><!--Pagina delle Info-->
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Info</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel"><h1 class="diplay-5">Info Comune Pulito</h1></h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button><!--Pulsante di chiusura della pagina delle info-->
                 </div>
                 <div class="modal-body">
-                    [inserire info qui]
+                    <h1 class="h5">[inserire info qui]</h1>
                 </div>
             </div>
        </div>
     </div>
-    <div id="map"></div>
+    <div class="spinner-grow text-danger position-absolute top-50 start-50 translate-middle" role="status" [ngClass]="{'invisible':(caricato), 'visible':(!caricato)}">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <div id="map" [ngClass]="{'invisible':(!caricato), 'visible':(caricato)}"></div>
 </body>
