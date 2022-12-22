@@ -1,4 +1,4 @@
-<div class="flex container">
+<div class="flex container position-absolute top-50 start-50 translate-middle">
   <div *ngIf="!tipo.signup"><!--Form del Sign Up-->
     <form [formGroup]="signupForm">
       <div class="row text-center">
@@ -14,7 +14,7 @@
         <div class="col-0 col-md-1"></div>
         <div class="col col-md-10">
           <div class="form-floating mb-2">
-            <input class="form-control" id="email" name="email" placeholder="email" formControlName="email">
+            <input class="form-control" [ngClass]="{'border-danger is-invalid':signupForm.get('email')?.invalid, 'border-success':!signupForm.get('email')?.invalid}" id="email" name="email" placeholder="email" formControlName="email">
             <label for="email">Email</label>
             <div class="alert alert-danger" *ngIf="signupForm.get('email')?.touched && signupForm.get('email')?.invalid">
               L'email inserita non è valida!
@@ -27,13 +27,13 @@
         <div class="col-0 col-md-1"></div>
         <div class="col col-md-5">
           <div class="form-floating">
-            <input class="form-control" id="nome" name="nome" placeholder="nome" formControlName="nome">
+            <input class="form-control" [ngClass]="{'border-danger is-invalid':signupForm.get('nome')?.invalid, 'border-success':!signupForm.get('nome')?.invalid}" id="nome" name="nome" placeholder="nome" formControlName="nome">
             <label for="nome">Nome</label>
           </div>
         </div> 
         <div class="col col-md-5">
           <div class="form-floating">
-            <input class="form-control" id="cognome" name="cognome" placeholder="cognome" formControlName="cognome">
+            <input class="form-control" [ngClass]="{'border-danger is-invalid':signupForm.get('cognome')?.invalid, 'border-success':!signupForm.get('cognome')?.invalid}" id="cognome" name="cognome" placeholder="cognome" formControlName="cognome">
             <label for="cognome">Cognome</label>
           </div>
         </div>
@@ -44,16 +44,10 @@
         <div class="col col-md-5">
           <div class="input-group">
             <div class="form-floating">
-              <input class="form-control" id="password" type="password" [type]="show ? 'text' : 'password'" name="password" placeholder="password" formControlName="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$">
+              <input class="form-control" [ngClass]="{'border-danger is-invalid':signupForm.get('password')?.invalid, 'border-success':!signupForm.get('password')?.invalid}" id="password" type="password" [type]="show ? 'text' : 'password'" name="password" placeholder="password" formControlName="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$">
               <label for="password">Password </label>
             </div>
-            <button *ngIf="signupForm.get('password')?.invalid" class="btn btn-outline-danger" disabled>
-              <div><span class="material-icons">error</span></div>
-            </button>
-            <button *ngIf="!signupForm.get('password')?.invalid" class="btn btn-outline-success" disabled>  
-              <div><span class="material-icons">task_alt</span></div>
-            </button>
-            <button class="btn btn-outline-secondary" (mouseup)="toggleEye()" (mousedown)="toggleEye()" (touchstart)="toggleEye()" (touchend)="toggleEye()"><span class="material-icons">remove_red_eye</span></button>
+            <button class="btn btn-outline-secondary" [ngClass]="{'border-danger is-invalid':signupForm.get('password')?.invalid, 'border-success':!signupForm.get('password')?.invalid}" (mouseup)="toggleEye()" (mousedown)="toggleEye()" (touchstart)="toggleEye()" (touchend)="toggleEye()"><span class="material-icons">remove_red_eye</span></button>
           </div>
             <div class="flex alert alert-danger justify-content-left" *ngIf="signupForm.get('password')?.hasError('pattern') && signupForm.get('password')?.touched">
                  La password deve contenere almeno 8 caratteri di cui:
@@ -67,16 +61,10 @@
         <div class="col col-md-5">
           <div class="input-group">
             <div class="form-floating">
-              <input class="form-control" id="cpassword" type="password" [type]="show ? 'text' : 'password'" name="cpassword" placeholder="cpassword" formControlName="cpassword">
+              <input class="form-control" [ngClass]="{'border-danger is-invalid':(signupForm.get('cpassword')?.getRawValue()!==signupForm.get('password')?.getRawValue() || signupForm.get('cpassword')?.getRawValue()===''), 'border-success':(signupForm.get('cpassword')?.getRawValue()===signupForm.get('password')?.getRawValue() && signupForm.get('cpassword')?.getRawValue()!==null)}" id="cpassword" type="password" [type]="show ? 'text' : 'password'" name="cpassword" placeholder="cpassword" formControlName="cpassword">
               <label for="cpassword">Conferma Password</label>
             </div>
-            <button *ngIf="signupForm.get('cpassword')?.getRawValue()!==signupForm.get('password')?.getRawValue() || !signupForm.get('cpassword')?.touched" class="btn btn-outline-danger" disabled>
-              <div><span class="material-icons">error</span></div>
-            </button>
-            <button *ngIf="signupForm.get('cpassword')?.getRawValue()===signupForm.get('password')?.getRawValue() && signupForm.get('cpassword')?.touched" class="btn btn-outline-success" disabled>  
-              <div><span class="material-icons">task_alt</span></div>
-            </button>
-              <button class="btn btn-outline-secondary" (mouseup)="toggleEye()" (mousedown)="toggleEye()" (touchstart)="toggleEye()" (touchend)="toggleEye()"><span class="material-icons">remove_red_eye</span></button>
+              <button class="btn btn-outline-secondary" [ngClass]="{'border-danger is-invalid':(signupForm.get('cpassword')?.getRawValue()!==signupForm.get('password')?.getRawValue() || signupForm.get('cpassword')?.getRawValue()===''), 'border-success':(signupForm.get('cpassword')?.getRawValue()===signupForm.get('password')?.getRawValue() && signupForm.get('cpassword')?.getRawValue()!==null)}" (mouseup)="toggleEye()" (mousedown)="toggleEye()" (touchstart)="toggleEye()" (touchend)="toggleEye()"><span class="material-icons">remove_red_eye</span></button>
             </div>
               <div class="alert alert-danger" *ngIf="signupForm.get('cpassword')?.getRawValue()!==signupForm.get('password')?.getRawValue()  && signupForm.get('cpassword')?.touched">
                 Le password non coincidono!
@@ -103,8 +91,8 @@
     </form>
   </div>
 </div>
-<div class="container text-center text-color-black">
-  <div *ngIf="tipo.signup"><!--Form del Login-->
+<div class="container text-center text-color-black position-absolute top-50 start-50 translate-middle"><!--Form del Login-->
+  <div *ngIf="tipo.signup">
     <form [formGroup]="loginForm">
       <div class="row">
         <div class="col-1 col-md-2"></div>
