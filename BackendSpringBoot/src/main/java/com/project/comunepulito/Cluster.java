@@ -24,8 +24,8 @@ public class Cluster{
 	private float raggio;
 	//private Integer Id_stato; (non sappiamo come va definito)
 	@ManyToOne
-	@JoinColumn(name="Id_Gestore", nullable=false)
-	private Gestore gestore;
+	@JoinColumn(name="Id_gestore", nullable=false)
+	private static Gestore Id_gestore;
 	
 	public Set<Segnalazione> getSegnalazioni() {
 		return segnalazioni;
@@ -51,11 +51,11 @@ public class Cluster{
 	public void setRaggio(float raggio) {
 		this.raggio = raggio;
 	}
-	public Gestore getGestore() {
-		return gestore;
+	public static Gestore getGestore() {
+		return Id_gestore;
 	}
 	public void setGestore(Gestore gestore) {
-		this.gestore = gestore;
+		Cluster.Id_gestore = gestore;
 	}
 	
 	
