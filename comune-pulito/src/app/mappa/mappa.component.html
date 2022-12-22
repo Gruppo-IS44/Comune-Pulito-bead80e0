@@ -55,5 +55,8 @@
             </div>
        </div>
     </div>
-    <div id="map"></div>
+    <div class="spinner-grow text-danger position-absolute top-50 start-50 translate-middle" role="status" [ngClass]="{'invisible':(caricato), 'visible':(!caricato)}">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <div id="map" [ngClass]="{'invisible':(!caricato), 'visible':(caricato)}"></div>
 </body>

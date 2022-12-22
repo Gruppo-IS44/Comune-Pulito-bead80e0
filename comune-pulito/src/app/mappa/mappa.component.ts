@@ -22,12 +22,12 @@ import { Point } from 'ol/geom';
 })
 export class MappaComponent implements OnInit {
   constructor(private router:Router){}
+  caricato:boolean=false;
 
   ngOnInit(): void {
     const key = 'TMygzTI9MV2J274M9Ln3';
 
-      const attribution = new Attribution({
-       
+      const attribution = new Attribution({       
       });      
 
       const map = new Map({
@@ -66,8 +66,10 @@ export class MappaComponent implements OnInit {
           center: fromLonLat([position.coords.longitude, position.coords.latitude]),
           zoom:15
         }))
+        this.caricato=true;
       })
       map.addLayer(AirportLayer);
+     
   }
 
   clickSegnalazioni(){
