@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Point from 'ol/geom/Point';
 
 @Component({
@@ -8,6 +9,13 @@ import Point from 'ol/geom/Point';
 })
 export class SegnalazioneComponent {
   posizione!:Point;
+  segnalazioneForm:FormGroup=this.formBuilder.group({
+    tipoRifiuto:['piccolo',Validators.required],
+    descrizione:['',],
+    immagine:[null,Validators.required]
+  })
+
+  constructor(private formBuilder:FormBuilder){}
 
   ngOnInit(){
     this.getLocation();
@@ -26,5 +34,9 @@ export class SegnalazioneComponent {
     } else {
        console.log("No support for geolocation")
     }
+  }
+
+  onSubmit(){
+    console.log(this.segnalazioneForm);
   }
 }

@@ -1,7 +1,23 @@
 <div class="container">
     <div class="text-center">
-        <h1>Nuova Segnalazione</h1>
-        <button class="btn btn-primary" (click)="getLocation()">Ottieni Posizione</button>
-        {{posizione.getFlatCoordinates()}}
+        <form [formGroup]="segnalazioneForm">
+            <h1>Nuova Segnalazione</h1>
+            <div class="form-control mb-2">
+                <input class="form-control" type="file" id="immagine" name="immagine" formControlName="immagine">
+                <label for="email">Immagine</label>
+            </div>
+            <div class="form-floating mb-2">
+                <select class="form-select" id="tipoRifiuto" formControlName="tipoRifiuto">
+                    <option value=piccolo>Piccolo</option>
+                    <option value=grande>Grande</option>
+                </select>
+                <label for="tipoRifiuto">Tipo Rifiuto</label>
+            </div>
+            <div class="form-floating mb-2">
+                <textarea class="form-control" id="descrizione" name="descrizione" placeholder="Breve Descrizione" formControlName="descrizione"></textarea>
+                <label for="email">Descrizione</label>
+            </div>
+            <button class="btn btn-primary" (click)="onSubmit()" [disabled]="segnalazioneForm.invalid">Submit</button>
+        </form>
     </div>
 </div>
