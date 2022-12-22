@@ -13,8 +13,8 @@
         <br>
         <div class="row">
           <div class="col col-md-2"></div>
-          <div class="col col-md-8">            
-            <button type="button" class="btn btn-outline-light btn-lg border-dark" (click)="clickSegnalazioni()"><h1 class="h3">Segnalazioni</h1></button>
+          <div class="col col-md-8">         
+            <button type="button" class="btn btn-outline-light btn-lg border-dark" (click)="clickSegnalazioni()"><h1 class="h3"><span class="material-icons">post_add</span> Segnalazioni</h1></button>
           </div>
           <div class="col col md-2"></div>
         </div>
@@ -22,7 +22,7 @@
         <div class="row">
           <div class="col col-md-2"></div>
           <div class="col col-md-8">            
-            <button type="button" class="btn btn-outline-light btn-lg border-dark" (click)="clickReward()"><h1 class="h3">Reward</h1></button>
+            <button type="button" class="btn btn-outline-light btn-lg border-dark" (click)="clickReward()"><h1 class="h3"><span class="material-icons">shopping_cart</span> Reward</h1></button>
           </div>
           <div class="col col md-2"></div>
         </div>
@@ -46,7 +46,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel"><h1 class="diplay-5">Info Comune Pulito</h1></h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel"><h1 class="diplay-6">Info Comune Pulito</h1></h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button><!--Pulsante di chiusura della pagina delle info-->
                 </div>
                 <div class="modal-body">
@@ -55,8 +55,8 @@
             </div>
        </div>
     </div>
-    <div class="spinner-grow text-danger position-absolute top-50 start-50 translate-middle" role="status" [ngClass]="{'invisible':(caricato), 'visible':(!caricato)}">
+    <div class="spinner-grow text-danger position-absolute top-50 start-50 translate-middle" [ngClass]="{'invisible':(caricato), 'visible':(!caricato)}">
       <span class="visually-hidden">Loading...</span>
-    </div>
+    </div> 
     <div id="map" [ngClass]="{'invisible':(!caricato), 'visible':(caricato)}"></div>
 </body>
