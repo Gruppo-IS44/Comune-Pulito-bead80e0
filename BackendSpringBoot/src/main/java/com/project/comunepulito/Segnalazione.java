@@ -24,7 +24,6 @@ public class Segnalazione {
 	private String descrizione;
 	private String tipo_rifiuto;
 	private Integer Id_Stato;
-	
 	 
 	@ManyToOne
 	private static Utente Id_utente;
