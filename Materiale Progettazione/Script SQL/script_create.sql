@@ -62,12 +62,18 @@ CREATE TABLE CLUSTER(
     FOREIGN KEY(Id_gestore) REFERENCES gestore(Id_gestore)
 ); 
 
+CREATE TABLE TIPO(
+Id_tipo int NOT NULL AUTO_INCREMENT,
+Tipo varchar(10)
+);
+
 CREATE TABLE SEGNALAZIONE(
     Id_segnalazione int NOT NULL AUTO_INCREMENT,
-    Posizione point,
     Dataora datetime,
-    Tipo varchar(10),
     Foto blob,
+    Latitudine float,
+    Longitudine float,
+	Id_Tipo int NOT NULL REFERENCES TIPO(Id_tipo),
     Id_Stato int NOT NULL REFERENCES SEGNALAZIONE_STATO(Id),
     Id_cluster int NOT NULL,
     Id_utente int NOT NULL,
@@ -75,3 +81,4 @@ CREATE TABLE SEGNALAZIONE(
     FOREIGN KEY(Id_cluster) REFERENCES cluster(Id_cluster),
     FOREIGN KEY(Id_utente) REFERENCES utente(Id_utente)
 );
+
