@@ -14,8 +14,6 @@ import jakarta.persistence.Table;
 public class Utente {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@OneToMany(mappedBy="utente")
-	private Set<Segnalazione> segnalazioni;
 	private Integer Id_utente;
 	private String nome;
 	private String cognome;

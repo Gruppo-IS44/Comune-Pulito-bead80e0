@@ -17,16 +17,17 @@ public class Segnalazione {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@ManyToOne
-	@JoinColumn(name="Id_utente", nullable=false)
-	private static Utente Id_utente;
 	private Integer Id_segnalazione;
 	private LocalDateTime dataora;
 	private Point posizione;
 	private Blob foto;
 	private String descrizione;
-	private TIPO_RIFIUTO tipo_rifiuto;
-	private STATO_SEGNALAZIONE stato_segnalazione;
+	private String tipo_rifiuto;
+	private Integer Id_Stato;
+	
+	 
+	@ManyToOne
+	private static Utente Id_utente;
 	
 	public Integer getId_segnalazione() {
 		return Id_segnalazione;
@@ -64,17 +65,16 @@ public class Segnalazione {
 	public void setUtente(Utente utente) {
 		Segnalazione.Id_utente = utente;
 	}
-	public TIPO_RIFIUTO getTipo_rifiuto() {
+	public String getTipo_rifiuto() {
 		return tipo_rifiuto;
 	}
-	public void setTipo_rifiuto(TIPO_RIFIUTO tipo_rifiuto) {
-				
+	public void setTipo_rifiuto(String tipo_rifiuto) {
+		this.tipo_rifiuto=tipo_rifiuto;
 	}
-	public STATO_SEGNALAZIONE getStato_segnalazione() {
-		return stato_segnalazione;
+	public Integer getId_Stato() {
+		return Id_Stato;
 	}
-	public void setStato_segnalazione(STATO_SEGNALAZIONE stato_segnalazione) {
-		this.stato_segnalazione = stato_segnalazione;
+	public void setId_Stato(Integer id_Stato) {
+		Id_Stato = id_Stato;
 	}
-
 }
