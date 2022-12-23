@@ -3,8 +3,12 @@ package com.project.comunepulito;
 import org.springframework.data.repository.CrudRepository;
 
 
-public interface SegnalazioneRepository extends CrudRepository<Segnalazione,Integer>{
+public interface SegnalazioneRepository extends CrudRepository<Segnalazione,Utente>{
 	
-	//Segnalazione findById_Utente(Utente Id_utente);
+	//FUNZIONA !!
+	Segnalazione findByDescrizione(String descrizione); 
+	
+	//NON FUNZIONA !!
+	//Segnalazione findById(Integer Id_utente);
 			
 }

@@ -19,14 +19,15 @@ public class Segnalazione {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer Id_segnalazione;
 	private LocalDateTime dataora;
-	private Point posizione;
+	private Float latitudine;
+	private Float longitudine;
 	private Blob foto;
 	private String descrizione;
 	private String tipo_rifiuto;
-	private Integer Id_Stato;
-	 
+	private Integer Id_Stato; 
+	
 	@ManyToOne
-	private static Utente Id_utente;
+	private Utente Id_utente;
 	
 	public Integer getId_segnalazione() {
 		return Id_segnalazione;
@@ -40,12 +41,6 @@ public class Segnalazione {
 	public void setDataora(LocalDateTime dataora) {
 		this.dataora = dataora;
 	}
-	public Point getPosizione() {
-		return posizione;
-	}
-	public void setPosizione(Point posizione) {
-		this.posizione = posizione;
-	}
 	public Blob getFoto() {
 		return foto;
 	}
@@ -57,12 +52,6 @@ public class Segnalazione {
 	}
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
-	}
-	public static Utente getUtente() {
-		return Id_utente;
-	}
-	public void setUtente(Utente utente) {
-		Segnalazione.Id_utente = utente;
 	}
 	public String getTipo_rifiuto() {
 		return tipo_rifiuto;
@@ -76,4 +65,23 @@ public class Segnalazione {
 	public void setId_Stato(Integer id_Stato) {
 		Id_Stato = id_Stato;
 	}
+	public Float getLatitudine() {
+		return latitudine;
+	}
+	public void setLatitudine(Float latitudine) {
+		this.latitudine = latitudine;
+	}
+	public Float getLongitudine() {
+		return longitudine;
+	}
+	public void setLongitudine(Float longitudine) {
+		this.longitudine = longitudine;
+	}
+	public Utente getId_utente() {
+		return Id_utente;
+	}
+	public void setId_utente(Utente id_utente) {
+		Id_utente = id_utente;
+	}
+
 }

@@ -1,6 +1,6 @@
 package com.project.comunepulito;
 
-import java.awt.Point;
+
 import java.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,7 +14,7 @@ import org.springframework.web.server.ResponseStatusException;
 @RestController
 public class SegnalazioneAddController {
 	@Autowired
-	private SegnalazioneRepository segnalazioneRepository;
+	private SegnalazioneRepository reportRepository;
 	
 	@PostMapping("/segnalazione")
 	public void SegnalazioneInsert (@RequestBody SegnalazioneBody segnalazioneBody) {		
@@ -23,18 +23,14 @@ public class SegnalazioneAddController {
 			s.setFoto(segnalazioneBody.getFoto());
 			s.setDescrizione(segnalazioneBody.getDescrizione());
 			s.setTipo_rifiuto(segnalazioneBody.getTipo_rifiuto().toString());
-			s.setPosizione(new Point(segnalazioneBody.getPosizione())); 
+			s.setLatitudine(null);
+			s.setLongitudine(null);
 			s.setDataora(LocalDateTime.now());
-			segnalazioneRepository.save(s);				
+			reportRepository.save(s);				
 		}catch (Exception e) {
 			System.out.println("Errore nella creazione della segnalazione.");
 			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Errore generico.");
-		}		
-		
-			/*Segnalazione segnalazione= segnalazioneRepository.findById_Utente(Segnalazione.getUtente());
-			System.out.println(segnalazione.getId_segnalazione());*/ 
-		//questo comando va nel controller che prede le segnalazioni dal database
-			
+		}	
 	}
 }
 
