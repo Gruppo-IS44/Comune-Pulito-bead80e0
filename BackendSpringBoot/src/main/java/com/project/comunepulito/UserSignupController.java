@@ -1,6 +1,5 @@
 package com.project.comunepulito;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
@@ -23,7 +22,7 @@ public class UserSignupController {
 			n.setNome(signupBody.getNome());
 			n.setCognome(signupBody.getCognome());
 			n.setEmail(signupBody.getEmail());
-			n.setPwd(UserLoginController.generaToken(signupBody.getPassword()));
+			n.setPwd(signupBody.getPassword());
 			n.setBilancio(0);
 			n.setBan(false);
 			n.setWarn(0);

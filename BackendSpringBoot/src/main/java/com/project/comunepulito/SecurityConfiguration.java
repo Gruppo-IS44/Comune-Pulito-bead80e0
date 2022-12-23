@@ -21,5 +21,4 @@ public class SecurityConfiguration {
 			.anyRequest().authenticated();
 		return httpSecurity.build();
 	}
-
 }

@@ -8,10 +8,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MappaComponent } from './mappa/mappa.component';
+import { SegnalazioneComponent } from './segnalazione/segnalazione.component';
+import { RewardComponent } from './reward/reward.component';
 
 @NgModule({
   imports:      [ BrowserModule, ReactiveFormsModule, HttpClientModule, AppRoutingModule ],
-  declarations: [ AppComponent, LoginComponent, SwitchComponent, MappaComponent ],
+  declarations: [ AppComponent, LoginComponent, SwitchComponent, MappaComponent, SegnalazioneComponent, RewardComponent ],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { }

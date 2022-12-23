@@ -13,6 +13,7 @@ import { HttpService } from '../http.service';
 })
 
 export class LoginComponent  {
+  show:boolean=false
   errore:boolean=false;
   tipo:Tipo={tipo:"Sign Up",signup:true};
   signup:Signup={email:"",username:"",password:"",nome:"",cognome:""};
@@ -29,14 +30,19 @@ export class LoginComponent  {
     password:['',Validators.required],
     isGestore:[false, Validators.required]
   });
+  erroreSignup:boolean=false;
 
 
   constructor(private formBuilder:FormBuilder,private httpService:HttpService, private router:Router){}
 
+  toggleEye() {
+    this.show=!this.show;
+  }
+
   onLogin(){//invocato nel momento in cui si richiede il login
     this.httpService.login(this.loginForm.value).subscribe(data=>{
       console.log(data)
-      this.router.navigate(["/map"]);
+      this.router.navigate(["/mappa"]);
     },
     error =>{
       console.log("Errore nel login!");
@@ -59,11 +65,13 @@ export class LoginComponent  {
   onSignup(){//invocato nel momento in cui si richiede il Signup con le credenziali inserite all'interno del form
     this.httpService.addUser(this.signupForm.value).subscribe(data=>{
       console.log(data);
+      this.erroreSignup=false;
+      this.router.navigate(["/mappa"]);
     },
     error=>{
       console.log(error)
+      this.erroreSignup=true;
     });
-    this.router.navigate(["/map"]);
   }
 
   /*onSignup(data:any){//invocato nel momento in cui si richiede il Signup con le credenziali inserite all'interno del form
