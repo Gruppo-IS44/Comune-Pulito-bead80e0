@@ -54,7 +54,8 @@ CREATE TABLE ORDINE(
 
 CREATE TABLE CLUSTER(
     Id_cluster int NOT NULL AUTO_INCREMENT,
-    Posizione point,
+    Latitudine decimal(8,6),
+    Longitudine decimal(8,6),
     Id_gestore int NOT NULL,
     Raggio float, 
 	Id_Stato int NOT NULL REFERENCES CLUSTER_STATO(Id),
@@ -72,8 +73,8 @@ CREATE TABLE SEGNALAZIONE(
     Id_segnalazione int NOT NULL AUTO_INCREMENT,
     Dataora datetime,
     Foto blob,
-    Latitudine float,
-    Longitudine float,
+    Latitudine decimal(8,6),
+    Longitudine decimal(8,6),
 	Id_Tipo int NOT NULL REFERENCES TIPO(Id_tipo),
     Id_Stato int NOT NULL REFERENCES SEGNALAZIONE_STATO(Id),
     Id_cluster int NOT NULL,
