@@ -82,6 +82,11 @@ export class MappaComponent implements OnInit {
     this.router.navigate(["/reward"])
   }
 
+  clickLogout(){
+    console.log("stai andando al login")
+    this.router.navigate(["/login"])
+  }
+
   getLocation():Point{
     navigator.geolocation.getCurrentPosition((position)=>{
       const longitude = position.coords.longitude;

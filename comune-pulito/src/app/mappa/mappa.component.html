@@ -7,7 +7,7 @@
     </style>
 </head>
 <body>
-    <button class="btn btn-dark position-absolute end-0 btn-lg opacity-75" data-bs-toggle="offcanvas" data-bs-target="#OffcanvasExample"><span class="material-icons"><h1 class="h3">format_list_bulleted</h1></span></button>
+    <button class="btn btn-dark position-absolute end-0 btn-lg opacity-75" data-bs-toggle="offcanvas" data-bs-target="#OffcanvasExample"><span class="material-icons"><h1 class="h3">menu</h1></span></button>
     <div class="offcanvas offcanvas-end text-bg-dark" tabindex="=-1" id="OffcanvasExample">
       <div class="flex container text-center">
         <br>
@@ -35,11 +35,12 @@
         <div class="row">
           <div class="col col-md-2"></div>
           <div class="col col-md-8">
-            <button class="btn btn-outline-danger btn-lg border-dark" data-bs-toggle="offcanvas" data-bs-target="#OffcanvasExample"><h1 class="h4">Chiudi</h1></button>            
+            <button type="button" class="btn btn-outline-danger btn-lg border-dark" (click)="clickLogout()"><h1 class="h3"><span class="material-icons">logout</span> Log Out</h1></button>            
           </div>
           <div class="col col md-2"></div>
         </div>
       </div>
+      <button class="btn btn-outline-light btn-lg border-dark position-absolute start-0 top-0" data-bs-toggle="offcanvas" data-bs-target="#OffcanvasExample"><span class="material-icons">arrow_forward</span></button>
       <button class="btn btn-outline-light btn-lg border-dark position-absolute end-0 bottom-0" data-bs-toggle="modal" data-bs-target="#ModalDialogExample"><span class="material-icons">info</span></button>
     </div>
     <div class="modal fade bg-dark" id="ModalDialogExample" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"><!--Pagina delle Info-->
