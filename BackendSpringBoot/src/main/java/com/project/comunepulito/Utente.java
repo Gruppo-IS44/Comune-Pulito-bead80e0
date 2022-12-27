@@ -22,6 +22,9 @@ public class Utente {
 	private Integer bilancio;
 	private Boolean ban;
 	
+	@OneToMany(mappedBy="utente")
+	private Set<Segnalazione> segnalazioni;
+	
 	public Integer getId() {
 		return Id_utente;
 	}

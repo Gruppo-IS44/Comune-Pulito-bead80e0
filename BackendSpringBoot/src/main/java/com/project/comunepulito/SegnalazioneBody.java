@@ -2,34 +2,35 @@ package com.project.comunepulito;
 
 import java.sql.Blob;
 
+
 public class SegnalazioneBody {
-	private Blob foto;
-	private Integer Id_utente;
-	private String tipo_rifiuto;
+	private String foto;
 	private String descrizione;
+	private Integer tipo_rifiuto;
 	private Float latitudine;
 	private Float longitudine;
+	private Integer utente;
 		
 	
-	public SegnalazioneBody(Blob foto, Integer id_utente, String tipo_rifiuto, String descrizione, Float latitudine, Float longitudine) {
+	public SegnalazioneBody(String foto, Integer utente, Integer tipo_rifiuto, String descrizione, Float latitudine, Float longitudine) {
 		super();
 		this.foto = foto;
-		this.Id_utente = id_utente;
+		this.utente = utente;
 		this.tipo_rifiuto = tipo_rifiuto;
 		this.descrizione = descrizione;
 		this.latitudine = latitudine;
 		this.longitudine = longitudine;
 	}
 	public Integer getId_utente() {
-		return Id_utente;
+		return utente;
 	}
-	public void setId_utente(Integer id_utente) {
-		this.Id_utente = id_utente;
+	public void setId_utente(Integer utente) {
+		this.utente = utente;
 	}
-	public String getTipo_rifiuto() {
+	public Integer getTipo_rifiuto() {
 		return tipo_rifiuto;
 	}
-	public void setTipo_rifiuto(String tipo_rifiuto) {
+	public void setTipo_rifiuto(Integer tipo_rifiuto) {
 		this.tipo_rifiuto = tipo_rifiuto;
 	}
 	public String getDescrizione() {
@@ -50,16 +51,16 @@ public class SegnalazioneBody {
 	public void setLongitudine(Float longitudine) {
 		this.longitudine = longitudine;
 	}
-	public Blob getFoto() {
+	public String getFoto() {
 		return foto;
 	}
-	public void setFoto(Blob foto) {
+	public void setFoto(String foto) {
 		this.foto = foto;
 	}
 	
 	@Override
 	public String toString() {
-		return "SegnalazioneBody [foto=" + foto + ", Id_utente=" + Id_utente + ", tipo_rifiuto=" + tipo_rifiuto
+		return "SegnalazioneBody [foto=" + foto + ", Id_utente=" + utente + ", tipo_rifiuto=" + tipo_rifiuto
 				+ ", descrizione=" + descrizione + ", latitudine=" + latitudine + ", longitudine=" + longitudine + "]";
 	}
 	

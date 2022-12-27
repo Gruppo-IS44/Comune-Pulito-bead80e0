@@ -22,9 +22,10 @@ public class SegnalazioneAddController {
 			Segnalazione s = new Segnalazione();
 			s.setFoto(segnalazioneBody.getFoto());
 			s.setDescrizione(segnalazioneBody.getDescrizione());
-			s.setTipo_rifiuto(segnalazioneBody.getTipo_rifiuto().toString());
-			s.setLatitudine(null);
-			s.setLongitudine(null);
+			s.setTipo_rifiuto(segnalazioneBody.getTipo_rifiuto());
+			s.setId_utente(segnalazioneBody.getId_utente());
+			s.setLatitudine(segnalazioneBody.getLatitudine());
+			s.setLongitudine(segnalazioneBody.getLongitudine());
 			s.setDataora(LocalDateTime.now());
 			reportRepository.save(s);				
 		}catch (Exception e) {
