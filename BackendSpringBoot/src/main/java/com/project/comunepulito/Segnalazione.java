@@ -39,6 +39,13 @@ public class Segnalazione {
 	@Column(name = "Id_utente")
 	private Integer Id_utente;
 	
+	@JoinColumn(name = "Id_cluster", insertable = false, updatable = false)
+	@ManyToOne(targetEntity = Cluster.class, fetch = FetchType.EAGER)
+	private Cluster cluster;
+	@Column(name = "Id_cluster")
+	private Integer Id_cluster;
+	
+	
 	public Integer getId_segnalazione() {
 		return Id_segnalazione;
 	}
@@ -98,6 +105,12 @@ public class Segnalazione {
 	}
 	public void setId_utente(Integer id_utente) {
 		Id_utente = id_utente;
+	}
+	public Integer getId_cluster() {
+		return Id_cluster;
+	}
+	public void setId_cluster(Integer id_cluster) {
+		Id_cluster = id_cluster;
 	}
 
 }

@@ -22,6 +22,9 @@ public class Gestore {
 	private String email;
 	private String sede;
 	
+	@OneToMany(mappedBy="gestore")
+	private Set<Cluster> cluster;
+	
 	public Integer getId_gestore() {
 		return Id_gestore;
 	}

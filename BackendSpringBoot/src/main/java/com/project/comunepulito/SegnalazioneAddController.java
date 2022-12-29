@@ -24,6 +24,7 @@ public class SegnalazioneAddController {
 			s.setDescrizione(segnalazioneBody.getDescrizione());
 			s.setTipo_rifiuto(segnalazioneBody.getTipo_rifiuto());
 			s.setId_utente(segnalazioneBody.getId_utente());
+			s.setId_cluster(segnalazioneBody.getId_cluster());
 			s.setLatitudine(segnalazioneBody.getLatitudine());
 			s.setLongitudine(segnalazioneBody.getLongitudine());
 			s.setDataora(LocalDateTime.now());

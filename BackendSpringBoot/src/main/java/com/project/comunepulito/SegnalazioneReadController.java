@@ -11,7 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;  
+import java.security.MessageDigest;
+import java.util.Optional;  
 
 
 @CrossOrigin(origins="http://localhost:4200")
@@ -21,20 +22,19 @@ public class SegnalazioneReadController {
 	private SegnalazioneRepository reportRepository;
 	
 	@PostMapping("/mappa")
-	public void SegnalazioneProva (@RequestBody SegnalazioneBody segnalazioneBody){
+	public void SegnalazioneRead (@RequestBody SegnalazioneIdBody segnalazioneIdBody){
+		System.out.println("errore0");
 	try{
-		//FUNZIONA (CON GetDescrizione) !!
-		/*Segnalazione segnalazione= reportRepository.findByDescrizione(segnalazioneBody.getDescrizione());
-		System.out.println(segnalazione.getId_segnalazione());*/
 		
-		//NON FUNZIONA !!
-		/*Segnalazione segnalazione= reportRepository.findById(segnalazioneBody.getId_utente());
-		System.out.println(segnalazione.getId_segnalazione());*/
 
-		throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Gestore Inesistente.");
+		Optional<Segnalazione> segnalazione= reportRepository.findById(segnalazioneIdBody.getId_utente());
+		System.out.println("errore1");
+
+		
 	}catch (Exception e) {
-		throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Errore Interno al Server");
-		}
+		System.out.println("Errore nella lettura della segnalazione.");
+		throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Errore generico.");
+		}	
 	
 	}
 }
