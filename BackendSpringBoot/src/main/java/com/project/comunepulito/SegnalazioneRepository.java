@@ -7,7 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface SegnalazioneRepository extends CrudRepository<Segnalazione,Integer>{
 	
-	Optional<Segnalazione> findById(Integer Id_utente);
+	Optional<Segnalazione> findById(Integer utente);
 
 			
 }

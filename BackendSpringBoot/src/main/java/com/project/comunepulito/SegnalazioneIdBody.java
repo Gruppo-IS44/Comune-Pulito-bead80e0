@@ -17,4 +17,9 @@ public class SegnalazioneIdBody {
 		this.utente = utente;
 	}
 
+	@Override
+	public String toString() {
+		return "SegnalazioneIdBody [utente=" + utente + "]";
+	}
+	
 }

@@ -23,18 +23,18 @@ public class SegnalazioneReadController {
 	
 	@PostMapping("/mappa")
 	public void SegnalazioneRead (@RequestBody SegnalazioneIdBody segnalazioneIdBody){
-		System.out.println("errore0");
+		System.out.println("errore1");
 	try{
 		
 
 		Optional<Segnalazione> segnalazione= reportRepository.findById(segnalazioneIdBody.getId_utente());
-		System.out.println("errore1");
+		System.out.println(segnalazione);
 
 		
 	}catch (Exception e) {
 		System.out.println("Errore nella lettura della segnalazione.");
 		throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Errore generico.");
 		}	
-	
+	System.out.println("SI GODE");
 	}
 }

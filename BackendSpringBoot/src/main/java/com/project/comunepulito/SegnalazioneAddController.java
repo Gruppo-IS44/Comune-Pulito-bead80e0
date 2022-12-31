@@ -25,6 +25,7 @@ public class SegnalazioneAddController {
 			s.setTipo_rifiuto(segnalazioneBody.getTipo_rifiuto());
 			s.setId_utente(segnalazioneBody.getId_utente());
 			s.setId_cluster(segnalazioneBody.getId_cluster());
+			s.setId_Stato(1);
 			s.setLatitudine(segnalazioneBody.getLatitudine());
 			s.setLongitudine(segnalazioneBody.getLongitudine());
 			s.setDataora(LocalDateTime.now());
@@ -32,7 +33,8 @@ public class SegnalazioneAddController {
 		}catch (Exception e) {
 			System.out.println("Errore nella creazione della segnalazione.");
 			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Errore generico.");
-		}	
+		}
+		System.out.println("Segnalazione creata con successo.");
 	}
 }
 
