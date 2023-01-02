@@ -17,6 +17,9 @@ public class SecurityConfiguration {
 			.permitAll().and()
 			.authorizeHttpRequests()
 			.requestMatchers("/login*")
+			.permitAll().and()
+			.authorizeHttpRequests().
+			requestMatchers("/segnalazione*")
 			.permitAll()
 			.anyRequest().authenticated();
 		return httpSecurity.build();
