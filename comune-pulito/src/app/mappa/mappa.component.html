@@ -12,46 +12,57 @@
       <div class="flex container text-center">
         <br>
         <div class="row">
-          <div class="col col-md-2"></div>
-          <div class="col col-md-8">         
+          <div class="col-0 col-md-2"></div>
+          <div class="col-12 col-md-8">         
             <button type="button" class="btn btn-outline-light btn-lg border-dark" (click)="clickSegnalazioni()"><h1 class="h3"><span class="material-icons">post_add</span> Segnalazioni</h1></button>
           </div>
-          <div class="col col md-2"></div>
+          <div class="col-0 col md-2"></div>
         </div>
         <br>
         <div class="row">
-          <div class="col col-md-2"></div>
-          <div class="col col-md-8">            
+          <div class="col-0 col-md-2"></div>
+          <div class="col-12 col-md-8">            
             <button type="button" class="btn btn-outline-light btn-lg border-dark" (click)="clickReward()"><h1 class="h3"><span class="material-icons">shopping_cart</span> Reward</h1></button>
           </div>
-          <div class="col col md-2"></div>
+          <div class="col-0 col md-2"></div>
         </div>
         <br>
         <div class="row">
-          <div class="col col-md-1"></div>
-          <div class="col col-md-10"><hr class="border border-light border-1 opacity-50"></div>          
-          <div class="col col-md-1"></div>
+          <div class="col-1 col-md-1"></div>
+          <div class="col-10 col-md-10"><hr class="border border-light border-1 opacity-50"></div>          
+          <div class="col-1 col-md-1"></div>
         </div>
         <div class="row">
-          <div class="col col-md-2"></div>
-          <div class="col col-md-8">
+          <div class="col-0 col-md-2"></div>
+          <div class="col-12 col-md-8">
             <button type="button" class="btn btn-outline-danger btn-lg border-dark" (click)="clickLogout()"><h1 class="h3"><span class="material-icons">logout</span> Log Out</h1></button>            
           </div>
-          <div class="col col md-2"></div>
+          <div class="col-0 col md-2"></div>
         </div>
       </div>
       <button class="btn btn-outline-light btn-lg border-dark position-absolute start-0 top-0" data-bs-toggle="offcanvas" data-bs-target="#OffcanvasExample"><span class="material-icons">arrow_forward</span></button>
       <button class="btn btn-outline-light btn-lg border-dark position-absolute end-0 bottom-0" data-bs-toggle="modal" data-bs-target="#ModalDialogExample"><span class="material-icons">info</span></button>
     </div>
     <div class="modal fade bg-dark" id="ModalDialogExample" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"><!--Pagina delle Info-->
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel"><h1 class="diplay-6">Info Comune Pulito</h1></h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel"><h1 class="diplay-6">Informazioni</h1></h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button><!--Pulsante di chiusura della pagina delle info-->
                 </div>
                 <div class="modal-body">
-                    <h1 class="h5">[inserire info qui]</h1>
+                    <h1 class="h4">Cos'è Comune Pulito?</h1>
+                    <p>Comune Pulito è un'app ideata per aiutare i cittadini a segnalare i rifiuti presenti nella propria città, che una volta elencati e catalogati verranno ripuliti e rimossi da del personale specializzato.</p>
+                    <br>
+                    <h1 class="h4">Come funziona?</h1>
+                    <p>Per segnalare un rifiuto basta inviare una foto e/o una descrizione, indicare il tipo di rifiuto e inviare i dati tramite la pagina Segnalazioni.
+                      La posizione del rifiuto verrà prelevata automaticamente dal dispositivo se è stato permesso l'uso della geolocalizzazione da parte dell'utente.</p>
+                    <br>
+                    <h1 class="h4">Verranno salvati i miei dati personali?</h1>
+                    <p>Esclusi nome e cognome per la creazione dell'account, e la posizione attuale per la localizzazione dei rifiuti, l'app non richiede e non immagazzina i dati sensibili dell'utente.</p>
+                    <br>
+                    <h1 class="h4">In cosa consistono le reward?</h1>
+                    <p>Comune Pulito mette a disposizioni una lista di reward riscattabili per gli account dei cittadini che hanno segnalato più rifiuti, per incentivare ulteriormente gli utenti a rendere più pulita la propria città.</p>
                 </div>
             </div>
        </div>
