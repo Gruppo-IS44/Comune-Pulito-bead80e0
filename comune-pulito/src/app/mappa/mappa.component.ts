@@ -25,8 +25,6 @@ export class MappaComponent implements OnInit {
   caricato:boolean=false;
 
   ngOnInit(): void {
-    const key = 'TMygzTI9MV2J274M9Ln3';
-
       const attribution = new Attribution({       
       });      
 
@@ -47,7 +45,7 @@ export class MappaComponent implements OnInit {
       });
 
       const VectorSource=new Vector({
-        url:'https://api.maptiler.com/data/8fec0037-4d1f-4f81-b0fc-e9bdf0a3ba12/features.json?key=TMygzTI9MV2J274M9Ln3',
+        url:'http://localhost:8080/geojson',
         format:new GeoJSON(),
       })
       const AirportLayer = new VectorLayer({
@@ -69,7 +67,23 @@ export class MappaComponent implements OnInit {
         this.caricato=true;
       })
       map.addLayer(AirportLayer);
-     
+      map.on('singleclick', showInfo);
+
+      function showInfo(event:any) {
+        const info=document.getElementById('info');
+        const features = map.getFeaturesAtPixel(event.pixel);
+        if (features.length == 0 && info) {
+          info.innerText = '';
+          info.style.opacity = '0';
+          return;
+        }
+        const properties = features[0].getProperties();
+        if(info){
+          info.innerText = JSON.stringify(properties, null, 2);
+          info.style.opacity = '1';
+        }
+        console.log(info)
+      }  
   }
 
   clickSegnalazioni(){
@@ -83,8 +97,7 @@ export class MappaComponent implements OnInit {
   }
 
   clickLogout(){
-    console.log("stai andando al login")
-    this.router.navigate(["/login"])
+    console.log("logout o7")
   }
 
   getLocation():Point{

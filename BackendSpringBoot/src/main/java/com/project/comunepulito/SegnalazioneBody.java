@@ -13,11 +13,10 @@ public class SegnalazioneBody {
 	private Integer cluster;
 		
 	
-	public SegnalazioneBody(String foto, Integer utente, Integer tipo_rifiuto, String descrizione, Float latitudine, Float longitudine, Integer cluster) {
+	public SegnalazioneBody(String foto, Integer utente, Integer tipo_rifiuto, String descrizione, Float latitudine, Float longitudine) {
 		super();
 		this.foto = foto;
 		this.utente = utente;
-		this.cluster = cluster;
 		this.tipo_rifiuto = tipo_rifiuto;
 		this.descrizione = descrizione;
 		this.latitudine = latitudine;

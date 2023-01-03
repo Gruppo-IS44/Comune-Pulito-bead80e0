@@ -1,12 +1,16 @@
 package com.project.comunepulito;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class SegnalazioneIdBody {
-	
 	private Integer utente;
 	
-	public SegnalazioneIdBody(Integer utente) {
+	
+	@JsonCreator
+	public SegnalazioneIdBody(@JsonProperty("utente")String utente) {
 		super();
-		this.utente = utente;
+		this.utente = Integer.parseInt(utente);
 	}
 
 	public Integer getId_utente() {
@@ -20,6 +24,5 @@ public class SegnalazioneIdBody {
 	@Override
 	public String toString() {
 		return "SegnalazioneIdBody [utente=" + utente + "]";
-	}
-	
+	}	
 }

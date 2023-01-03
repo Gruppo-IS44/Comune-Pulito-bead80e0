@@ -9,8 +9,7 @@ import { sha256 } from 'js-sha256';
 @Injectable({
   providedIn: 'root'
 })
-export class HttpService {
-  
+export class HttpService {  
   constructor(private http:HttpClient) { }
 
   login(userLogin:Login):Observable<Token>{

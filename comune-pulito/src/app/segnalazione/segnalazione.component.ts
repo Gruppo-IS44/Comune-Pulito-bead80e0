@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Point from 'ol/geom/Point';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-segnalazione',
@@ -12,13 +13,14 @@ export class SegnalazioneComponent {
   segnalazioneForm:FormGroup=this.formBuilder.group({
     tipoRifiuto:['piccolo',Validators.required],
     descrizione:['',],
-    immagine:[null,Validators.required]
+    immagine:[null,]
   })
 
-  constructor(private formBuilder:FormBuilder){}
+  constructor(private formBuilder:FormBuilder, private dataService:DataService){}
 
   ngOnInit(){
     this.getLocation();
+    console.log(this.dataService.id_utente)
   }
   
   getLocation(): void{

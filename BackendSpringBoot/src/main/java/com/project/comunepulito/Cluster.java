@@ -1,6 +1,5 @@
 package com.project.comunepulito;
 
-import java.awt.Point;
 import java.util.Set;
 
 import jakarta.persistence.Column;
@@ -20,6 +19,7 @@ public class Cluster {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer Id_cluster;
+	
 	private Float Latitudine;
 	private Float Longitudine;
 	private Float raggio;

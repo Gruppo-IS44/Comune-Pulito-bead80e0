@@ -1,5 +1,29 @@
 package com.project.comunepulito;
 
-public class GeoJSONParserGetter {
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+@CrossOrigin(origins="http://localhost:4200")
+@RestController
+public class GeoJSONParserGetter {
+	@Autowired
+	private SegnalazioneRepository Segnalazioni;	
+	
+	@GetMapping("/geojson")
+	public String GeoJson() {
+		System.out.println("sta andando");
+		String risposta="{\"type\":\"FeatureCollection\", \"features\": [";
+		long num=Segnalazioni.count();
+		long i=0;
+		for(Segnalazione s:Segnalazioni.findAll()) {
+			i++;
+			risposta = risposta.concat("{\"type\": \"Feature\", \"geometry\": {\"type\": \"Point\", \"coordinates\": ["+s.getLongitudine()+", "+s.getLatitudine()+"]}, \"id\": "+s.getId_segnalazione()+", \"properties\": {\"name\": \"prova\"}}");
+			if(i!=num) {
+				risposta=risposta.concat(", ");
+			}
+		}
+		return risposta.concat("]}");
+	}
 }

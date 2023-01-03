@@ -15,26 +15,48 @@ import org.springframework.web.server.ResponseStatusException;
 public class SegnalazioneAddController {
 	@Autowired
 	private SegnalazioneRepository reportRepository;
+	@Autowired
+	private ClusterRepository clusterRepository;
 	
 	@PostMapping("/segnalazione")
 	public void SegnalazioneInsert (@RequestBody SegnalazioneBody segnalazioneBody) {		
-		try{	
+		try{
 			Segnalazione s = new Segnalazione();
 			s.setFoto(segnalazioneBody.getFoto());
-			s.setDescrizione(segnalazioneBody.getDescrizione());
-			s.setTipo_rifiuto(segnalazioneBody.getTipo_rifiuto());
+			//s.setDescrizione(segnalazioneBody.getDescrizione()); //Assente su DB
+			s.setId_Tipo(segnalazioneBody.getTipo_rifiuto());
 			s.setId_utente(segnalazioneBody.getId_utente());
-			s.setId_cluster(segnalazioneBody.getId_cluster());
+			s.setId_cluster(scegliCluster(segnalazioneBody.getLatitudine(), segnalazioneBody.getLongitudine()));
 			s.setId_Stato(1);
 			s.setLatitudine(segnalazioneBody.getLatitudine());
 			s.setLongitudine(segnalazioneBody.getLongitudine());
 			s.setDataora(LocalDateTime.now());
-			reportRepository.save(s);				
+			reportRepository.save(s);
 		}catch (Exception e) {
 			System.out.println("Errore nella creazione della segnalazione.");
+			e.printStackTrace();
 			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Errore generico.");
 		}
 		System.out.println("Segnalazione creata con successo.");
+	}
+
+	private Integer scegliCluster(float latitudine, float longitudine) {
+		//Reminder: distanza (A,B) = R * arccos(sin(latA) * sin(latB) + cos(latA) * cos(latB) * cos(lonA-lonB)), R = 6372,795477598 Km, Rbase cluster=0.1km
+		final float R=6372.795477598f;
+		for(Cluster c:clusterRepository.findAll()) {
+			double dist=R*Math.acos(Math.sin(c.getLatitudine())*Math.sin(latitudine) + Math.cos(c.getLatitudine())*Math.cos(latitudine)*Math.cos(c.getLongitudine()-longitudine));
+			if(dist<c.getRaggio())
+				return c.getId_cluster();
+		}
+		Cluster c=new Cluster();
+		c.setId_stato(1);
+		c.setLatitudine(latitudine);
+		c.setLongitudine(longitudine);
+		c.setRaggio(0.1f);
+		//TODO Implementare la selezione del gestore, attualmente impostata al valore di default "6667"
+		c.setId_gestore(6667);
+		clusterRepository.save(c);
+		return scegliCluster(latitudine,longitudine);
 	}
 }
 

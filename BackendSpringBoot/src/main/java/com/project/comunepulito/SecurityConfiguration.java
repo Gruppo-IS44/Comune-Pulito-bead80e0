@@ -18,8 +18,14 @@ public class SecurityConfiguration {
 			.authorizeHttpRequests()
 			.requestMatchers("/login*")
 			.permitAll().and()
-			.authorizeHttpRequests().
-			requestMatchers("/segnalazione*")
+			.authorizeHttpRequests()
+			.requestMatchers("/geojson*")
+			.permitAll().and()
+			.authorizeHttpRequests()
+			.requestMatchers("/mappa*")
+			.permitAll().and()
+			.authorizeHttpRequests()
+			.requestMatchers("/segnalazione*")
 			.permitAll()
 			.anyRequest().authenticated();
 		return httpSecurity.build();

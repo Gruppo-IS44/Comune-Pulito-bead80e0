@@ -10,7 +10,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.time.*;
-import java.awt.Point;
 import java.sql.Blob;
 
 @Entity
@@ -20,12 +19,13 @@ public class Segnalazione {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer Id_segnalazione;
+	
 	private LocalDateTime dataora;
 	private Float latitudine;
 	private Float longitudine;
 	private String foto;
 	private String descrizione;
-	private Integer tipo_rifiuto;
+	private Integer Id_Tipo;
 	private Integer Id_Stato;
 
 	
@@ -70,12 +70,6 @@ public class Segnalazione {
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
 	}
-	public Integer getTipo_rifiuto() {
-		return tipo_rifiuto;
-	}
-	public void setTipo_rifiuto(Integer tipo_rifiuto) {
-		this.tipo_rifiuto=tipo_rifiuto;
-	}
 	public Integer getId_Stato() {
 		return Id_Stato;
 	}
@@ -94,12 +88,6 @@ public class Segnalazione {
 	public void setLongitudine(Float longitudine) {
 		this.longitudine = longitudine;
 	}
-	/*public Integer getId_utente() {
-		return utente.getId();
-	}
-	public void setId_utente(Integer x) {
-		this.utente.setId(x);
-	}*/
 	public Integer getId_utente() {
 		return Id_utente;
 	}
@@ -111,6 +99,12 @@ public class Segnalazione {
 	}
 	public void setId_cluster(Integer id_cluster) {
 		Id_cluster = id_cluster;
+	}
+	public Integer getId_Tipo() {
+		return Id_Tipo;
+	}
+	public void setId_Tipo(Integer id_Tipo) {
+		Id_Tipo = id_Tipo;
 	}
 
 }

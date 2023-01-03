@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { catchError, Observable } from 'rxjs';
 import {Tipo,Login,Signup} from '../Export';
 import { HttpService } from '../http.service';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'login',
@@ -33,7 +34,7 @@ export class LoginComponent  {
   erroreSignup:boolean=false;
 
 
-  constructor(private formBuilder:FormBuilder,private httpService:HttpService, private router:Router){}
+  constructor(private formBuilder:FormBuilder,private httpService:HttpService, private router:Router, private dataService:DataService){}
 
   toggleEye() {
     this.show=!this.show;
@@ -42,6 +43,7 @@ export class LoginComponent  {
   onLogin(){//invocato nel momento in cui si richiede il login
     this.httpService.login(this.loginForm.value).subscribe(data=>{
       console.log(data)
+      this.dataService.id_utente=data.token;
       this.router.navigate(["/mappa"]);
     },
     error =>{
