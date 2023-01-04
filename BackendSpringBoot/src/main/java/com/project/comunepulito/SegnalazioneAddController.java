@@ -52,7 +52,7 @@ public class SegnalazioneAddController {
 		c.setId_stato(1);
 		c.setLatitudine(latitudine);
 		c.setLongitudine(longitudine);
-		c.setRaggio(0.1f);
+		c.setRaggio(0.2f);
 		//TODO Implementare la selezione del gestore, attualmente impostata al valore di default "6667"
 		c.setId_gestore(6667);
 		return clusterRepository.save(c).getId_cluster();
