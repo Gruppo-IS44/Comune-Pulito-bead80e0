@@ -20,7 +20,7 @@ export class SegnalazioneComponent {
 
   ngOnInit(){
     this.getLocation();
-    console.log(this.dataService.id_utente)
+    console.log(this.dataService)//Dati utente che sta creando la segnalazione.
   }
   
   getLocation(): void{

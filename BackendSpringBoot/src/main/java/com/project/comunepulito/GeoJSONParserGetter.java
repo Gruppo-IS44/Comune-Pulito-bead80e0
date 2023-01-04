@@ -13,7 +13,7 @@ public class GeoJSONParserGetter {
 	
 	@GetMapping("/geojson")
 	public String GeoJson() {
-		System.out.println("sta andando");
+		System.out.println("Creazione GeoJSON in CORSo...");
 		String risposta="{\"type\":\"FeatureCollection\", \"features\": [";
 		long num=Segnalazioni.count();
 		long i=0;

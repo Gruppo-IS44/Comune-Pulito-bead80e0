@@ -6,6 +6,7 @@ import { catchError, Observable } from 'rxjs';
 import {Tipo,Login,Signup} from '../Export';
 import { HttpService } from '../http.service';
 import { DataService } from '../data.service';
+import { sha256 } from 'js-sha256';
 
 @Component({
   selector: 'login',
@@ -44,6 +45,8 @@ export class LoginComponent  {
     this.httpService.login(this.loginForm.value).subscribe(data=>{
       console.log(data)
       this.dataService.id_utente=data.token;
+      this.dataService.email=this.loginForm.value.email;
+      this.dataService.password=sha256(this.loginForm.value.password);
       this.router.navigate(["/mappa"]);
     },
     error =>{

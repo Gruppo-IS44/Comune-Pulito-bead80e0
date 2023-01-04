@@ -38,7 +38,7 @@ public class UserLoginController {
 			}
 		}		
 		try{
-			Utente utente=userRepository.findByEmail(loginBody.getEmail());
+			Utente utente=userRepository.findByEmail(loginBody.getEmail()).get();
 			if(utente.getPwd().equals(loginBody.getPassword())) {//Autenticazione Riuscita!
 				return new UserLogin(true,utente.getId().toString());
 			}

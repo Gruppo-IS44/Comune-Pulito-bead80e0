@@ -1,12 +1,25 @@
 package com.project.comunepulito;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+
+
+
 
 @Configuration
 public class SecurityConfiguration {
+	@Autowired
+	private UtenteRepository utenteRepository;
+	
+	@Autowired
+	private UserDetailsService userDetailsService;
+	
 	
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception{
@@ -20,14 +33,24 @@ public class SecurityConfiguration {
 			.permitAll().and()
 			.authorizeHttpRequests()
 			.requestMatchers("/geojson*")
-			.permitAll().and()
-			.authorizeHttpRequests()
-			.requestMatchers("/mappa*")
-			.permitAll().and()
-			.authorizeHttpRequests()
-			.requestMatchers("/segnalazione*")
 			.permitAll()
+//			.authorizeHttpRequests()
+//			.requestMatchers("/mappa*")
+//			.permitAll().and()
+//			.authorizeHttpRequests()
+//			.requestMatchers("/segnalazione*")
+//			.permitAll()
 			.anyRequest().authenticated();
+		httpSecurity.authenticationProvider(authenticationProvider());
+		httpSecurity.httpBasic();
 		return httpSecurity.build();
+	}
+	
+	@Bean
+	public DaoAuthenticationProvider authenticationProvider() {
+		DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+		provider.setPasswordEncoder(NoOpPasswordEncoder.getInstance());
+		provider.setUserDetailsService(userDetailsService);
+		return provider;
 	}
 }

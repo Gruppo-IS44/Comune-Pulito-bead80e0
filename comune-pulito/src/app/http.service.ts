@@ -15,7 +15,7 @@ export class HttpService {
   login(userLogin:Login):Observable<Token>{
     const pass=sha256(userLogin.password);
     const body={"email":userLogin.email,"password":pass,"isGestore":userLogin.isGestore};
-    return this.http.post<Token>(environment.baseURL+"/login", body);
+    return this.http.post<Token>(environment.baseURL+"/login", body)
   }
 
   addUser(utente:Utente):Observable<SignupResponse>{

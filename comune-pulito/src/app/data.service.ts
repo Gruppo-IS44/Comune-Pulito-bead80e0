@@ -5,6 +5,8 @@ import { Injectable } from '@angular/core';
 })
 export class DataService {
   id_utente!:string;
-
+  email!:string;
+  password!:string;
+  
   constructor() { }
 }
