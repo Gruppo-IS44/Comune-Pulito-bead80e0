@@ -17,6 +17,8 @@ public class SegnalazioneAddController {
 	private SegnalazioneRepository reportRepository;
 	@Autowired
 	private ClusterRepository clusterRepository;
+	@Autowired
+	private GestoreRepository Gestori;	
 	
 	@PostMapping("/segnalazione")
 	public void SegnalazioneInsert (@RequestBody SegnalazioneBody segnalazioneBody) {		
@@ -53,8 +55,7 @@ public class SegnalazioneAddController {
 		c.setLatitudine(latitudine);
 		c.setLongitudine(longitudine);
 		c.setRaggio(0.2f);
-		//TODO Implementare la selezione del gestore, attualmente impostata al valore di default "6667"
-		c.setId_gestore(6667);
+		c.setId_gestore(Gestori.findGestoreLibero().get(0));
 		return clusterRepository.save(c).getId_cluster();
 	}
 }
