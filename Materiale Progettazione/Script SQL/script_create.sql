@@ -32,16 +32,16 @@ CREATE TABLE CLUSTER_STATO(
     PRIMARY KEY(id)
 );
 
-CREATE TABLE REWARD(
+/*CREATE TABLE REWARD(
     Id_reward int NOT NULL AUTO_INCREMENT,
     Descrizione varchar(100),
     Nome varchar(20),
     Costo int,
     Stock int,
     PRIMARY KEY(Id_reward)
-);
+);*/
 
-CREATE TABLE ORDINE(
+/*CREATE TABLE ORDINE(
     Id_ordine int NOT NULL AUTO_INCREMENT,
     Dataora datetime,
     Quantita tinyint default 1 NOT NULL,
@@ -50,12 +50,12 @@ CREATE TABLE ORDINE(
     PRIMARY KEY(Id_ordine),
     FOREIGN KEY(Id_utente) REFERENCES utente(Id_utente),
     FOREIGN KEY(Id_reward) REFERENCES reward(Id_reward)
-);
+);*/
 
 CREATE TABLE CLUSTER(
     Id_cluster int NOT NULL AUTO_INCREMENT,
-    Latitudine float,
-    Longitudine float,
+    Latitudine decimal(8,6),
+    Longitudine decimal(8,6),
     Id_gestore int NOT NULL,
     Raggio float, 
 	Id_Stato int NOT NULL REFERENCES CLUSTER_STATO(Id),
@@ -63,13 +63,20 @@ CREATE TABLE CLUSTER(
     FOREIGN KEY(Id_gestore) REFERENCES gestore(Id_gestore)
 ); 
 
+CREATE TABLE TIPO(
+	Id_tipo int NOT NULL AUTO_INCREMENT,
+	Tipo varchar(10),
+	PRIMARY KEY(Id_tipo)
+);
+
 CREATE TABLE SEGNALAZIONE(
     Id_segnalazione int NOT NULL AUTO_INCREMENT,
-    Latitudine float,
-    Longitudine float,
     Dataora datetime,
-    Tipo varchar(10),
-    Foto blob,
+    Descrizione varchar(160),
+    Foto longtext,
+    Latitudine decimal(8,6),
+    Longitudine decimal(8,6),
+	Id_Tipo int NOT NULL REFERENCES TIPO(Id_tipo),
     Id_Stato int NOT NULL REFERENCES SEGNALAZIONE_STATO(Id),
     Id_cluster int NOT NULL,
     Id_utente int NOT NULL,
@@ -77,3 +84,4 @@ CREATE TABLE SEGNALAZIONE(
     FOREIGN KEY(Id_cluster) REFERENCES cluster(Id_cluster),
     FOREIGN KEY(Id_utente) REFERENCES utente(Id_utente)
 );
+
