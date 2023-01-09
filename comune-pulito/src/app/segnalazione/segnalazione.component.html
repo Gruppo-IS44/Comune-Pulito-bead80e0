@@ -13,8 +13,15 @@
                 <div class="col-0 col-md-3"></div>
                 <div class="col-0 col-md-6">
                     <div class="form-control mb-2">
-                        <label for="immagine">Fotografia del rifiuto</label>
-                        <input class="form-control" type="file" id="immagine" name="immagine" formControlName="immagine">                        
+                        <label for="immagine">
+                            <div *ngIf="!this.imageSrc">
+                                <img src="assets/placeholder.png" width="300" height="250">
+                            </div>
+                            <div class="m-2" *ngIf="this.imageSrc">
+                                <img src="{{this.imageSrc}}" width="300" height="250">
+                            </div>
+                        </label>
+                        <input class="form-control d-none" type="file" id="immagine" name="immagine" formControlName="immagine" (change)="onFileChange($event)" >                        
                     </div>
                 </div>
                 <div class="col-0 col-md-3"></div>
@@ -49,4 +56,4 @@
             </div>
         </form>
     </div>
-</div>
+</div>  

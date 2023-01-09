@@ -22,6 +22,15 @@ export class SignupResponse{
     token!:Token;
 }
 
+export class Segnalazione{
+    foto!:string;
+    descrizione!:string;
+    tipo_rifiuto!:number;
+    latitudine!:number;
+    longitudine!:number;
+    utente!:number;
+}
+
 export class Utente{
     email!:string;
     password!:string;

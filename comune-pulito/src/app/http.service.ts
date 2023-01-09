@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError } from 'rxjs';
-import { Login, Signup, SignupResponse, Token, Utente } from './Export';
+import { Login, Segnalazione, Signup, SignupResponse, Token, Utente } from './Export';
 import { environment } from 'src/environments/environment.prod';
 import { __param } from 'tslib';
 import { sha256 } from 'js-sha256';
@@ -23,5 +23,10 @@ export class HttpService {
     const body={"email":utente.email,"password":pass,"nome":utente.nome,"cognome":utente.cognome};
     console.log(body);
     return this.http.post<SignupResponse>(environment.baseURL+"/signup", body);
+  }
+
+  segnala(segnalazione:Segnalazione):Observable<Object>{
+    console.log(segnalazione)
+    return this.http.post<Object>(environment.baseURL+"/segnalazione",segnalazione);
   }
 }
