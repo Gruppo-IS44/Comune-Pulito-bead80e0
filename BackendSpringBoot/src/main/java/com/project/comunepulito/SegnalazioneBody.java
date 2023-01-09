@@ -10,7 +10,6 @@ public class SegnalazioneBody {
 	private Float latitudine;
 	private Float longitudine;
 	private Integer utente;
-	private Integer cluster;
 		
 	
 	public SegnalazioneBody(String foto, Integer utente, Integer tipo_rifiuto, String descrizione, Float latitudine, Float longitudine) {
@@ -57,12 +56,6 @@ public class SegnalazioneBody {
 	}
 	public void setFoto(String foto) {
 		this.foto = foto;
-	}
-	public Integer getId_cluster() {
-		return cluster;
-	}
-	public void setId_cluster(Integer cluster) {
-		this.cluster = cluster;
 	}
 	@Override
 	public String toString() {
