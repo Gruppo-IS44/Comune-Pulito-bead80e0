@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Point from 'ol/geom/Point';
 import { DataService } from '../data.service';
+import { buffer } from 'ol/size';
+import { HttpService } from '../http.service';
+import { Segnalazione } from '../Export';
 
 @Component({
   selector: 'app-segnalazione',
@@ -9,14 +12,18 @@ import { DataService } from '../data.service';
   styleUrls: ['./segnalazione.component.css']
 })
 export class SegnalazioneComponent {
-  posizione!:Point;
+  posizione!:number[];
   segnalazioneForm:FormGroup=this.formBuilder.group({
     tipoRifiuto:['piccolo',Validators.required],
     descrizione:['',],
-    immagine:[null,]
+    immagine:['',],
+    immagine2:['',],
+    latitudine:[],
+    longitudine:[]
   })
+  imageSrc!:string;
 
-  constructor(private formBuilder:FormBuilder, private dataService:DataService){}
+  constructor(private http:HttpService, private formBuilder:FormBuilder, private dataService:DataService){}
 
   ngOnInit(){
     this.getLocation();
@@ -30,7 +37,7 @@ export class SegnalazioneComponent {
           const latitude = position.coords.latitude;
           console.log(longitude);
           console.log(latitude);
-          this.posizione= new Point([longitude, latitude]);
+          this.posizione= [longitude, latitude];
           console.log(this.posizione)
         });
     } else {
@@ -38,7 +45,29 @@ export class SegnalazioneComponent {
     }
   }
 
+  onFileChange(event:any){
+    const reader= new FileReader();
+    console.log(event)
+    if(event.target.files && event.target.files.length){
+      const [file] = event.target.files;
+      console.log(file);
+      reader.readAsDataURL(file);
+      console.log(reader.result)
+      reader.onload=()=>{
+        console.log(reader.result)
+        this.imageSrc=reader.result as string;
+        this.segnalazioneForm.patchValue({immagine2:reader.result});
+      };
+    }
+  }
+
   onSubmit(){
-    console.log(this.segnalazioneForm);
+    this.segnalazioneForm.patchValue({latitudine:this.posizione[1],longitudine:this.posizione[0]})
+    console.log(this.segnalazioneForm.value);
+    const segnalazione:Segnalazione={"foto":this.segnalazioneForm.value.immagine2, "descrizione":this.segnalazioneForm.value.descrizione, "tipo_rifiuto":1, "latitudine":this.posizione[1], "longitudine":this.posizione[0],"utente":1}
+    console.log(segnalazione)
+    this.http.segnala(segnalazione).subscribe(data=>{
+      console.log(this.segnalazioneForm);
+    })
   }
 }
