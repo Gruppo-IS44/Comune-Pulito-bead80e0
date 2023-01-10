@@ -9,9 +9,10 @@ public class RisolviClusterBody {
 	private Integer segnalazione;
 	
 	@JsonCreator
-	public RisolviClusterBody(@JsonProperty("segnalazione")String segnalazione) {
+	public RisolviClusterBody(@JsonProperty("segnalazione")String segnalazione, @JsonProperty("Id_Stato")String Id_Stato) {
 		super();
 		this.segnalazione = Integer.parseInt(segnalazione);
+		this.Id_Stato = Integer.parseInt(Id_Stato);
 	}
 
 	

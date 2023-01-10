@@ -17,7 +17,11 @@ public class RisolviClusterController {
 	@PostMapping("/testing")
 	public void Esempio (@RequestBody RisolviClusterBody risolviclusterBody){
 		
-		reportRepository.UpdateByIdSegnalazione(risolviclusterBody.getSegnalazione(), risolviclusterBody.getId_Stato());
+		Segnalazione s = reportRepository.findById(risolviclusterBody.getSegnalazione()).get();
+		
+		s.setId_Stato(risolviclusterBody.getId_Stato());
+		System.out.println(risolviclusterBody.getId_Stato());
+		reportRepository.save(s);
 	}
 	
 	
