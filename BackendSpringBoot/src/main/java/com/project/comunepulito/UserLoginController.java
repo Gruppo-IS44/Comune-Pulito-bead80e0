@@ -26,7 +26,7 @@ public class UserLoginController {
 			try{
 				Gestore gestore=gestoreRepository.findByEmail(loginBody.getEmail());
 				if(gestore.getPwd().equals(loginBody.getPassword())) {//Autenticazione Riuscita!
-					return new UserLogin(true,gestore.getId_gestore().toString());
+					return new UserLogin(true,gestore.getId_gestore().toString(),gestore.getNome(),gestore.getCognome());
 				}
 				//Password Errata
 				throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Gestore Inesistente.");
@@ -40,7 +40,7 @@ public class UserLoginController {
 		try{
 			Utente utente=userRepository.findByEmail(loginBody.getEmail()).get();
 			if(utente.getPwd().equals(loginBody.getPassword())) {//Autenticazione Riuscita!
-				return new UserLogin(true,utente.getId().toString());
+				return new UserLogin(true,utente.getId().toString(),utente.getNome(), utente.getCognome());
 			}
 			//Password Errata
 			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Utente Inesistente.");

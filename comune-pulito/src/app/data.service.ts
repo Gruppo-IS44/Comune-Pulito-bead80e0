@@ -8,6 +8,8 @@ export class DataService {
   email!:string;
   password!:string;
   isGestore!:boolean;
+  nome!:string;
+  cognome!:string;
   
   constructor() { }
 }

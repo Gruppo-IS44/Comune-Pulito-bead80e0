@@ -6,42 +6,44 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class UserLogin {//Classe delle risposte ad un login
 	private boolean valido;
 	private String token;
-	
-	public UserLogin(boolean valido, String token) {
-		this.valido = valido;
-		this.token = token;
-	}
-	
-
-
-	public boolean getValido() {
+	private String nome;
+	private String cognome;
+	public boolean isValido() {
 		return valido;
 	}
-
-
-
 	public void setValido(boolean valido) {
 		this.valido = valido;
 	}
-
-
-
 	public String getToken() {
 		return token;
 	}
-
-
-
 	public void setToken(String token) {
 		this.token = token;
 	}
-
-
-
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	public String getCognome() {
+		return cognome;
+	}
+	public void setCognome(String cognome) {
+		this.cognome = cognome;
+	}
+	public UserLogin(boolean valido, String token, String nome, String cognome) {
+		super();
+		this.valido = valido;
+		this.token = token;
+		this.nome = nome;
+		this.cognome = cognome;
+	}
 	@Override
 	public String toString() {
-		return "UserLogin [valido=" + valido + ", token=" + token + "]";
+		return "UserLogin [valido=" + valido + ", token=" + token + ", nome=" + nome + ", cognome=" + cognome + "]";
 	}
+	
 	
 }
 

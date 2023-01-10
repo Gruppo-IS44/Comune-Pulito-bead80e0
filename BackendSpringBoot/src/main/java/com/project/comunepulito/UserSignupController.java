@@ -26,11 +26,11 @@ public class UserSignupController {
 			n.setBilancio(0);
 			n.setBan(false);
 			n.setWarn(0);
-			utenteRepository.save(n);				
+			utenteRepository.save(n);
+			return new SignupResponse(true,new UserLogin(true, n.getId().toString(), n.getNome(),n.getCognome()));
 		}catch (DataIntegrityViolationException e) {
 			System.out.println("Email gia' utilizzata.");//Autoesplicativo, email è UNIQUE
 			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Utente già registrato.");
 		}
-		return new SignupResponse(true,null);		
 	}
 }

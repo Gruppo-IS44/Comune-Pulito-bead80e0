@@ -7,6 +7,8 @@ export class Login{
 export class Token{
     token!:string;
     valido!:boolean;
+    nome!:string;
+    cognome!:string;
 }
 
 export class Signup{
@@ -19,7 +21,7 @@ export class Signup{
 
 export class SignupResponse{
     valido!:boolean;
-    token!:Token;
+    userLogin!:Token;
 }
 
 export class Segnalazione{

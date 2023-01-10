@@ -25,6 +25,8 @@ export class MappaComponent implements OnInit {
   constructor(private router:Router, private dataService:DataService){}
   caricato:boolean=false;
   isGestore:boolean=this.dataService.isGestore;
+  nome:string=this.dataService.nome;
+  cognome:string=this.dataService.cognome;
 
   ngOnInit(): void {
       const attribution = new Attribution({       

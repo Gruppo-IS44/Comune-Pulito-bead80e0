@@ -11,29 +11,33 @@
     <div class="offcanvas offcanvas-end text-bg-dark" tabindex="=-1" id="OffcanvasExample">
       <div class="flex container text-center">
         <br>
-        <div class="row">
+        <div class="row m-2">
+          <div class="col-0 col-md-1"></div>
+          <div class="col-12 col-md-10">         
+            <h1 class="h3">Ciao, {{nome}} {{cognome}}!</h1>
+          </div>
+          <div class="col-0 col md-1"></div>
+        </div>
+        <div class="row" *ngIf="!isGestore">
           <div class="col-0 col-md-2"></div>
           <div class="col-12 col-md-8">         
             <button type="button" class="btn btn-outline-light btn-lg border-dark" (click)="clickSegnalazioni()"><h1 class="h3"><span class="material-icons">post_add</span> Segnalazioni</h1></button>
           </div>
           <div class="col-0 col md-2"></div>
         </div>
-        <br>
-        <div class="row">
+        <div class="row m-3" *ngIf="!isGestore">
           <div class="col-0 col-md-2"></div>
           <div class="col-12 col-md-8">            
             <button type="button" class="btn btn-outline-light btn-lg border-dark" (click)="clickReward()"><h1 class="h3"><span class="material-icons">shopping_cart</span> Reward</h1></button>
           </div>
           <div class="col-0 col md-2"></div>
         </div>
-        <br>
         <div class="row" *ngIf="isGestore">
           <div class="col-0 col-md-2"></div>
           <div class="col-12 col-md-8">            
             <button type="button" class="btn btn-outline-light btn-lg border-dark" (click)="clickGestione()"><h1 class="h3"><span class="material-icons">gavel</span> Menu Gestore</h1></button>
           </div>
           <div class="col-0 col md-2"></div>
-          <br>
         </div>
         <div class="row">
           <div class="col-1 col-md-1"></div>

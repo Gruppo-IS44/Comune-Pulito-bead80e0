@@ -8,7 +8,8 @@ import { DataService } from '../data.service';
   styleUrls: ['./gestore.component.css']
 })
 export class GestoreComponent {
-
+  nome:string=this.dataService.nome;
+  cognome:string=this.dataService.cognome;
 
   constructor(private router:RouterModule, private dataService:DataService){}
   

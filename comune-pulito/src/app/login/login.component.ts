@@ -48,6 +48,8 @@ export class LoginComponent  {
       this.dataService.email=this.loginForm.value.email;
       this.dataService.isGestore=this.loginForm.value.isGestore;
       this.dataService.password=sha256(this.loginForm.value.password);
+      this.dataService.nome=data.nome;
+      this.dataService.cognome=data.cognome;
       this.router.navigate(["/mappa"]);
     },
     error =>{
@@ -72,6 +74,11 @@ export class LoginComponent  {
     this.httpService.addUser(this.signupForm.value).subscribe(data=>{
       console.log(data);
       this.erroreSignup=false;
+      this.dataService.email=this.signupForm.value.email;
+      this.dataService.nome=this.signupForm.value.nome;
+      this.dataService.cognome=this.signupForm.value.cognome;
+      this.dataService.password=sha256(this.signupForm.value.password);
+      this.dataService.id_utente=data.userLogin.token;//Id Utente
       this.router.navigate(["/mappa"]);
     },
     error=>{
