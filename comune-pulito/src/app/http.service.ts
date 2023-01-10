@@ -30,10 +30,10 @@ export class HttpService {
     return this.http.post<Object>(environment.baseURL+"/segnalazione",segnalazione);
   }
 
-  ottieniCluster(id:string):Observable<MenuGestore>{//TODO:Cambiare object
+  ottieniCluster(id:string):Observable<Array<MenuGestore>>{//TODO:Cambiare object
     console.log(id)
     const body={"gestore":id};
     console.log(body)
-    return this.http.post<MenuGestore>(environment.baseURL+"/mappaGestore", body);
+    return this.http.post<Array<MenuGestore>>(environment.baseURL+"/mappaGestore", body);
   }
 }

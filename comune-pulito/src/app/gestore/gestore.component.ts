@@ -12,7 +12,7 @@ import { MenuGestore } from '../Export';
 export class GestoreComponent implements OnInit {
   nome:string=this.dataService.nome;
   cognome:string=this.dataService.cognome;
-  data!:MenuGestore;
+  data!:Array<MenuGestore>;
   caricato:boolean=false;
 
   constructor(private router:RouterModule, private dataService:DataService, private http:HttpService){}
