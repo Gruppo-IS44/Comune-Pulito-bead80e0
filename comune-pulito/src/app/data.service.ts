@@ -7,6 +7,7 @@ export class DataService {
   id_utente!:string;
   email!:string;
   password!:string;
+  isGestore!:boolean;
   
   constructor() { }
 }

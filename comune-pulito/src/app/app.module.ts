@@ -10,10 +10,11 @@ import { AppComponent } from './app.component';
 import { MappaComponent } from './mappa/mappa.component';
 import { SegnalazioneComponent } from './segnalazione/segnalazione.component';
 import { RewardComponent } from './reward/reward.component';
+import { GestoreComponent } from './gestore/gestore.component';
 
 @NgModule({
   imports:      [ BrowserModule, ReactiveFormsModule, HttpClientModule, AppRoutingModule ],
-  declarations: [ AppComponent, LoginComponent, SwitchComponent, MappaComponent, SegnalazioneComponent, RewardComponent ],
+  declarations: [ AppComponent, LoginComponent, SwitchComponent, MappaComponent, SegnalazioneComponent, RewardComponent, GestoreComponent ],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { }

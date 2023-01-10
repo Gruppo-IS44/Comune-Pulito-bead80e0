@@ -13,6 +13,7 @@ import Style from 'ol/style/Style';
 import Icon from 'ol/style/Icon';
 import { Router } from '@angular/router';
 import { Point } from 'ol/geom';
+import { DataService } from '../data.service';
 
 
 @Component({
@@ -21,8 +22,9 @@ import { Point } from 'ol/geom';
   styleUrls: ['./mappa.component.css'],
 })
 export class MappaComponent implements OnInit {
-  constructor(private router:Router){}
+  constructor(private router:Router, private dataService:DataService){}
   caricato:boolean=false;
+  isGestore:boolean=this.dataService.isGestore;
 
   ngOnInit(): void {
       const attribution = new Attribution({       
@@ -94,6 +96,10 @@ export class MappaComponent implements OnInit {
   clickReward(){
     console.log("stai andando alle reward")
     this.router.navigate(["/reward"])
+  }
+
+  clickGestione(){
+    this.router.navigate(["/gestore"])
   }
 
   clickLogout(){

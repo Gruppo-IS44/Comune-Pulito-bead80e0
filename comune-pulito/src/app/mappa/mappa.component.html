@@ -27,6 +27,14 @@
           <div class="col-0 col md-2"></div>
         </div>
         <br>
+        <div class="row" *ngIf="isGestore">
+          <div class="col-0 col-md-2"></div>
+          <div class="col-12 col-md-8">            
+            <button type="button" class="btn btn-outline-light btn-lg border-dark" (click)="clickGestione()"><h1 class="h3"><span class="material-icons">gavel</span> Menu Gestore</h1></button>
+          </div>
+          <div class="col-0 col md-2"></div>
+          <br>
+        </div>
         <div class="row">
           <div class="col-1 col-md-1"></div>
           <div class="col-10 col-md-10"><hr class="border border-light border-1 opacity-50"></div>          

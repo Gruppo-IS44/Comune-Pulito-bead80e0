@@ -46,6 +46,7 @@ export class LoginComponent  {
       console.log(data)
       this.dataService.id_utente=data.token;
       this.dataService.email=this.loginForm.value.email;
+      this.dataService.isGestore=this.loginForm.value.isGestore;
       this.dataService.password=sha256(this.loginForm.value.password);
       this.router.navigate(["/mappa"]);
     },
