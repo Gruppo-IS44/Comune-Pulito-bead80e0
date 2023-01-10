@@ -1,3 +1,8 @@
 <div class="position-absolute bottom-0 end-0"><img src="assets/logo.png" width="110" height="150"></div>
 Benvenuto {{nome}} {{cognome}}<!--Abbiamo bisogno di recuperare i dati da DB, probabilmente conviene farlo in fase di login ed inserirlo nel DataService
                                     Potrebbe essere utilizzato anche per l'utente, per personalizzare ulteriormente l'esperienza.-->
+<div>
+    <li *ngFor="let cluster of data; index as i">
+        {{cluster.id_cluster.id_cluster}}
+    </li>
+</div>

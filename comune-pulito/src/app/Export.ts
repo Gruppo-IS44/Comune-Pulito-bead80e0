@@ -46,7 +46,7 @@ export class Tipo{
 }
 
 export class MenuGestore{
-    cluster!:Cluster;
+    id_cluster!:Cluster;
     segnalazioni!:Array<Segnalazione>;
 }
 
