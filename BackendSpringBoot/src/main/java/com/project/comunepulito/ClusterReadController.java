@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
+
 @CrossOrigin(origins="http://localhost:4200")
 @RestController
 public class ClusterReadController {
@@ -30,6 +32,7 @@ public class ClusterReadController {
 				cluster.add(c);
 			}
 		}
+		
 		System.out.println(cluster);
 		System.out.println("Operazione completata con successo.");
 		return cluster;
