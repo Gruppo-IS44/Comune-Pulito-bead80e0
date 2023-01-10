@@ -40,6 +40,8 @@ public class SecurityConfiguration {
 //			.authorizeHttpRequests()
 //			.requestMatchers("/segnalazione*")
 //			.permitAll()
+			.requestMatchers("/testing*")
+			.permitAll()
 			.anyRequest().authenticated();
 		httpSecurity.authenticationProvider(authenticationProvider());
 		httpSecurity.httpBasic();
