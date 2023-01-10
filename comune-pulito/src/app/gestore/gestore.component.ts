@@ -1,22 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { DataService } from '../data.service';
+import { HttpService } from '../http.service';
+import { MenuGestore } from '../Export';
 
 @Component({
   selector: 'app-gestore',
   templateUrl: './gestore.component.html',
   styleUrls: ['./gestore.component.css']
 })
-export class GestoreComponent {
+export class GestoreComponent implements OnInit {
   nome:string=this.dataService.nome;
   cognome:string=this.dataService.cognome;
+  data!:MenuGestore;
+  caricato:boolean=false;
 
-  constructor(private router:RouterModule, private dataService:DataService){}
+  constructor(private router:RouterModule, private dataService:DataService, private http:HttpService){}
   
   ngOnInit():void {
-    //Comando che richiama la query in backend per recuperare tutti i cluster, con le relative segnalazioni 
-    //OPPURE 
-    //recupera tutti i cluster(allocazione delle segnalazioni fatta successivamente)
+    this.http.ottieniCluster(this.dataService.id_utente).subscribe(data=>{
+      console.log(data)
+      this.data=data;
+      console.log(this.data)
+      this.caricato=true;
+    })
   }
 
   //Il cluster che è evidenziato in quel momento è il "cluster selezionato"

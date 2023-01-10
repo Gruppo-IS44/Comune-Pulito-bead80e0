@@ -44,3 +44,25 @@ export class Tipo{
     tipo!:string;
     signup!:boolean;
 }
+
+export class MenuGestore{
+    cluster!:Cluster;
+    segnalazioni!:Array<Segnalazione>;
+}
+
+export class Cluster{
+    raggio!:number;
+    id_stato!:string;
+    id_cluster!:string;
+    id_gestore!:string;
+    longitudine!:number;
+    latitudine!:number;
+}
+
+export class Segnalazione2 extends Segnalazione{
+    dataora!:string;
+    id_Stato!:string;
+    id_segnalazione!:string;
+    id_Tipo!:string;
+    id_utente!:string;
+}

@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError } from 'rxjs';
-import { Login, Segnalazione, Signup, SignupResponse, Token, Utente } from './Export';
+import { Login, MenuGestore, Segnalazione, Signup, SignupResponse, Token, Utente } from './Export';
 import { environment } from 'src/environments/environment.prod';
 import { __param } from 'tslib';
 import { sha256 } from 'js-sha256';
@@ -25,8 +25,15 @@ export class HttpService {
     return this.http.post<SignupResponse>(environment.baseURL+"/signup", body);
   }
 
-  segnala(segnalazione:Segnalazione):Observable<Object>{
+  segnala(segnalazione:Segnalazione):Observable<Object>{//TODO:Cambiare Object
     console.log(segnalazione)
     return this.http.post<Object>(environment.baseURL+"/segnalazione",segnalazione);
+  }
+
+  ottieniCluster(id:string):Observable<MenuGestore>{//TODO:Cambiare object
+    console.log(id)
+    const body={"gestore":id};
+    console.log(body)
+    return this.http.post<MenuGestore>(environment.baseURL+"/mappaGestore", body);
   }
 }

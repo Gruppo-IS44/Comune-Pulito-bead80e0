@@ -32,7 +32,7 @@ public class SecurityConfiguration {
 			.requestMatchers("/login*")
 			.permitAll().and()
 			.authorizeHttpRequests()
-			.requestMatchers("/segnalazione*")
+			.requestMatchers("/mappaGestore*")
 			.permitAll()
 //			.authorizeHttpRequests()
 //			.requestMatchers("/mappa*")

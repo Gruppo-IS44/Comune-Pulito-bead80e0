@@ -22,24 +22,59 @@ public class ClusterReadController {
 	private ClusterRepository clusterRepository;
 	
 	@PostMapping("/mappaGestore")
-	public List<Cluster> ClusterRead (@RequestBody ClusterIdBody clusterIdBody){
+	public List<Response> ClusterRead (@RequestBody ClusterIdBody clusterIdBody){
 	try{
-		List<Cluster> cluster= new ArrayList<Cluster>();
-		System.out.println(clusterIdBody.getId_gestore());
-		for(Cluster c: clusterRepository.findAll())
-		{
-			if(c.getId_gestore().equals(clusterIdBody.getId_gestore())) {
-				cluster.add(c);
-			}
-		}
-		
+//		List<Cluster> cluster= new ArrayList<Cluster>();
+//		System.out.println(clusterIdBody.getId_gestore());
+//		for(Cluster c: clusterRepository.findAll())
+//		{
+//			if(c.getId_gestore().equals(clusterIdBody.getId_gestore())) {
+//				cluster.add(c);
+//			}
+//		}
+		List<Cluster> cluster= clusterRepository.findClusterByIdGestore(clusterIdBody.getId_gestore());
 		System.out.println(cluster);
+		List<Response> risp=new ArrayList<Response>();
+		for (Cluster c:cluster) {
+			risp.add(new Response(c, clusterRepository.findSegnalazioneCluster(c.getId_cluster())));
+		}
 		System.out.println("Operazione completata con successo.");
-		return cluster;
+		return risp;
 	}catch (Exception e) {
 		System.out.println("Errore nella lettura del Cluster.");
 		throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Errore generico.");
 		}
+	}
+	
+	public class Response{
+		private Cluster id_cluster;
+		private List<Segnalazione> segnalazioni;
+		
+		public Response(Cluster id_cluster, List<Segnalazione> segnalazioni) {
+			this.id_cluster=id_cluster;
+			this.segnalazioni=segnalazioni;
+		}
+
+		public Cluster getId_cluster() {
+			return id_cluster;
+		}
+
+		public void setId_cluster(Cluster id_cluster) {
+			this.id_cluster = id_cluster;
+		}
+
+		public List<Segnalazione> getSegnalazioni() {
+			return segnalazioni;
+		}
+
+		public void setSegnalazioni(List<Segnalazione> segnalazioni) {
+			this.segnalazioni = segnalazioni;
+		}
+
+		@Override
+		public String toString() {
+			return "Response [id_cluster=" + id_cluster + ", segnalazioni=" + segnalazioni + "]";
+		}		
 	}
 }
 	
