@@ -37,9 +37,10 @@ public class SecurityConfiguration {
 //			.authorizeHttpRequests()
 //			.requestMatchers("/mappa*")
 //			.permitAll().and()
-			.authorizeHttpRequests()
+//			.authorizeHttpRequests()
 //			.requestMatchers("/segnalazione*")
 //			.permitAll()
+			.authorizeHttpRequests()
 			.requestMatchers("/testing*")
 			.permitAll()
 			.anyRequest().authenticated();

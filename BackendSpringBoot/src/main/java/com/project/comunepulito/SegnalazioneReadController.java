@@ -16,14 +16,14 @@ import java.util.List;
 @RestController
 public class SegnalazioneReadController {
 	@Autowired
-	private SegnalazioneRepository reportRepository;
+	private SegnalazioneRepository segnalazioneRepository;
 	
 	@PostMapping("/mappa")
 	public List<Segnalazione> SegnalazioneRead (@RequestBody SegnalazioneIdBody segnalazioneIdBody){
 	try{
 		List<Segnalazione> segnalazioni= new ArrayList<Segnalazione>();
 		System.out.println(segnalazioneIdBody.getId_utente());
-		for(Segnalazione s:reportRepository.findAll())
+		for(Segnalazione s:segnalazioneRepository.findAll())
 		{
 			if(s.getId_utente().equals(segnalazioneIdBody.getId_utente())) {
 				segnalazioni.add(s);

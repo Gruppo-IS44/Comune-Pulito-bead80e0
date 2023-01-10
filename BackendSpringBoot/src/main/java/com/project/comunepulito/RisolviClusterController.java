@@ -12,16 +12,19 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @RestController
 public class RisolviClusterController {
 	@Autowired
-	private SegnalazioneRepository reportRepository;
+	private SegnalazioneRepository segnalazioneRepository;
 	
 	@PostMapping("/testing")
-	public void Esempio (@RequestBody RisolviClusterBody risolviclusterBody){
+	public Integer Esempio (@RequestBody RisolviClusterBody risolviclusterBody){
 		
-		Segnalazione s = reportRepository.findById(risolviclusterBody.getSegnalazione()).get();
+		Segnalazione s = segnalazioneRepository.findById(risolviclusterBody.getSegnalazione()).get();
+		
 		
 		s.setId_Stato(risolviclusterBody.getId_Stato());
 		System.out.println(risolviclusterBody.getId_Stato());
-		reportRepository.save(s);
+		segnalazioneRepository.save(s);
+		
+		return null;
 	}
 	
 	

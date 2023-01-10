@@ -14,7 +14,7 @@ import org.springframework.web.server.ResponseStatusException;
 @RestController
 public class SegnalazioneAddController {
 	@Autowired
-	private SegnalazioneRepository reportRepository;
+	private SegnalazioneRepository segnalazioneRepository;
 	@Autowired
 	private ClusterRepository clusterRepository;
 	@Autowired
@@ -33,7 +33,7 @@ public class SegnalazioneAddController {
 			s.setLatitudine(segnalazioneBody.getLatitudine());
 			s.setLongitudine(segnalazioneBody.getLongitudine());
 			s.setDataora(LocalDateTime.now());
-			reportRepository.save(s);
+			segnalazioneRepository.save(s);
 		}catch (Exception e) {
 			System.out.println("Errore nella creazione della segnalazione.");
 			e.printStackTrace();

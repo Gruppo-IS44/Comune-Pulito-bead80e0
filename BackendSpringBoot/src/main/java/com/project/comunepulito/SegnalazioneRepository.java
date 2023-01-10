@@ -12,9 +12,4 @@ public interface SegnalazioneRepository extends CrudRepository<Segnalazione,Inte
 	
 	Optional<Segnalazione> findById(Integer utente);
 
-	
-	
-	/*@Query(value="UPDATE Utente SET Warn WHERE Id_utente=?1")
-	 * void UpdateWarnUtente(Integer idUtente);
-	*/
 }
