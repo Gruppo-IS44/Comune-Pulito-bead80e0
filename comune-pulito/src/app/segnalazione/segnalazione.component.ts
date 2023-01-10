@@ -64,7 +64,7 @@ export class SegnalazioneComponent {
   onSubmit(){
     this.segnalazioneForm.patchValue({latitudine:this.posizione[1],longitudine:this.posizione[0]})
     console.log(this.segnalazioneForm.value);
-    const segnalazione:Segnalazione={"foto":this.segnalazioneForm.value.immagine2, "descrizione":this.segnalazioneForm.value.descrizione, "tipo_rifiuto":1, "latitudine":this.posizione[1], "longitudine":this.posizione[0],"utente":1}
+    const segnalazione:Segnalazione={"foto":this.segnalazioneForm.value.immagine2, "descrizione":this.segnalazioneForm.value.descrizione, "tipo_rifiuto":1, "latitudine":this.posizione[1], "longitudine":this.posizione[0],"utente":this.dataService.id_utente.toString()}
     console.log(segnalazione)
     this.http.segnala(segnalazione).subscribe(data=>{
       console.log(this.segnalazioneForm);

@@ -30,7 +30,7 @@ export class Segnalazione{
     tipo_rifiuto!:number;
     latitudine!:number;
     longitudine!:number;
-    utente!:number;
+    utente!:string;
 }
 
 export class Utente{
@@ -47,7 +47,7 @@ export class Tipo{
 
 export class MenuGestore{
     id_cluster!:Cluster;
-    segnalazioni!:Array<Segnalazione>;
+    segnalazioni!:Array<Segnalazione2>;
 }
 
 export class Cluster{
