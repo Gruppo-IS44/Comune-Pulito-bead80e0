@@ -25,7 +25,7 @@ public class SegnalazioneAddController {
 		try{
 			Segnalazione s = new Segnalazione();
 			s.setFoto(segnalazioneBody.getFoto());
-			//s.setDescrizione(segnalazioneBody.getDescrizione()); //Assente su DB
+			s.setDescrizione(segnalazioneBody.getDescrizione());
 			s.setId_Tipo(segnalazioneBody.getTipo_rifiuto());
 			s.setId_utente(segnalazioneBody.getId_utente());
 			s.setId_cluster(scegliCluster(segnalazioneBody.getLatitudine(), segnalazioneBody.getLongitudine()));
