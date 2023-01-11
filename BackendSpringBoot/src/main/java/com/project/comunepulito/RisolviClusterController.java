@@ -14,15 +14,16 @@ public class RisolviClusterController {
 	@Autowired
 	private SegnalazioneRepository segnalazioneRepository;
 	
-	@PostMapping("/testing")
+	@PostMapping("/convalida")
 	public Integer Esempio (@RequestBody RisolviClusterBody risolviclusterBody){
 		
-		Segnalazione s = segnalazioneRepository.findById(risolviclusterBody.getSegnalazione()).get();
-		
-		
-		s.setId_Stato(risolviclusterBody.getId_Stato());
-		System.out.println(risolviclusterBody.getId_Stato());
-		segnalazioneRepository.save(s);
+//		Segnalazione s = segnalazioneRepository.findById(risolviclusterBody.getSegnalazione()).get();
+//		
+//		
+//		s.setId_Stato(risolviclusterBody.getId_Stato());
+//		System.out.println(risolviclusterBody.getId_Stato());
+//		segnalazioneRepository.save(s);
+		System.out.println(risolviclusterBody);
 		
 		return null;
 	}

@@ -14,6 +14,9 @@ export class GestoreComponent implements OnInit {
   cognome:string=this.dataService.cognome;
   data!:Array<MenuGestore>;
   caricato:boolean=false;
+  error:boolean=false;
+  conferma:boolean=false;
+  vuoto:boolean=false;
 
   constructor(private router:RouterModule, private dataService:DataService, private http:HttpService){}
   
@@ -22,7 +25,10 @@ export class GestoreComponent implements OnInit {
       console.log(data)
       this.data=data;
       console.log(this.data)
-      this.caricato=true;//Da usare per il placeholder
+      this.caricato=true;
+      if(this.data.length===0){
+        this.vuoto=true;
+      }
     })
   }
 
@@ -61,5 +67,31 @@ export class GestoreComponent implements OnInit {
 
   onConfermaCluster(cluster:MenuGestore){//Conferma l'operazione
     console.log(cluster)
+    this.error=false;
+    for(let segnalazione of cluster.segnalazioni){
+      if(segnalazione.id_Stato=='1'){
+        this.error=true;
+        break;
+      }
+    }
+    console.log(this.error)
+    if(!this.error){
+      cluster.id_cluster.id_stato='2';
+      this.http.convalidaCluster(cluster).subscribe(data=>{
+        console.log(data);
+        this.conferma=true;
+        let i:boolean=true;
+        for(let cl of this.data){
+          if(cl.id_cluster.id_stato=='1'){
+            i=false;  
+            break;
+          }                    
+        }
+        this.vuoto=i;
+        setTimeout(() => {
+          this.conferma=false;
+        }, 5000);
+      })
+    }
   }
 }

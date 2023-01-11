@@ -1,44 +1,34 @@
 package com.project.comunepulito;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class RisolviClusterBody {
-	
-	private Integer Id_Stato;
-	private Integer segnalazione;
-	private Integer Id_Utente;
+	private Cluster cluster;
+	private List<Segnalazione> segnalazioni;
 	
 	@JsonCreator
-	public RisolviClusterBody(@JsonProperty("segnalazione")String segnalazione, @JsonProperty("Id_Stato")String Id_Stato,@JsonProperty("Id_Utente")String Id_Utente) {
+	public RisolviClusterBody(@JsonProperty("cluster")Cluster cluster, @JsonProperty("segnalazioni")List<Segnalazione> segnalazioni) {
 		super();
-		this.segnalazione = Integer.parseInt(segnalazione);
-		this.Id_Stato = Integer.parseInt(Id_Stato);
-		this.Id_Utente = Integer.parseInt(Id_Utente);
-	}
-
-	
-	public Integer getId_Stato() {
-		return Id_Stato;
-	}
-	public void setId_Stato(Integer id_Stato) {
-		Id_Stato = id_Stato;
-	}
-	public Integer getSegnalazione() {
-		return segnalazione;
-	}
-	public void setSegnalazione(Integer segnalazione) {
-		this.segnalazione = segnalazione;
-	}
-	public Integer getId_Utente() {
-		return Id_Utente;
-	}
-	public void setId_Utente(Integer id_Utente) {
-		Id_Utente = id_Utente;
+		this.cluster=cluster;
+		this.segnalazioni=segnalazioni;
 	}
 	@Override
 	public String toString() {
-		return "RisolviClusterBody [Id_Stato=" + Id_Stato + ", segnalazione=" + segnalazione + "]";
+		return "RisolviClusterBody [cluster=" + cluster + ", segnalazioni=" + segnalazioni + "]";
 	}
-
+	public Cluster getCluster() {
+		return cluster;
+	}
+	public void setCluster(Cluster cluster) {
+		this.cluster = cluster;
+	}
+	public List<Segnalazione> getSegnalazioni() {
+		return segnalazioni;
+	}
+	public void setSegnalazioni(List<Segnalazione> segnalazioni) {
+		this.segnalazioni = segnalazioni;
+	}
 }

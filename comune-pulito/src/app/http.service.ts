@@ -15,7 +15,7 @@ export class HttpService {
   login(userLogin:Login):Observable<Token>{
     const pass=sha256(userLogin.password);
     const body={"email":userLogin.email,"password":pass,"isGestore":userLogin.isGestore};
-    return this.http.post<Token>(environment.baseURL+"/login", body)
+    return this.http.post<Token>(environment.baseURL+"/login", body);
   }
 
   addUser(utente:Utente):Observable<SignupResponse>{
@@ -26,14 +26,21 @@ export class HttpService {
   }
 
   segnala(segnalazione:Segnalazione):Observable<Object>{//TODO:Cambiare Object
-    console.log(segnalazione)
+    console.log(segnalazione);
     return this.http.post<Object>(environment.baseURL+"/segnalazione",segnalazione);
   }
 
   ottieniCluster(id:string):Observable<Array<MenuGestore>>{
-    console.log(id)
+    console.log(id);
     const body={"gestore":id};
-    console.log(body)
+    console.log(body);
     return this.http.post<Array<MenuGestore>>(environment.baseURL+"/mappaGestore", body);
+  }
+
+  convalidaCluster(cluster:MenuGestore):Observable<Object>{
+    console.log(cluster);
+    const body={"cluster":cluster.id_cluster, "segnalazioni":cluster.segnalazioni};
+    console.log(body);
+    return this.http.post<Object>(environment.baseURL+"/convalida", body);
   }
 }
