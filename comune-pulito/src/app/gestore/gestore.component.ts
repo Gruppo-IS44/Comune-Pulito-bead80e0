@@ -10,8 +10,8 @@ import { Cluster, MenuGestore, Segnalazione, Segnalazione2 } from '../Export';
   styleUrls: ['./gestore.component.css']
 })
 export class GestoreComponent implements OnInit {
-  nome:string=this.dataService.nome;
-  cognome:string=this.dataService.cognome;
+  nome?:string=this.dataService.nome;
+  cognome?:string=this.dataService.cognome;
   data!:Array<MenuGestore>;
   caricato:boolean=false;
   error:boolean=false;
@@ -24,15 +24,17 @@ export class GestoreComponent implements OnInit {
     if(this.dataService.id_utente==null || this.dataService.isGestore==false){
       this.router.navigate(['login']);
     }
-    this.http.ottieniCluster(this.dataService.id_utente).subscribe(data=>{
-      console.log(data)
-      this.data=data;
-      console.log(this.data)
-      this.caricato=true;
-      if(this.data.length===0){
-        this.vuoto=true;
-      }
-    })
+    if(this.dataService.id_utente){
+      this.http.ottieniCluster(this.dataService.id_utente).subscribe(data=>{
+        console.log(data)
+        this.data=data;
+        console.log(this.data)
+        this.caricato=true;
+        if(this.data.length===0){
+          this.vuoto=true;
+        }
+      })
+    }
   }
 
   onConvalidaSegnalazione(segnalazione:Segnalazione2){

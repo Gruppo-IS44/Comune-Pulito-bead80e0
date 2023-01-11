@@ -25,9 +25,9 @@ import { Feature } from '../Export';
 export class MappaComponent implements OnInit {
   constructor(private router:Router, private dataService:DataService){}
   caricato:boolean=false;
-  isGestore:boolean=this.dataService.isGestore;
-  nome:string=this.dataService.nome;
-  cognome:string=this.dataService.cognome;
+  isGestore?:boolean=this.dataService.isGestore;
+  nome?:string=this.dataService.nome;
+  cognome?:string=this.dataService.cognome;
   loggato:boolean=false;
   featureSelezionata!:Feature;
   aperto:boolean=false;
@@ -93,7 +93,6 @@ export class MappaComponent implements OnInit {
         this.cazzi=info;
         console.log(this.cazzi)*/
         this.featureSelezionata={descrizione:properties['descrizione'], foto:properties['foto']};
-        console.log(this.featureSelezionata)
         if(this.featureSelezionata.foto=="null"){
           this.foto=false;
         }else{
@@ -110,12 +109,10 @@ export class MappaComponent implements OnInit {
   }
 
   clickSegnalazioni(){
-    console.log("stai andando alle segnalazioni")
     this.router.navigate(["/segnalazione"])
   }
 
   clickReward(){
-    console.log("stai andando alle reward")
     this.router.navigate(["/reward"])
   }
 
@@ -128,15 +125,19 @@ export class MappaComponent implements OnInit {
   }
 
   clickLogout(){
-    console.log("logout o7")
+    this.dataService.nome=undefined;
+    this.dataService.cognome=undefined;
+    this.dataService.email=undefined;
+    this.dataService.password=undefined;
+    this.dataService.isGestore=undefined;
+    this.dataService.id_utente=undefined;
+    this.router.navigate(['/login']);
   }
 
   getLocation():Point{
     navigator.geolocation.getCurrentPosition((position)=>{
       const longitude = position.coords.longitude;
         const latitude = position.coords.latitude;
-        console.log(longitude);
-        console.log(latitude);
         return new Point([longitude, latitude]);
     })
     return new Point([10,10])

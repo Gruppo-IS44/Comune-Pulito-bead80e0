@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Injectable } from '@angular/core';
+import { Component, Injectable} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { catchError, Observable } from 'rxjs';
@@ -14,7 +14,7 @@ import { sha256 } from 'js-sha256';
   styleUrls: [ 'login.component.css' ]
 })
 
-export class LoginComponent  {
+export class LoginComponent{
   show:boolean=false
   errore:boolean=false;
   tipo:Tipo={tipo:"Sign Up",signup:true};
@@ -36,14 +36,14 @@ export class LoginComponent  {
 
 
   constructor(private formBuilder:FormBuilder,private httpService:HttpService, private router:Router, private dataService:DataService){}
-
+  
   toggleEye() {
     this.show=!this.show;
   }
 
   onLogin(){//invocato nel momento in cui si richiede il login
+    
     this.httpService.login(this.loginForm.value).subscribe(data=>{
-      console.log(data)
       this.dataService.id_utente=data.token;
       this.dataService.email=this.loginForm.value.email;
       this.dataService.isGestore=this.loginForm.value.isGestore;
