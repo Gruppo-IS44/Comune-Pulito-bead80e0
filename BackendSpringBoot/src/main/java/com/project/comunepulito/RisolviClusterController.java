@@ -25,6 +25,40 @@ public class RisolviClusterController {
 //		segnalazioneRepository.save(s);
 		System.out.println(risolviclusterBody);
 		
+/*		Segnalazione s = segnalazioneRepository.findById(risolviclusterBody.getSegnalazione()).get();
+		
+		Utente u = utenteRepository.findById(risolviclusterBody.getId_Utente()).get();
+		
+		s.setId_Stato(risolviclusterBody.getId_Stato());
+
+		if (s.getId_Stato() == 3) {		// 3 è la segnalazione NON VALIDA
+			
+			System.out.println("Segnalazione NON-VALIDA");
+			u.setWarn(u.getWarn()+1);
+			
+			if(u.getWarn() == 3) {
+				u.setBan(true);
+			}
+
+		}
+		
+		System.out.println(risolviclusterBody.getId_Stato());
+		segnalazioneRepository.save(s);
+		
+		switch(s.getId_Tipo()) {
+			case 1:
+				u.setBilancio(u.getBilancio()+10);		// 1 RIFIUTO PICCOLO
+				break;
+			case 2:
+				u.setBilancio(u.getBilancio()+20);		// 2 RIFIUTO GRANDE
+				break;
+			case 3:
+				u.setBilancio(u.getBilancio()+30);		// 3 RIFIUTO ALTRO
+				break;			
+
+		}
+				System.out.println("Bilancio utente aumentato: " + u.getBilancio());	*/
+
 		return null;
 	}
 	
