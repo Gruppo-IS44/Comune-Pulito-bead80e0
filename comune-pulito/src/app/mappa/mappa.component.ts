@@ -38,7 +38,7 @@ export class MappaComponent implements OnInit {
     if(this.dataService.id_utente!=null){
       this.loggato=true;
     }
-      const attribution = new Attribution({       
+    const attribution = new Attribution({       
       });      
 
       const map = new Map({
@@ -61,7 +61,7 @@ export class MappaComponent implements OnInit {
         url:'http://localhost:8080/geojson',
         format:new GeoJSON(),
       })
-      const AirportLayer = new VectorLayer({
+      const SegnalazioniLayer = new VectorLayer({
         source:VectorSource,
         style:new Style({
           image: new Icon({
@@ -79,19 +79,13 @@ export class MappaComponent implements OnInit {
         }))
         this.caricato=true;
       })
-      map.addLayer(AirportLayer);
+      map.addLayer(SegnalazioniLayer);
       const showInfo = (event:any) => {
         const features = map.getFeaturesAtPixel(event.pixel);
         if (features.length == 0 ) {
           return;
         }
         const properties = features[0].getProperties();
-        /*if(info){
-          info.innerText = 'cazzi'//JSON.stringify(properties, null, 2);
-          info.style.opacity = '1';
-        }
-        this.cazzi=info;
-        console.log(this.cazzi)*/
         this.featureSelezionata={descrizione:properties['descrizione'], foto:properties['foto']};
         if(this.featureSelezionata.foto=="null"){
           this.foto=false;

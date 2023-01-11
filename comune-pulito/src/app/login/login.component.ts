@@ -34,15 +34,13 @@ export class LoginComponent{
   });
   erroreSignup:boolean=false;
 
-
   constructor(private formBuilder:FormBuilder,private httpService:HttpService, private router:Router, private dataService:DataService){}
   
   toggleEye() {
     this.show=!this.show;
   }
 
-  onLogin(){//invocato nel momento in cui si richiede il login
-    
+  onLogin(){//invocato nel momento in cui si richiede il login    
     this.httpService.login(this.loginForm.value).subscribe(data=>{
       this.dataService.id_utente=data.token;
       this.dataService.email=this.loginForm.value.email;
@@ -53,47 +51,25 @@ export class LoginComponent{
       this.router.navigate(["/mappa"]);
     },
     error =>{
-      console.log("Errore nel login!");
-      console.log(error);
+      console.error("Errore nel login!");
+      console.error(error.message);
       this.errore=true;
     });
-    //TODO implementare autenticazione tramite cookie session based
   }
-  
-  /*onLogin(data:any){//invocato nel momento in cui si richiede il Login con le credenziali inserite all'interno del form
-    this.setLogin(data);
-    console.log(this.login);
-    //TODO implementare il passaggio al backend
-    this.httpService.login(this.login).subscribe(data => {
-      console.log(data)
-      this.login=data;});
-    console.log(this.login);
-  }*/
 
   onSignup(){//invocato nel momento in cui si richiede il Signup con le credenziali inserite all'interno del form
     this.httpService.addUser(this.signupForm.value).subscribe(data=>{
-      console.log(data);
       this.erroreSignup=false;
       this.dataService.email=this.signupForm.value.email;
       this.dataService.nome=this.signupForm.value.nome;
       this.dataService.cognome=this.signupForm.value.cognome;
       this.dataService.password=sha256(this.signupForm.value.password);
-      this.dataService.id_utente=data.userLogin.token;//Id Utente
+      this.dataService.id_utente=data.userLogin.token;
       this.router.navigate(["/mappa"]);
     },
     error=>{
       console.log(error)
       this.erroreSignup=true;
     });
-  }
-
-  /*onSignup(data:any){//invocato nel momento in cui si richiede il Signup con le credenziali inserite all'interno del form
-    this.setSignup(data);
-    //TODO implementare il passaggio al backend
-    this.httpService.addUser(this.signup);
-  }*/
-
-  setSignup(temp:any){//imposta i parametri di "signup" uguali a quelli di "temp" DEPRECATED
-    this.signup={email:temp.email,username:temp.username,password:temp.password,nome:temp.nome,cognome:temp.cognome};
   }
 }

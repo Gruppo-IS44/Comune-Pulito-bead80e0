@@ -71,7 +71,6 @@ export class GestoreComponent implements OnInit {
   //Il cluster viene bindato da un evento(ci sono più cluster evidenziati)
 
   onConfermaCluster(cluster:MenuGestore){//Conferma l'operazione
-    console.log(cluster)
     this.error=false;
     for(let segnalazione of cluster.segnalazioni){
       if(segnalazione.id_Stato=='1'){
@@ -79,11 +78,9 @@ export class GestoreComponent implements OnInit {
         break;
       }
     }
-    console.log(this.error)
     if(!this.error){
       cluster.id_cluster.id_stato='2';
       this.http.convalidaCluster(cluster).subscribe(data=>{
-        console.log(data);
         this.conferma=true;
         let i:boolean=true;
         for(let cl of this.data){
@@ -95,7 +92,7 @@ export class GestoreComponent implements OnInit {
         this.vuoto=i;
         setTimeout(() => {
           this.conferma=false;
-        }, 5000);
+        }, 4000);
       })
     }
   }

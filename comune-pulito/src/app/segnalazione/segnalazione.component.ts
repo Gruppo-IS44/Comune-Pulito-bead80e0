@@ -48,7 +48,6 @@ export class SegnalazioneComponent {
 
   onFileChange(event:any){
     const reader= new FileReader();
-    console.log(event)
     if(event.target.files && event.target.files.length){
       const [file] = event.target.files;
       reader.readAsDataURL(file);
