@@ -1,6 +1,13 @@
 package com.project.comunepulito;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.Set;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,7 +18,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name="gestore")
-public class Gestore {
+public class Gestore implements UserDetails {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -60,6 +67,41 @@ public class Gestore {
 	}
 	public void setSede(String sede) {
 		this.sede = sede;
+	}
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		List<GrantedAuthority> authorities = new ArrayList<>();
+	     authorities.add(new SimpleGrantedAuthority("GESTORE"));
+	     return authorities;
+	}
+	@Override
+	public String getPassword() {
+		
+		return this.getPwd();
+	}
+	@Override
+	public String getUsername() {
+		return this.getEmail();
+	}
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return true;
 	}
 
 }

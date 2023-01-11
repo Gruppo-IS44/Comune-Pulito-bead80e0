@@ -13,14 +13,19 @@ public class UserService implements UserDetailsService {
 
     @Autowired
     private UtenteRepository userRepository;
+    @Autowired
+    private GestoreRepository gestoreRepository;
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         Optional<Utente> user = userRepository.findByEmail(s);
         if (user.isPresent()){
             return user.get();
-        }else{
-            throw new UsernameNotFoundException(String.format("Username[%s] not found"));
         }
+        Optional<Gestore> gestore =gestoreRepository.findByEmail(s);
+        if(gestore.isPresent()) {
+        	return gestore.get();
+        }
+        throw new UsernameNotFoundException(String.format("Username[%s] not found"));
     }
 }

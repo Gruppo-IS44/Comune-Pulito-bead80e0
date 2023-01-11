@@ -1,16 +1,17 @@
-import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError } from 'rxjs';
 import { Login, MenuGestore, Segnalazione, Signup, SignupResponse, Token, Utente } from './Export';
 import { environment } from 'src/environments/environment.prod';
 import { __param } from 'tslib';
 import { sha256 } from 'js-sha256';
+import { DataService } from './data.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class HttpService {  
-  constructor(private http:HttpClient) { }
+export class HttpService {  //TODO:Interceptor richieste che aggiunge l'header.
+  constructor(private http:HttpClient, private dataService:DataService) { }
 
   login(userLogin:Login):Observable<Token>{
     const pass=sha256(userLogin.password);
@@ -33,7 +34,6 @@ export class HttpService {
   ottieniCluster(id:string):Observable<Array<MenuGestore>>{
     console.log(id);
     const body={"gestore":id};
-    console.log(body);
     return this.http.post<Array<MenuGestore>>(environment.baseURL+"/mappaGestore", body);
   }
 

@@ -24,7 +24,7 @@ public class UserLoginController {
 	public UserLogin userLogin(@RequestBody LoginBody loginBody) {
 		if (loginBody.isGestore()){
 			try{
-				Gestore gestore=gestoreRepository.findByEmail(loginBody.getEmail());
+				Gestore gestore=gestoreRepository.findByEmail(loginBody.getEmail()).get();
 				if(gestore.getPwd().equals(loginBody.getPassword())) {//Autenticazione Riuscita!
 					return new UserLogin(true,gestore.getId_gestore().toString(),gestore.getNome(),gestore.getCognome());
 				}

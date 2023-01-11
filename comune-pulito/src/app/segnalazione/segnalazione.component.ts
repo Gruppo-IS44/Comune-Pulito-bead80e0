@@ -5,6 +5,7 @@ import { DataService } from '../data.service';
 import { buffer } from 'ol/size';
 import { HttpService } from '../http.service';
 import { Segnalazione } from '../Export';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-segnalazione',
@@ -22,8 +23,9 @@ export class SegnalazioneComponent {
     longitudine:[]
   })
   imageSrc!:string;
+  success:boolean=false;
 
-  constructor(private http:HttpService, private formBuilder:FormBuilder, private dataService:DataService){}
+  constructor(private http:HttpService, private formBuilder:FormBuilder, private dataService:DataService, private router:Router){}
 
   ngOnInit(){
     this.getLocation();
@@ -67,7 +69,10 @@ export class SegnalazioneComponent {
     const segnalazione:Segnalazione={"foto":this.segnalazioneForm.value.immagine2, "descrizione":this.segnalazioneForm.value.descrizione, "tipo_rifiuto":1, "latitudine":this.posizione[1], "longitudine":this.posizione[0],"utente":this.dataService.id_utente.toString()}
     console.log(segnalazione)
     this.http.segnala(segnalazione).subscribe(data=>{
-      console.log(this.segnalazioneForm);
+      this.success=true;
+      setTimeout(() => {
+        this.router.navigate(["/mappa"]);
+      }, 3000);
     })
   }
 }

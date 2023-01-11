@@ -48,11 +48,15 @@
                 </div> 
                 <div class="col-0 col-md-3"></div>
             </div>    
-            <br>
-            <div class="row">                
+            <div class="row p-2">                
                 <div class="col-0 col-md-3"></div>
                 <div class="col-0 col-md-6"><button class="btn btn-primary" (click)="onSubmit()" [disabled]="segnalazioneForm.invalid">Submit</button></div>
                 <div class="col-0 col-md-3"></div>            
+            </div>
+            <div class="row" *ngIf="success">
+                <div class="col-0 col-md-3"></div>
+                <div class="col-0 col-md-6 alert alert-success">Segnalazione inviata con successo.</div>
+                <div class="col-0 col-md-3"></div>  
             </div>
         </form>
     </div>

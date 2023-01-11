@@ -31,22 +31,22 @@ public class SecurityConfiguration {
 			.authorizeHttpRequests()
 			.requestMatchers("/login*")
 			.permitAll().and()
+//			.authorizeHttpRequests()
+//			.requestMatchers("/mappaGestore*")
+//			.permitAll().and()
 			.authorizeHttpRequests()
-			.requestMatchers("/mappaGestore*")
-			.permitAll().and()
-			.authorizeHttpRequests()
-			.requestMatchers("/segnalazione*")
+			.requestMatchers("/geojson*")
 			.permitAll().and()
 //			.authorizeHttpRequests()
 //			.requestMatchers("/mappa*")
 //			.permitAll().and()
-			.authorizeHttpRequests()
-			.requestMatchers("/convalida*")
-			.permitAll().and()
+//			.authorizeHttpRequests()
+//			.requestMatchers("/convalida*")
+//			.permitAll().and()
 			.authorizeHttpRequests()
 			.requestMatchers("/testing*")
 			.permitAll()
-			.anyRequest().authenticated();
+			.anyRequest().permitAll();
 		httpSecurity.authenticationProvider(authenticationProvider());
 		httpSecurity.httpBasic();
 		return httpSecurity.build();
