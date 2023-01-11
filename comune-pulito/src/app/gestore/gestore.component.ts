@@ -17,6 +17,7 @@ export class GestoreComponent implements OnInit {
   error:boolean=false;
   conferma:boolean=false;
   vuoto:boolean=false;
+  documento:Document=document;
 
   constructor(private router:Router, private dataService:DataService, private http:HttpService){}
   
@@ -24,6 +25,7 @@ export class GestoreComponent implements OnInit {
     if(this.dataService.id_utente==null || this.dataService.isGestore==false){
       this.router.navigate(['login']);
     }
+    this.documento.body.style.overflow="auto";
     if(this.dataService.id_utente){
       this.http.ottieniCluster(this.dataService.id_utente).subscribe(data=>{
         console.log(data)
