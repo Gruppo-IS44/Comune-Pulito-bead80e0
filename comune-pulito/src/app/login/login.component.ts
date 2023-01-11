@@ -40,6 +40,10 @@ export class LoginComponent{
     this.show=!this.show;
   }
 
+  home(){
+    this.router.navigate(['mappa']);
+  }
+
   onLogin(){//invocato nel momento in cui si richiede il login    
     this.httpService.login(this.loginForm.value).subscribe(data=>{
       this.dataService.id_utente=data.token;
