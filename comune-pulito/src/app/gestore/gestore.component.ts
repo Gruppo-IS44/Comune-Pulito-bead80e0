@@ -21,7 +21,7 @@ export class GestoreComponent implements OnInit {
   constructor(private router:Router, private dataService:DataService, private http:HttpService){}
   
   ngOnInit():void {
-    if(this.dataService.id_utente==null){
+    if(this.dataService.id_utente==null || this.dataService.isGestore==false){
       this.router.navigate(['login']);
     }
     this.http.ottieniCluster(this.dataService.id_utente).subscribe(data=>{

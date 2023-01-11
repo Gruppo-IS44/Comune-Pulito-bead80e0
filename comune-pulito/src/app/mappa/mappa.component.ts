@@ -27,8 +27,12 @@ export class MappaComponent implements OnInit {
   isGestore:boolean=this.dataService.isGestore;
   nome:string=this.dataService.nome;
   cognome:string=this.dataService.cognome;
+  loggato:boolean=false;
 
   ngOnInit(): void {
+    if(this.dataService.id_utente!=null){
+      this.loggato=true;
+    }
       const attribution = new Attribution({       
       });      
 
@@ -56,8 +60,8 @@ export class MappaComponent implements OnInit {
         source:VectorSource,
         style:new Style({
           image: new Icon({
-              src: 'https://docs.maptiler.com/openlayers/geojson-points/icon-plane-512.png',
-              size: [512, 512],
+              src: 'assets/delete.png',
+              size: [1024, 1024],
               scale: 0.03
           })
         }) 

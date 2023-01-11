@@ -29,7 +29,9 @@ export class SegnalazioneComponent {
 
   ngOnInit(){
     this.getLocation();
-    console.log(this.dataService)//Dati utente che sta creando la segnalazione.
+    if(this.dataService.id_utente==null || this.dataService.isGestore==true){
+      this.router.navigate(['login']);
+    }//Dati utente che sta creando la segnalazione.
   }
   
   getLocation(): void{
