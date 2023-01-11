@@ -66,3 +66,8 @@ export class Segnalazione2 extends Segnalazione{
     id_Tipo!:string;
     id_utente!:string;
 }
+
+export interface Feature{
+    descrizione:string,
+    foto:string
+}

@@ -82,7 +82,25 @@
     <div class="spinner-grow text-danger position-absolute top-50 start-50 translate-middle" [ngClass]="{'invisible':(caricato), 'visible':(!caricato)}">
       <span class="visually-hidden">Loading...</span>
     </div> 
-    <div id="map" [ngClass]="{'invisible':(!caricato), 'visible':(caricato)}">
-      <pre id="info"></pre>
+    <div id="map" [ngClass]="{'invisible':(!caricato), 'visible':(caricato)}"></div>
+    <div class="offcanvas offcanvas-start text-bg-dark" tabindex="=-1" id="info" [ngClass]="{'show':aperto}" *ngIf="aperto">
+      <div class="flex container text-center">
+        <br>
+        <div class="row m-2" *ngIf="desc">
+          <div class="col-0 col-md-1"></div>
+          <div class="col-12 col-md-10">         
+            <h1 class="h3 text-wrap text-break">Descrizione: {{featureSelezionata.descrizione}}</h1>
+          </div>
+          <div class="col-0 col md-1"></div>
+        </div>
+        <div class="row" *ngIf="foto">
+          <div class="col-0 col-md-1"></div>
+          <div class="col-12 col-md-10">         
+            <img src={{featureSelezionata.foto}} width="300" height="250">
+          </div>
+          <div class="col-0 col md-1"></div>
+        </div>
+        <button class="btn btn-outline-light btn-lg border-dark position-absolute end-0 top-0" (click)="chiudi()"><span class="material-icons">arrow_forward</span></button>
+      </div>
     </div>
 </body>

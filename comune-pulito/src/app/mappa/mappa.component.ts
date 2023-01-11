@@ -14,6 +14,7 @@ import Icon from 'ol/style/Icon';
 import { Router } from '@angular/router';
 import { Point } from 'ol/geom';
 import { DataService } from '../data.service';
+import { Feature } from '../Export';
 
 
 @Component({
@@ -28,6 +29,10 @@ export class MappaComponent implements OnInit {
   nome:string=this.dataService.nome;
   cognome:string=this.dataService.cognome;
   loggato:boolean=false;
+  featureSelezionata!:Feature;
+  aperto:boolean=false;
+  foto!:boolean;
+  desc!:boolean;
 
   ngOnInit(): void {
     if(this.dataService.id_utente!=null){
@@ -61,7 +66,7 @@ export class MappaComponent implements OnInit {
         style:new Style({
           image: new Icon({
               src: 'assets/delete.png',
-              size: [1024, 1024],
+              size: [768, 768],
               scale: 0.03
           })
         }) 
@@ -75,23 +80,33 @@ export class MappaComponent implements OnInit {
         this.caricato=true;
       })
       map.addLayer(AirportLayer);
-      map.on('singleclick', showInfo);
-
-      function showInfo(event:any) {
-        const info=document.getElementById('info');
+      const showInfo = (event:any) => {
         const features = map.getFeaturesAtPixel(event.pixel);
-        if (features.length == 0 && info) {
-          info.innerText = '';
-          info.style.opacity = '0';
+        if (features.length == 0 ) {
           return;
         }
         const properties = features[0].getProperties();
-        if(info){
-          info.innerText = JSON.stringify(properties, null, 2);
+        /*if(info){
+          info.innerText = 'cazzi'//JSON.stringify(properties, null, 2);
           info.style.opacity = '1';
         }
-        console.log(info)
-      }  
+        this.cazzi=info;
+        console.log(this.cazzi)*/
+        this.featureSelezionata={descrizione:properties['descrizione'], foto:properties['foto']};
+        console.log(this.featureSelezionata)
+        if(this.featureSelezionata.foto=="null"){
+          this.foto=false;
+        }else{
+          this.foto=true;
+        }
+        if(this.featureSelezionata.descrizione=="null"){
+          this.desc=false;
+        }else{
+          this.desc=true;
+        }
+        this.aperto=true;
+      }
+      map.on('click', showInfo);
   }
 
   clickSegnalazioni(){
@@ -106,6 +121,10 @@ export class MappaComponent implements OnInit {
 
   clickGestione(){
     this.router.navigate(["/gestore"])
+  }
+
+  chiudi(){
+    this.aperto=false;
   }
 
   clickLogout(){
