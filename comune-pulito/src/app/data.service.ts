@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class DataService {
-  id_utente:string="6667";
+  id_utente:string="55";
   email!:string;
   password!:string;
   isGestore!:boolean;
