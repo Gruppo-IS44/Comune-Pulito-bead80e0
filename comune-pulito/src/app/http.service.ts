@@ -16,14 +16,14 @@ export class HttpService {  //TODO:Interceptor richieste che aggiunge l'header.
   login(userLogin:Login):Observable<Token>{
     const pass=sha256(userLogin.password);
     const body={"email":userLogin.email,"password":pass,"isGestore":userLogin.isGestore};
-    return this.http.post<Token>(environment.baseURL+"/login", body);
+    return this.http.post<Token>(environment.baseURL+"/login", body,{headers:{'skip':'true'}});
   }
 
   addUser(utente:Utente):Observable<SignupResponse>{
     const pass=sha256(utente.password);
     const body={"email":utente.email,"password":pass,"nome":utente.nome,"cognome":utente.cognome};
     console.log(body);
-    return this.http.post<SignupResponse>(environment.baseURL+"/signup", body);
+    return this.http.post<SignupResponse>(environment.baseURL+"/signup", body, {headers:{'skip':'true'}});
   }
 
   segnala(segnalazione:Segnalazione):Observable<Object>{//TODO:Cambiare Object

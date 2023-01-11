@@ -13,11 +13,17 @@ export class InterceptorService implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
     console.log(request)
+    if(request.headers.get("skip")){
+      request.headers.delete("skip")
+      return next.handle(request);
+    }
+    const email=this.dataService.email;
+    const password=this.dataService.password;
     request = request.clone({
       setHeaders: {
-        Authorization: 'Basic '+btoa(this.dataService.email+":"+sha256(this.dataService.password)),
-        'Access-Control-Allow-Origin': '*',
-        'Content-Type': 'application/json'
+        Authorization: 'Basic '+btoa(email+":"+password),
+        'Access-Control-Allow-Origin':'*',
+        'Content-Type':'application/json'
       }
     });
     console.log(request)

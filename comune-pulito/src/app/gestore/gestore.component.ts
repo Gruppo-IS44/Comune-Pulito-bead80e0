@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { DataService } from '../data.service';
 import { HttpService } from '../http.service';
 import { Cluster, MenuGestore, Segnalazione, Segnalazione2 } from '../Export';
@@ -18,9 +18,12 @@ export class GestoreComponent implements OnInit {
   conferma:boolean=false;
   vuoto:boolean=false;
 
-  constructor(private router:RouterModule, private dataService:DataService, private http:HttpService){}
+  constructor(private router:Router, private dataService:DataService, private http:HttpService){}
   
   ngOnInit():void {
+    if(this.dataService.id_utente==null){
+      this.router.navigate(['login']);
+    }
     this.http.ottieniCluster(this.dataService.id_utente).subscribe(data=>{
       console.log(data)
       this.data=data;
