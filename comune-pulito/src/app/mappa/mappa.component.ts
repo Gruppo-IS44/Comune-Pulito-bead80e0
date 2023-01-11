@@ -87,6 +87,7 @@ export class MappaComponent implements OnInit {
         }
         const properties = features[0].getProperties();
         this.featureSelezionata={descrizione:properties['descrizione'], foto:properties['foto']};
+        console.log(properties)
         if(this.featureSelezionata.foto=="null"){
           this.foto=false;
         }else{
@@ -116,6 +117,10 @@ export class MappaComponent implements OnInit {
 
   chiudi(){
     this.aperto=false;
+  }
+
+  home(){
+    this.router.navigate(['login']);
   }
 
   clickLogout(){

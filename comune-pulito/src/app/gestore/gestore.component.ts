@@ -66,6 +66,10 @@ export class GestoreComponent implements OnInit {
     }
   }
 
+  home(){
+    this.router.navigate(['mappa']);
+  }
+
   //Il cluster che è evidenziato in quel momento è il "cluster selezionato"
   //OPPURE
   //Il cluster viene bindato da un evento(ci sono più cluster evidenziati)

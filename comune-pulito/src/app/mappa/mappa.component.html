@@ -7,7 +7,8 @@
     </style>
 </head>
 <body>
-    <button class="btn btn-dark position-absolute end-0 btn-lg opacity-75" data-bs-toggle="offcanvas" data-bs-target="#OffcanvasExample" *ngIf="loggato"><span class="material-icons"><h1 class="h3">menu</h1></span></button>
+  <button class="btn btn-link position-absolute end-0 btn-lg" *ngIf="!loggato" (click)="home()"><span class="material-icons"><h1 class="h3 text-dark">home</h1></span></button>
+    <button class="btn btn-link position-absolute end-0 btn-lg" data-bs-toggle="offcanvas" data-bs-target="#OffcanvasExample" *ngIf="loggato"><span class="material-icons"><h1 class="h3 text-dark">menu</h1></span></button>
     <div class="offcanvas offcanvas-end text-bg-dark" tabindex="=-1" id="OffcanvasExample">
       <div class="flex container text-center">
         <br>
@@ -52,7 +53,7 @@
           <div class="col-0 col md-2"></div>
         </div>
       </div>
-      <button class="btn btn-outline-light btn-lg border-dark position-absolute start-0 top-0" data-bs-toggle="offcanvas" data-bs-target="#OffcanvasExample"><span class="material-icons">arrow_forward</span></button>
+      <button class="btn btn-link btn-lg position-absolute start-0 top-0" data-bs-toggle="offcanvas" data-bs-target="#OffcanvasExample"><span class="material-icons"><h1 class="h3 text-light">arrow_forward</h1></span></button>
       <button class="btn btn-outline-light btn-lg border-dark position-absolute end-0 bottom-0" data-bs-toggle="modal" data-bs-target="#ModalDialogExample"><span class="material-icons">info</span></button>
     </div>
     <div class="modal fade bg-dark" id="ModalDialogExample" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"><!--Pagina delle Info-->
@@ -86,6 +87,7 @@
     <div class="offcanvas offcanvas-start text-bg-dark" tabindex="=-1" id="info" [ngClass]="{'show':aperto}" *ngIf="aperto">
       <div class="flex container text-center">
         <br>
+        <br>
         <div class="row m-2" *ngIf="desc">
           <div class="col-0 col-md-1"></div>
           <div class="col-12 col-md-10">         
@@ -96,11 +98,11 @@
         <div class="row" *ngIf="foto">
           <div class="col-0 col-md-1"></div>
           <div class="col-12 col-md-10">         
-            <img src={{featureSelezionata.foto}} width="300" height="250">
+            <img src="{{featureSelezionata.foto}}" width="300" height="250">
           </div>
           <div class="col-0 col md-1"></div>
         </div>
-        <button class="btn btn-outline-light btn-lg border-dark position-absolute end-0 top-0" (click)="chiudi()"><span class="material-icons">arrow_forward</span></button>
+        <button class="btn btn-link btn-lg position-absolute end-0 top-0" (click)="chiudi()"><span class="material-icons"><h1 class="h3 text-light">arrow_forward</h1></span></button>
       </div>
     </div>
 </body>

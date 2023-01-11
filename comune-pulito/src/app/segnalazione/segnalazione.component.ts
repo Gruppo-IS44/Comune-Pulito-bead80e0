@@ -33,6 +33,10 @@ export class SegnalazioneComponent {
       this.router.navigate(['login']);
     }
   }
+
+  home(){
+    this.router.navigate(['mappa']);
+  }
   
   getLocation(): void{
     if (navigator.geolocation) {
