@@ -1,9 +1,10 @@
-<div class="position-absolute bottom-0 end-0"><img src="assets/logo.png" width="110" height="150"></div>
+
 <div class="spinner-grow text-dark position-absolute top-50 start-50 translate-middle" role="status" *ngIf="!caricato">
     <span class="visually-hidden">Loading...</span>
 </div>
 <button class="btn btn-link position-absolute start-0 top-0 btn-lg" (click)="home()"><span class="material-icons"><h1 class="h3 text-dark">home</h1></span></button>
 <div class="container text-center align-middle">
+    <div class="position-absolute bottom-0 end-0"><img src="assets/logo.png" width="110" height="150"></div>
     <div class="row p-2">
         <div class="col-0 col-md-1"></div>
         <div class="col col-md-10 text-center">
@@ -52,7 +53,7 @@
                                 <div class="list-group-item">
                                     <div class="row">
                                         <div class="col-2">
-                                            <h1 class="h4">Segnalazione:{{segnalazione.id_segnalazione}}</h1>
+                                            <h1 class="h4">Segnalazione: {{segnalazione.id_segnalazione}}</h1>
                                         </div>
                                         <div class="col-2">
                                             <a role="button" type="button" data-bs-toggle="modal" [attr.data-bs-target]="'#modal'+i+'-'+j"><img src={{segnalazione.foto}} *ngIf="segnalazione.foto" width="150"height="125"></a><!--TODO:Clicca e ricevi un'anteprima più grande-->

@@ -79,7 +79,7 @@ export class MappaComponent implements OnInit {
           url:'http://localhost:8080/geojson',
           format:new GeoJSON()
         }),
-        blur:50,
+        blur:25,
         radius:10,
         weight:function (feature){
           switch(feature.get('tipo')){
