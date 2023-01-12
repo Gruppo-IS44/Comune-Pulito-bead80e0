@@ -82,7 +82,11 @@ export class MappaComponent implements OnInit {
         blur:50,
         radius:10,
         weight:function (feature){
-          return 1
+          switch(feature.get('tipo')){
+            case '1':return 0.33;
+            case '2':return 1;
+            default:return 0.67;
+          }
         }
       })
       console.log(heatMapLayer.getProperties())

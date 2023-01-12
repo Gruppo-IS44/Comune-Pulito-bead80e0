@@ -19,7 +19,7 @@ public class GeoJSONParserGetter {
 		long i=0;
 		for(Segnalazione s:Segnalazioni.findAll()) {
 			i++;
-			risposta = risposta.concat("{\"type\": \"Feature\", \"geometry\": {\"type\": \"Point\", \"coordinates\": ["+s.getLongitudine()+", "+s.getLatitudine()+"]}, \"id\": "+s.getId_segnalazione()+", \"properties\": {\"descrizione\": \""+s.getDescrizione()+"\", \"foto\": \""+s.getFoto()+"\"}}");
+			risposta = risposta.concat("{\"type\": \"Feature\", \"geometry\": {\"type\": \"Point\", \"coordinates\": ["+s.getLongitudine()+", "+s.getLatitudine()+"]}, \"id\": "+s.getId_segnalazione()+", \"properties\": {\"descrizione\": \""+s.getDescrizione()+"\", \"foto\": \""+s.getFoto()+"\", \"tipo\": \""+s.getId_Tipo()+"\"}}");
 			if(i!=num) {
 				risposta=risposta.concat(", ");
 			}
