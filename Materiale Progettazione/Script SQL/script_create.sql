@@ -72,12 +72,8 @@ CREATE TABLE TIPO(
 CREATE TABLE SEGNALAZIONE(
     Id_segnalazione int NOT NULL AUTO_INCREMENT,
     Dataora datetime,
-<<<<<<< Updated upstream
     Descrizione varchar(160),
     Foto longtext,
-=======
-    Foto Longtext,
->>>>>>> Stashed changes
     Latitudine decimal(8,6),
     Longitudine decimal(8,6),
 	Id_Tipo int NOT NULL REFERENCES TIPO(Id_tipo),
