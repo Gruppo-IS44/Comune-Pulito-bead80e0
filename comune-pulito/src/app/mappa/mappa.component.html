@@ -1,1 +1,108 @@
-<div class="vw-100"><div class="vh-100"><iframe src="https://www.google.com/maps/d/u/0/embed?mid=1fsumziXiVTgDq9SbxjMq6uxyUJ3lzOk&ehbc=2E312F" width="100%" height="99.4%"></iframe></div></div>     
+<head>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v7.1.0/ol.css">
+    <script src="https://cdn.jsdelivr.net/npm/ol@v7.1.0/dist/ol.js"></script>
+    <style>
+      #map {position: absolute; top: 0; right: 0; bottom: 0; left: 0;}
+    </style>
+</head>
+<body>
+  <button class="btn btn-link position-absolute end-0 btn-lg" *ngIf="!loggato" (click)="home()"><span class="material-icons"><h1 class="h3 text-dark">home</h1></span></button>
+    <button class="btn btn-link position-absolute end-0 btn-lg" data-bs-toggle="offcanvas" data-bs-target="#OffcanvasExample" *ngIf="loggato"><span class="material-icons"><h1 class="h3 text-dark">menu</h1></span></button>
+    <div class="offcanvas offcanvas-end text-bg-dark" tabindex="=-1" id="OffcanvasExample">
+      <div class="flex container text-center">
+        <br>
+        <div class="row m-2">
+          <div class="col-0 col-md-1"></div>
+          <div class="col-12 col-md-10">         
+            <h1 class="h3">Ciao, {{nome}} {{cognome}}!</h1>
+          </div>
+          <div class="col-0 col md-1"></div>
+        </div>
+        <div class="row" *ngIf="!isGestore">
+          <div class="col-0 col-md-2"></div>
+          <div class="col-12 col-md-8">         
+            <button type="button" class="btn btn-outline-light btn-lg border-dark" (click)="clickSegnalazioni()"><h1 class="h3"><span class="material-icons">post_add</span> Segnalazioni</h1></button>
+          </div>
+          <div class="col-0 col md-2"></div>
+        </div>
+        <div class="row m-3" *ngIf="!isGestore">
+          <div class="col-0 col-md-2"></div>
+          <div class="col-12 col-md-8">            
+            <button type="button" class="btn btn-outline-light btn-lg border-dark" (click)="clickReward()"><h1 class="h3"><span class="material-icons">shopping_cart</span> Reward</h1></button>
+          </div>
+          <div class="col-0 col md-2"></div>
+        </div>
+        <div class="row" *ngIf="isGestore">
+          <div class="col-0 col-md-2"></div>
+          <div class="col-12 col-md-8">            
+            <button type="button" class="btn btn-outline-light btn-lg border-dark" (click)="clickGestione()"><h1 class="h3"><span class="material-icons">gavel</span> Menu Gestore</h1></button>
+          </div>
+          <div class="col-0 col md-2"></div>
+        </div>
+        <div class="row">
+          <div class="col-1 col-md-1"></div>
+          <div class="col-10 col-md-10"><hr class="border border-light border-1 opacity-50"></div>          
+          <div class="col-1 col-md-1"></div>
+        </div>
+        <div class="row">
+          <div class="col-0 col-md-2"></div>
+          <div class="col-12 col-md-8">
+            <button type="button" class="btn btn-outline-danger btn-lg border-dark" (click)="clickLogout()"><h1 class="h3"><span class="material-icons">logout</span> Log Out</h1></button>            
+          </div>
+          <div class="col-0 col md-2"></div>
+        </div>
+      </div>
+      <button class="btn btn-link btn-lg position-absolute start-0 top-0" data-bs-toggle="offcanvas" data-bs-target="#OffcanvasExample"><span class="material-icons"><h1 class="h3 text-light">arrow_forward</h1></span></button>
+      <button class="btn btn-outline-light btn-lg border-dark position-absolute end-0 bottom-0" data-bs-toggle="modal" data-bs-target="#ModalDialogExample"><span class="material-icons">info</span></button>
+    </div>
+    <div class="modal fade bg-dark" id="ModalDialogExample" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"><!--Pagina delle Info-->
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel"><h1 class="diplay-6">Informazioni</h1></h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button><!--Pulsante di chiusura della pagina delle info-->
+                </div>
+                <div class="modal-body">
+                    <h1 class="h4">Cos'è Comune Pulito?</h1>
+                    <p>Comune Pulito è un'app ideata per aiutare i cittadini a segnalare i rifiuti presenti nella propria città, che una volta elencati e catalogati verranno ripuliti e rimossi da del personale specializzato.</p>
+                    <br>
+                    <h1 class="h4">Come funziona?</h1>
+                    <p>Per segnalare un rifiuto basta inviare una foto e/o una descrizione, indicare il tipo di rifiuto e inviare i dati tramite la pagina Segnalazioni.
+                      La posizione del rifiuto verrà prelevata automaticamente dal dispositivo se è stato permesso l'uso della geolocalizzazione da parte dell'utente.</p>
+                    <br>
+                    <h1 class="h4">Verranno salvati i miei dati personali?</h1>
+                    <p>Esclusi nome e cognome per la creazione dell'account, e la posizione attuale per la localizzazione dei rifiuti, l'app non richiede e non immagazzina i dati sensibili dell'utente.</p>
+                    <br>
+                    <h1 class="h4">In cosa consistono le reward?</h1>
+                    <p>Comune Pulito mette a disposizioni una lista di reward riscattabili per gli account dei cittadini che hanno segnalato più rifiuti, per incentivare ulteriormente gli utenti a rendere più pulita la propria città.</p>
+                </div>
+            </div>
+       </div>
+    </div>
+    <div class="spinner-grow text-danger position-absolute top-50 start-50 translate-middle" [ngClass]="{'invisible':(caricato), 'visible':(!caricato)}">
+      <span class="visually-hidden">Loading...</span>
+    </div> 
+    <div id="map" [ngClass]="{'invisible':(!caricato), 'visible':(caricato)}"></div>
+    <div class="offcanvas offcanvas-start text-bg-dark" tabindex="=-1" id="info" [ngClass]="{'show':aperto}" *ngIf="aperto">
+      <div class="flex container text-center">
+        <br>
+        <br>
+        <div class="row m-2" *ngIf="desc">
+          <div class="col-0 col-md-1"></div>
+          <div class="col-12 col-md-10">         
+            <h1 class="h3 text-wrap text-break">Descrizione: {{featureSelezionata.descrizione}}</h1>
+          </div>
+          <div class="col-0 col md-1"></div>
+        </div>
+        <div class="row" *ngIf="foto">
+          <div class="col-0 col-md-1"></div>
+          <div class="col-12 col-md-10">         
+            <img src="{{featureSelezionata.foto}}" width="300" height="250">
+          </div>
+          <div class="col-0 col md-1"></div>
+        </div>
+        <button class="btn btn-link btn-lg position-absolute end-0 top-0" (click)="chiudi()"><span class="material-icons"><h1 class="h3 text-light">arrow_forward</h1></span></button>
+      </div>
+    </div>
+</body>

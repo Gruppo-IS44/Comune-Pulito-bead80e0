@@ -1,10 +1,12 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Injectable } from '@angular/core';
+import { Component, Injectable} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { catchError, Observable } from 'rxjs';
 import {Tipo,Login,Signup} from '../Export';
 import { HttpService } from '../http.service';
+import { DataService } from '../data.service';
+import { sha256 } from 'js-sha256';
 
 @Component({
   selector: 'login',
@@ -12,7 +14,7 @@ import { HttpService } from '../http.service';
   styleUrls: [ 'login.component.css' ]
 })
 
-export class LoginComponent  {
+export class LoginComponent{
   show:boolean=false
   errore:boolean=false;
   tipo:Tipo={tipo:"Sign Up",signup:true};
@@ -32,55 +34,46 @@ export class LoginComponent  {
   });
   erroreSignup:boolean=false;
 
-
-  constructor(private formBuilder:FormBuilder,private httpService:HttpService, private router:Router){}
-
+  constructor(private formBuilder:FormBuilder,private httpService:HttpService, private router:Router, private dataService:DataService){}
+  
   toggleEye() {
     this.show=!this.show;
   }
 
-  onLogin(){//invocato nel momento in cui si richiede il login
+  home(){
+    this.router.navigate(['mappa']);
+  }
+
+  onLogin(){//invocato nel momento in cui si richiede il login    
     this.httpService.login(this.loginForm.value).subscribe(data=>{
-      console.log(data)
-      this.router.navigate(["/map"]);
+      this.dataService.id_utente=data.token;
+      this.dataService.email=this.loginForm.value.email;
+      this.dataService.isGestore=this.loginForm.value.isGestore;
+      this.dataService.password=sha256(this.loginForm.value.password);
+      this.dataService.nome=data.nome;
+      this.dataService.cognome=data.cognome;
+      this.router.navigate(["/mappa"]);
     },
     error =>{
-      console.log("Errore nel login!");
-      console.log(error);
+      console.error("Errore nel login!");
+      console.error(error.message);
       this.errore=true;
     });
-    //TODO implementare autenticazione tramite cookie session based
   }
-  
-  /*onLogin(data:any){//invocato nel momento in cui si richiede il Login con le credenziali inserite all'interno del form
-    this.setLogin(data);
-    console.log(this.login);
-    //TODO implementare il passaggio al backend
-    this.httpService.login(this.login).subscribe(data => {
-      console.log(data)
-      this.login=data;});
-    console.log(this.login);
-  }*/
 
   onSignup(){//invocato nel momento in cui si richiede il Signup con le credenziali inserite all'interno del form
     this.httpService.addUser(this.signupForm.value).subscribe(data=>{
-      console.log(data);
       this.erroreSignup=false;
-      this.router.navigate(["/map"]);
+      this.dataService.email=this.signupForm.value.email;
+      this.dataService.nome=this.signupForm.value.nome;
+      this.dataService.cognome=this.signupForm.value.cognome;
+      this.dataService.password=sha256(this.signupForm.value.password);
+      this.dataService.id_utente=data.userLogin.token;
+      this.router.navigate(["/mappa"]);
     },
     error=>{
       console.log(error)
       this.erroreSignup=true;
     });
-  }
-
-  /*onSignup(data:any){//invocato nel momento in cui si richiede il Signup con le credenziali inserite all'interno del form
-    this.setSignup(data);
-    //TODO implementare il passaggio al backend
-    this.httpService.addUser(this.signup);
-  }*/
-
-  setSignup(temp:any){//imposta i parametri di "signup" uguali a quelli di "temp" DEPRECATED
-    this.signup={email:temp.email,username:temp.username,password:temp.password,nome:temp.nome,cognome:temp.cognome};
   }
 }

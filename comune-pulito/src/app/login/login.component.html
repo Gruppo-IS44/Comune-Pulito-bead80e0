@@ -1,12 +1,15 @@
-<div class="flex container">
+<div class="position-absolute bottom-0 end-0"><img src="assets/logo.png" width="110" height="150"></div>
+<button class="btn btn-link position-absolute start-0 bottom-0 btn-lg text-decoration-none" (click)="home()"><h1 class="h4 text-dark">Vai alla mappa <span class="material-icons">travel_explore</span></h1></button>
+<div class="container position-absolute top-50 start-50 translate-middle">
   <div *ngIf="!tipo.signup"><!--Form del Sign Up-->
-    <form [formGroup]="signupForm" autocomplete="off">
-      <input autocomplete="false" name="hidden" type="text" style="display:none;">
+
+    <form [formGroup]="signupForm">
+      <br>
       <div class="row text-center">
         <div class="col-0 col-md-1"></div>
         <div class="col col-md-10">
           <div class="mb-4">
-            <h1 class="text-color-red">Comune Pulito</h1><hr class="border border-dark border-2 opacity-75">
+            <h1 class="display-5 text-light">Comune Pulito</h1><hr class="border border-dark border-1 opacity-75">
           </div>
           <div class="col-0 col-md-1"></div>
         </div>
@@ -15,7 +18,7 @@
         <div class="col-0 col-md-1"></div>
         <div class="col col-md-10">
           <div class="form-floating mb-2">
-            <input class="form-control" id="email" name="email" placeholder="email" formControlName="email">
+            <input class="form-control" [ngClass]="{'border-danger is-invalid':signupForm.get('email')?.invalid, 'border-success':!signupForm.get('email')?.invalid}" id="email" name="email" placeholder="email" formControlName="email">
             <label for="email">Email</label>
             <div class="alert alert-danger" *ngIf="signupForm.get('email')?.touched && signupForm.get('email')?.invalid">
               L'email inserita non è valida!
@@ -28,13 +31,13 @@
         <div class="col-0 col-md-1"></div>
         <div class="col col-md-5">
           <div class="form-floating">
-            <input class="form-control" id="nome" name="nome" placeholder="nome" formControlName="nome">
+            <input class="form-control" [ngClass]="{'border-danger is-invalid':signupForm.get('nome')?.invalid, 'border-success':!signupForm.get('nome')?.invalid}" id="nome" name="nome" placeholder="nome" formControlName="nome">
             <label for="nome">Nome</label>
           </div>
         </div> 
         <div class="col col-md-5">
           <div class="form-floating">
-            <input class="form-control" id="cognome" name="cognome" placeholder="cognome" formControlName="cognome">
+            <input class="form-control" [ngClass]="{'border-danger is-invalid':signupForm.get('cognome')?.invalid, 'border-success':!signupForm.get('cognome')?.invalid}" id="cognome" name="cognome" placeholder="cognome" formControlName="cognome">
             <label for="cognome">Cognome</label>
           </div>
         </div>
@@ -45,16 +48,10 @@
         <div class="col col-md-5">
           <div class="input-group">
             <div class="form-floating">
-              <input class="form-control" id="password" type="password" [type]="show ? 'text' : 'password'" name="password" placeholder="password" formControlName="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$">
+              <input class="form-control" [ngClass]="{'border-danger is-invalid':signupForm.get('password')?.invalid, 'border-success':!signupForm.get('password')?.invalid}" id="password" type="password" [type]="show ? 'text' : 'password'" name="password" placeholder="password" formControlName="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$">
               <label for="password">Password </label>
             </div>
-            <button *ngIf="signupForm.get('password')?.invalid" class="btn btn-outline-danger" disabled>
-              <div><span class="material-icons">error</span></div>
-            </button>
-            <button *ngIf="!signupForm.get('password')?.invalid" class="btn btn-outline-success" disabled>  
-              <div><span class="material-icons">task_alt</span></div>
-            </button>
-            <button class="btn btn-outline-secondary" (mouseup)="toggleEye()" (mousedown)="toggleEye()" (touchstart)="toggleEye()" (touchend)="toggleEye()"><span class="material-icons">remove_red_eye</span></button>
+            <button class="btn btn-light" [ngClass]="{'border-danger is-invalid':signupForm.get('password')?.invalid, 'border-success':!signupForm.get('password')?.invalid}" (mouseup)="toggleEye()" (mousedown)="toggleEye()" (touchstart)="toggleEye()" (touchend)="toggleEye()"><span class="material-icons">remove_red_eye</span></button>
           </div>
             <div class="flex alert alert-danger justify-content-left" *ngIf="signupForm.get('password')?.hasError('pattern') && signupForm.get('password')?.touched">
                  La password deve contenere almeno 8 caratteri di cui:
@@ -68,16 +65,10 @@
         <div class="col col-md-5">
           <div class="input-group">
             <div class="form-floating">
-              <input class="form-control" id="cpassword" type="password" [type]="show ? 'text' : 'password'" name="cpassword" placeholder="cpassword" formControlName="cpassword">
+              <input class="form-control" [ngClass]="{'border-danger is-invalid':(signupForm.get('cpassword')?.getRawValue()!==signupForm.get('password')?.getRawValue() || signupForm.get('cpassword')?.getRawValue()===''), 'border-success':(signupForm.get('cpassword')?.getRawValue()===signupForm.get('password')?.getRawValue() && signupForm.get('cpassword')?.getRawValue()!==null)}" id="cpassword" type="password" [type]="show ? 'text' : 'password'" name="cpassword" placeholder="cpassword" formControlName="cpassword">
               <label for="cpassword">Conferma Password</label>
             </div>
-            <button *ngIf="signupForm.get('cpassword')?.getRawValue()!==signupForm.get('password')?.getRawValue() || !signupForm.get('cpassword')?.touched" class="btn btn-outline-danger" disabled>
-              <div><span class="material-icons">error</span></div>
-            </button>
-            <button *ngIf="signupForm.get('cpassword')?.getRawValue()===signupForm.get('password')?.getRawValue() && signupForm.get('cpassword')?.touched" class="btn btn-outline-success" disabled>  
-              <div><span class="material-icons">task_alt</span></div>
-            </button>
-              <button class="btn btn-outline-secondary" (mouseup)="toggleEye()" (mousedown)="toggleEye()" (touchstart)="toggleEye()" (touchend)="toggleEye()"><span class="material-icons">remove_red_eye</span></button>
+              <button class="btn btn-light" [ngClass]="{'border-danger is-invalid':(signupForm.get('cpassword')?.getRawValue()!==signupForm.get('password')?.getRawValue() || signupForm.get('cpassword')?.getRawValue()===''), 'border-success':(signupForm.get('cpassword')?.getRawValue()===signupForm.get('password')?.getRawValue() && signupForm.get('cpassword')?.getRawValue()!==null)}" (mouseup)="toggleEye()" (mousedown)="toggleEye()" (touchstart)="toggleEye()" (touchend)="toggleEye()"><span class="material-icons">remove_red_eye</span></button>
             </div>
               <div class="alert alert-danger" *ngIf="signupForm.get('cpassword')?.getRawValue()!==signupForm.get('password')?.getRawValue()  && signupForm.get('cpassword')?.touched">
                 Le password non coincidono!
@@ -87,7 +78,7 @@
       </div> 
       <div class="row text-center">
         <div class="col-0 col-md-1"></div>
-        <div class="col-6 col-md-5">Hai già un account?<switch [tipo]=tipo></switch></div>
+        <div class="col-6 col-md-5"><h1 class="h6">Hai già un account?</h1><switch [tipo]=tipo></switch></div>
         <div class="col-6 col-md-5"><br><button class="btn btn-primary" (click)="onSignup()" [disabled]="signupForm.invalid || (signupForm.get('cpassword')?.getRawValue()!==signupForm.get('password')?.getRawValue() || signupForm.get('cpassword')?.getRawValue()=='')">Sign Up</button></div>
         <div class="col-0 col-md-1"></div>
       </div>
@@ -104,15 +95,14 @@
     </form>
   </div>
 </div>
-<div class="container text-center text-color-black">
-  <div *ngIf="tipo.signup"><!--Form del Login-->
-    <form [formGroup]="loginForm" autocomplete="off">
-      <input autocomplete="false" name="hidden" type="text" style="display:none;">
+<div class="container text-center text-color-black position-absolute top-50 start-50 translate-middle"><!--Form del Login-->
+  <div *ngIf="tipo.signup">
+    <form [formGroup]="loginForm">
       <div class="row">
         <div class="col-1 col-md-2"></div>
         <div class="col-10 col-md-8">
           <div class="mb-4">
-            <h1 class="text-color-red">Comune Pulito</h1><hr class="border border-dark border-2 opacity-75">
+            <h1 class="display-5 text-light">Comune Pulito</h1><hr class="border border-dark border-1 opacity-75">
           </div>
         </div>
         <div class="col-1 col-md-2"></div>
@@ -135,7 +125,7 @@
               <input class="form-control" id="password" type="password" [type]="show ? 'text' : 'password'" name="password" placeholder="password" formControlName="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$">
               <label for="password">Password </label>
             </div>
-            <button class="btn btn-outline-secondary" (mouseup)="toggleEye()" (mousedown)="toggleEye()" (touchstart)="toggleEye()" (touchend)="toggleEye()"><span class="material-icons">remove_red_eye</span></button>
+            <button class="btn btn-light" (mouseup)="toggleEye()" (mousedown)="toggleEye()" (touchstart)="toggleEye()" (touchend)="toggleEye()"><span class="material-icons">remove_red_eye</span></button>
           </div>
         </div>
         <div class="col-1 col-md-2"></div>
@@ -143,20 +133,21 @@
       <div class="row">
         <div class="col-1 col-md-2"></div>
         <div class="col-10 col-md-8">
+          <br>
           <div class="form-check form-check-inline">
             <input class="form-check-input" type="radio" id="utente" name="isGestore" [value]=false formControlName="isGestore">
-            <label class="form-check-label" for="utente">Utente</label>
+            <label class="form-check-label" for="utente"><h1 class="h6">Utente</h1></label>
           </div>
           <div class="form-check form-check-inline">
             <input class="form-check-input" type="radio" id="gestore" name="isGestore" [value]=true formControlName="isGestore">
-            <label class="form-check-label" for="gestore">Gestore</label>
+            <label class="form-check-label" for="gestore"><h1 class="h6">Gestore</h1></label>
           </div>
         </div>
         <div class="col-1 col-md-2"></div>
       </div>  
       <div class="row">
         <div class="col-0 col-md-1"></div>
-        <div class="col-6 col-md-5">Non sei registrato?<switch [tipo]=tipo></switch></div>
+        <div class="col-6 col-md-5"><h1 class="h6">Non sei registrato?</h1><switch [tipo]=tipo></switch></div>
         <div class="col-6 col-md-5"><br><button class="btn btn-primary" (click)="onLogin()" [disabled]="loginForm.invalid">Log In</button></div>
         <div class="col-0 col-md-1"></div>
       </div>

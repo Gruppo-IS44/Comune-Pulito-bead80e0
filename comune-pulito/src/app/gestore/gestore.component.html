@@ -1,0 +1,85 @@
+
+<div class="spinner-grow text-dark position-absolute top-50 start-50 translate-middle" role="status" *ngIf="!caricato">
+    <span class="visually-hidden">Loading...</span>
+</div>
+<button class="btn btn-link position-absolute start-0 top-0 btn-lg" (click)="home()"><span class="material-icons"><h1 class="h3 text-dark">home</h1></span></button>
+<div class="container text-center align-middle">
+    <div class="position-absolute bottom-0 end-0"><img src="assets/logo.png" width="110" height="150"></div>
+    <div class="row p-2">
+        <div class="col-0 col-md-1"></div>
+        <div class="col col-md-10 text-center">
+            <div class="h3 p-2" *ngIf="caricato">
+                <div class="p-2">Benvenuto {{nome}} {{cognome}}</div>
+                <div class="alert alert-danger p-2" *ngIf="error">
+                    Una o più segnalazioni non sono state convalidate.
+                </div>
+                <div class="alert alert-success p-2" *ngIf="conferma">
+                    Cluster convalidato con successo.
+                </div>
+                <div class="alert alert-primary" *ngIf="vuoto">
+                    Non ci sono Cluster da convalidare.
+                </div>
+            </div>
+        </div>
+        <div class="col-0 col-md-1"></div>
+    </div>            
+        <div class="accordion" *ngFor="let cluster of data; index as i" >
+                <div *ngIf="cluster.id_cluster.id_stato!='2'">
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <div class="row p-2">
+                                <div class="col-8">
+                                <a role="button" class="btn accordion-button collapsed" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse'+i">
+                                    <h1 class="h4">Cluster: {{cluster.id_cluster.id_cluster}}, Coordinate: ({{cluster.id_cluster.latitudine}},{{cluster.id_cluster.longitudine}})</h1>
+                                </a>                       
+                                </div>   
+                                <div class="col-1 p-3"><button class="btn btn-success" (click)="onConfermaAll(cluster)">Convalida</button></div>
+                                <div class="col-1 p-3"><button class="btn btn-danger" (click)="onWarnAll(cluster)">Warn</button></div>
+                                <div class="col-1 p-3"><button class="btn btn-primary" (click)="onConfermaCluster(cluster)" >Conferma</button></div>
+                            </div>           
+                        </div>
+                        <div [id]="'collapse'+i" class="accordion-collapse collapse">
+                            <div class=" list-group" *ngFor="let segnalazione of cluster.segnalazioni;index as j">
+                                <div class="modal fade"  [id]="'modal'+i+'-'+j" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"><!--Espansione foto-->
+                                    <div class="modal-dialog modal-dialog-centered modal-lg">
+                                        <div class="modal-content">
+                                                <button type="button" class="btn-close text-end" data-bs-dismiss="modal" aria-label="Close"></button><!--Pulsante di chiusura foto-->                                        
+                                            <div class="modal-body text-center">
+                                                <img src="{{segnalazione.foto}}" width="700" height="584">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <h1 class="h4">Segnalazione: {{segnalazione.id_segnalazione}}</h1>
+                                        </div>
+                                        <div class="col-2">
+                                            <a role="button" type="button" data-bs-toggle="modal" [attr.data-bs-target]="'#modal'+i+'-'+j"><img src={{segnalazione.foto}} *ngIf="segnalazione.foto" width="150"height="125"></a><!--TODO:Clicca e ricevi un'anteprima più grande-->
+                                        </div>
+                                        
+                                        <div class="col-4 text-wrap text-break">
+                                            <p class="lead" *ngIf="segnalazione.descrizione">Descrizione: {{segnalazione.descrizione}}</p>
+                                        </div>
+                                        <div class="col-2">
+                                            <select class="form-select" [id]="'options'+i+'-'+j">
+                                                <option value="1" [selected]="segnalazione.id_Tipo=='1'" (click)="segnalazione.id_Tipo='1'">Piccolo</option>
+                                                <option value="2" [selected]="segnalazione.id_Tipo=='2'" (click)="segnalazione.id_Tipo='2'">Grande</option>
+                                                <option value="3" [selected]="segnalazione.id_Tipo=='3'" (click)="segnalazione.id_Tipo='3'">Liquido</option>
+                                                <option value="4" [selected]="segnalazione.id_Tipo=='4'" (click)="segnalazione.id_Tipo='4'">Altro</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-1">
+                                            <button class="btn" (click)="onConvalidaSegnalazione(segnalazione)" [ngClass]="{'btn-secondary':segnalazione.id_Stato=='1','btn-success':segnalazione.id_Stato=='2','btn-danger':segnalazione.id_Stato=='3'}">Validità</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+            </div>
+        </div>
+    </div>
+

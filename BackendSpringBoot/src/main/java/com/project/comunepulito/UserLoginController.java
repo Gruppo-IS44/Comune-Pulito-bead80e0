@@ -8,10 +8,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.CrossOrigin;
-
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;  
+import org.springframework.web.bind.annotation.CrossOrigin; 
 
 
 @CrossOrigin(origins="http://localhost:4200")
@@ -24,12 +21,12 @@ public class UserLoginController {
 	private GestoreRepository gestoreRepository;
 	
 	@PostMapping("/login")
-	public UserLogin userLogin(	@RequestBody LoginBody loginBody) {
+	public UserLogin userLogin(@RequestBody LoginBody loginBody) {
 		if (loginBody.isGestore()){
 			try{
-				Gestore gestore=gestoreRepository.findByEmail(loginBody.getEmail());
+				Gestore gestore=gestoreRepository.findByEmail(loginBody.getEmail()).get();
 				if(gestore.getPwd().equals(loginBody.getPassword())) {//Autenticazione Riuscita!
-					return new UserLogin(true,gestore.getPwd());
+					return new UserLogin(true,gestore.getId_gestore().toString(),gestore.getNome(),gestore.getCognome());
 				}
 				//Password Errata
 				throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Gestore Inesistente.");
@@ -41,9 +38,9 @@ public class UserLoginController {
 			}
 		}		
 		try{
-			Utente utente=userRepository.findByEmail(loginBody.getEmail());
+			Utente utente=userRepository.findByEmail(loginBody.getEmail()).get();
 			if(utente.getPwd().equals(loginBody.getPassword())) {//Autenticazione Riuscita!
-				return new UserLogin(true,utente.getPwd());
+				return new UserLogin(true,utente.getId().toString(),utente.getNome(), utente.getCognome());
 			}
 			//Password Errata
 			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Utente Inesistente.");

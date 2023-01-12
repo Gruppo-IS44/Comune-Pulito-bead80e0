@@ -2,11 +2,17 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { MappaComponent } from './mappa/mappa.component';
+import { SegnalazioneComponent } from './segnalazione/segnalazione.component';
+import { RewardComponent } from './reward/reward.component';
+import { GestoreComponent } from './gestore/gestore.component';
 
 const routes:Routes=[
   {path:'',redirectTo:'/login',pathMatch:'full'},
   {path:'login', component:LoginComponent},
-  {path:'map', component:MappaComponent}
+  {path:'mappa', component:MappaComponent},
+  {path:'segnalazione', component:SegnalazioneComponent},
+  {path:'reward', component:RewardComponent},
+  {path:'gestore', component:GestoreComponent}
 ];
 
 @NgModule({

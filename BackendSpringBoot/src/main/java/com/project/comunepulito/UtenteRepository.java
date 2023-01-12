@@ -1,9 +1,11 @@
 package com.project.comunepulito;
 
+import java.util.Optional;
+
 import org.springframework.data.repository.CrudRepository;
 
 public interface UtenteRepository extends CrudRepository<Utente,Integer>{
 
-	Utente findByEmail(String email);
+	Optional<Utente> findByEmail(String email);
 
 }

@@ -5,6 +5,7 @@ public class SignupBody {
 	private String password;
 	private String nome;
 	private String cognome;
+	
 	public SignupBody(String email, String password, String nome, String cognome) {
 		super();
 		this.email = email;
