@@ -89,8 +89,6 @@ export class MappaComponent implements OnInit {
           }
         }
       })
-      console.log(heatMapLayer.getProperties())
-
       navigator.geolocation.getCurrentPosition((position)=>{
         map.setView(new View({
           constrainResolution:true,
@@ -108,7 +106,6 @@ export class MappaComponent implements OnInit {
         }
         const properties = features[0].getProperties();
         this.featureSelezionata={descrizione:properties['descrizione'], foto:properties['foto']};
-        console.log(properties)
         if(this.featureSelezionata.foto=="null"){
           this.foto=false;
         }else{
