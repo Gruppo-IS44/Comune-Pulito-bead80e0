@@ -3,6 +3,7 @@ import Map from 'ol/Map';
 import View from 'ol/View';
 import Tile from 'ol/layer/Tile';
 import OSM from 'ol/source/OSM';
+import KML from 'ol/format/KML.js';
 import Attribution from 'ol/source/Source';
 import { defaults } from 'ol/control/defaults'
 import { fromLonLat } from 'ol/proj';
@@ -11,10 +12,12 @@ import VectorLayer  from 'ol/layer/Vector';
 import GeoJSON from 'ol/format/GeoJSON';
 import Style from 'ol/style/Style';
 import Icon from 'ol/style/Icon';
+import HeatMapLayer from 'ol/layer/Heatmap'
 import { Router } from '@angular/router';
 import { Point } from 'ol/geom';
 import { DataService } from '../data.service';
 import { Feature } from '../Export';
+import VectorSource from 'ol/source/Vector';
 
 
 @Component({
@@ -57,12 +60,12 @@ export class MappaComponent implements OnInit {
         })
       });
 
-      const VectorSource=new Vector({
+      const vectorSource=new Vector({
         url:'http://localhost:8080/geojson',
         format:new GeoJSON(),
       })
       const SegnalazioniLayer = new VectorLayer({
-        source:VectorSource,
+        source:vectorSource,
         style:new Style({
           image: new Icon({
               src: 'assets/delete.png',
@@ -71,6 +74,19 @@ export class MappaComponent implements OnInit {
           })
         }) 
       })
+      const heatMapLayer=new HeatMapLayer({
+        source: new VectorSource({
+          url:'http://localhost:8080/geojson',
+          format:new GeoJSON()
+        }),
+        blur:50,
+        radius:10,
+        weight:function (feature){
+          return 1
+        }
+      })
+      console.log(heatMapLayer.getProperties())
+
       navigator.geolocation.getCurrentPosition((position)=>{
         map.setView(new View({
           constrainResolution:true,
@@ -80,6 +96,7 @@ export class MappaComponent implements OnInit {
         this.caricato=true;
       })
       map.addLayer(SegnalazioniLayer);
+      map.addLayer(heatMapLayer);
       const showInfo = (event:any) => {
         const features = map.getFeaturesAtPixel(event.pixel);
         if (features.length == 0 ) {
