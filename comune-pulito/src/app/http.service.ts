@@ -43,4 +43,8 @@ export class HttpService {  //TODO:Interceptor richieste che aggiunge l'header.
     console.log(body);
     return this.http.post<Object>(environment.baseURL+"/convalida", body);
   }
+
+  ottieniBilancio(id_utente:string):Observable<number>{
+    return this.http.get<number>(environment.baseURL+'/bilancio?id='+id_utente)
+  }
 }
