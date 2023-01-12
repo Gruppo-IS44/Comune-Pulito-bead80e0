@@ -19,7 +19,7 @@ public class SegnalazioneReadController {
 	private SegnalazioneRepository segnalazioneRepository;
 	
 	@PostMapping("/mappa")
-	public List<Segnalazione> SegnalazioneRead (@RequestBody SegnalazioneIdBody segnalazioneIdBody){
+	public List<Segnalazione> SegnalazioneRead (@RequestBody SegnalazioneIdBody segnalazioneIdBody){//DEPRECATED
 	try{
 		List<Segnalazione> segnalazioni= new ArrayList<Segnalazione>();
 		System.out.println(segnalazioneIdBody.getId_utente());
