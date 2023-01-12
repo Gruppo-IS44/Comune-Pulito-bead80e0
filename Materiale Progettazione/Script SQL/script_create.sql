@@ -58,7 +58,7 @@ CREATE TABLE CLUSTER(
     Longitudine decimal(8,6),
     Id_gestore int NOT NULL,
     Raggio float, 
-	Id_Stato int NOT NULL REFERENCES CLUSTER_STATO(Id),
+	Id_Stato int default 1 NOT NULL REFERENCES CLUSTER_STATO(Id),
     PRIMARY KEY(Id_cluster),
     FOREIGN KEY(Id_gestore) REFERENCES gestore(Id_gestore)
 ); 
@@ -72,8 +72,12 @@ CREATE TABLE TIPO(
 CREATE TABLE SEGNALAZIONE(
     Id_segnalazione int NOT NULL AUTO_INCREMENT,
     Dataora datetime,
+<<<<<<< Updated upstream
     Descrizione varchar(160),
     Foto longtext,
+=======
+    Foto Longtext,
+>>>>>>> Stashed changes
     Latitudine decimal(8,6),
     Longitudine decimal(8,6),
 	Id_Tipo int NOT NULL REFERENCES TIPO(Id_tipo),
