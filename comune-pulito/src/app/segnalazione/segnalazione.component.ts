@@ -65,7 +65,21 @@ export class SegnalazioneComponent {
   onSubmit(){
     this.segnalazioneForm.patchValue({latitudine:this.posizione[1],longitudine:this.posizione[0]})
     if(this.dataService.id_utente){
-      const segnalazione:Segnalazione={"foto":this.segnalazioneForm.value.immagine2, "descrizione":this.segnalazioneForm.value.descrizione, "tipo_rifiuto":1, "latitudine":this.posizione[1], "longitudine":this.posizione[0],"utente":this.dataService.id_utente.toString()}
+      let tipo_rifiuto:number=0;
+      switch(this.segnalazioneForm.value.tipoRifiuto){
+        case 'piccolo':
+          tipo_rifiuto=1;
+          break;
+        case 'grande':
+          tipo_rifiuto=2;
+          break;
+        case 'liquido':
+          tipo_rifiuto=3;
+          break;
+        default:
+          tipo_rifiuto=4;
+      }
+      const segnalazione:Segnalazione={"foto":this.segnalazioneForm.value.immagine2, "descrizione":this.segnalazioneForm.value.descrizione, "tipo_rifiuto":tipo_rifiuto, "latitudine":this.posizione[1], "longitudine":this.posizione[0],"utente":this.dataService.id_utente.toString()}
       this.http.segnala(segnalazione).subscribe(data=>{
         this.success=true;
         setTimeout(() => {
