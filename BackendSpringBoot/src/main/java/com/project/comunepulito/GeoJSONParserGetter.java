@@ -26,6 +26,10 @@ public class GeoJSONParserGetter {
 				risposta=risposta.concat(", ");
 			}
 		}
+		if(risposta.endsWith(", ")) 
+		{
+			risposta=risposta.substring(0,risposta.length()-2);  
+		}
 		return risposta.concat("]}");
 	}
 }
